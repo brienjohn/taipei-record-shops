@@ -28,10 +28,11 @@ head = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>台北唱片行變遷地圖</title>
+<title>台北唱片行變遷地圖｜22CS</title>
 <meta name="description" content="{desc}">
 <meta name="author" content="Brien John">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="22 世紀衛星">
 <meta property="og:title" content="台北唱片行變遷地圖">
 <meta property="og:description" content="{desc}">
 {f'<meta property="og:url" content="https://{domain}/">' if domain else ''}
