@@ -93,8 +93,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .track .tk.big { height: 7px; opacity: .9; }
 .tlab { top: 25px; height: 16px; font: 11px var(--f-mono); color: var(--ink-2); }
 .tlab span { position: absolute; transform: translateX(-50%); }
-.tl-wrap { position: relative; min-width: 0; }
-#chart { width: 100%; height: 262px; display: block; overflow: visible; touch-action: pan-y; cursor: ew-resize; -webkit-user-select: none; user-select: none; }
+.tl-wrap { position: relative; min-width: 0; flex: 1 1 auto; min-height: 240px; }
+#chart { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; touch-action: pan-y; cursor: ew-resize; -webkit-user-select: none; user-select: none; }
 #year { position: absolute; left: 0; top: 0; width: 100%; height: 22px; margin: 0; padding: 0; cursor: pointer; -webkit-appearance: none; appearance: none; background: transparent; }
 #year::-webkit-slider-runnable-track { height: 22px; background: transparent; }
 #year::-webkit-slider-thumb { -webkit-appearance: none; box-sizing: border-box; width: 22px; height: 22px; margin-top: 0; border-radius: 50%; background: #ffd23f; border: 3px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); cursor: grab; }
@@ -243,7 +243,7 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 .panel.notes { grid-template-columns: minmax(0, 1fr); border-top: 0; }
 .panel .intro { margin: 0; font-size: 15px; max-width: 70ch; color: var(--ink-2); }
 .cols2 { columns: 2 340px; column-gap: 44px; }
-.cols2 > section { break-inside: avoid; display: grid; gap: 6px; margin-bottom: 24px; }
+.cols2 > section { break-inside: avoid; display: grid; gap: 8px; margin-bottom: 18px; padding: 14px 16px 16px; background: var(--paper-2); border-radius: 14px; }
 .panel section { display: grid; gap: 8px; min-width: 0; }
 #sources { columns: 2 380px; column-gap: 44px; font-size: 12.5px; margin: 0; padding-left: 2.8em; }
 #sources li { break-inside: avoid; margin-bottom: 4px; color: var(--ink-2); }
@@ -309,9 +309,9 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 /* ---------- cards: list + zones ---------- */
 .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 10px; flex-wrap: wrap; }
 h2 { font: 700 20px var(--f-display); margin: 0; letter-spacing: .03em; }
-/* the count chart takes a third, the clusters two thirds in one column so every row lines up on the same years */
-.trends { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 22px; align-items: start; }
-.trend { padding: 16px 20px 18px; display: grid; gap: 12px; min-width: 0; }
+/* chart and clusters side by side, half each; both cards end on the same line (the chart grows to fill) */
+.trends { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+.trend { padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .phases button { width: 100%; display: grid; grid-template-columns: 12px 6.4em minmax(0, 1fr); gap: 2px 8px; align-items: baseline; text-align: left; font: 13px/1.5 var(--f-body); color: var(--ink-2); background: none; border: 0; border-radius: 8px; padding: 3px 6px; cursor: pointer; }
 .phases button:hover { background: var(--paper-2); }
@@ -320,10 +320,10 @@ h2 { font: 700 20px var(--f-display); margin: 0; letter-spacing: .03em; }
 .phases .py { font: 600 12px var(--f-mono); color: var(--ink); }
 .phases b { font: 400 14px var(--f-round); color: var(--ink); margin-right: 6px; }
 .ph-label { font: 600 11px var(--f-body); fill: var(--ink); opacity: .75; }
-.zonecard { padding: 16px 20px 18px; display: grid; gap: 12px; position: relative; min-width: 0; }
+.zonecard { padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 12px; position: relative; min-width: 0; }
 .zsub { font-size: 13px; color: var(--ink-2); }
-.zones { display: grid; grid-template-columns: repeat(var(--zc, 1), minmax(0, 1fr)); gap: 0 40px; }
-.zcol { display: grid; gap: 7px; align-content: start; min-width: 0; }
+.zones { flex: 1 1 auto; display: grid; grid-template-columns: repeat(var(--zc, 1), minmax(0, 1fr)); gap: 0 40px; }
+.zcol { display: flex; flex-direction: column; justify-content: space-between; gap: 7px; min-width: 0; }
 .zone { display: grid; grid-template-columns: 6.5em minmax(0, 1fr) 2.2em; gap: 10px; align-items: center; font-size: 13.5px; }
 .zone .zn { font-family: var(--f-round); }
 .zone .zc { font: 600 13px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
@@ -340,6 +340,10 @@ h2 { font: 700 20px var(--f-display); margin: 0; letter-spacing: .03em; }
 .ztip { position: absolute; z-index: 5; pointer-events: none; font: 12.5px var(--f-mono); background: var(--ink); color: var(--paper); border-radius: 6px; padding: 2px 8px; white-space: nowrap; }
 .list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 14px 22px; padding-right: 4px; align-content: start; align-items: start; }
 .grp { display: grid; gap: 1px; }
+.list::-webkit-scrollbar, .tablewrap.tall::-webkit-scrollbar, .event p::-webkit-scrollbar, .drawer::-webkit-scrollbar { width: 10px; height: 10px; }
+.list::-webkit-scrollbar-track, .tablewrap.tall::-webkit-scrollbar-track, .event p::-webkit-scrollbar-track, .drawer::-webkit-scrollbar-track { background: var(--paper-2); border-radius: 5px; }
+.list::-webkit-scrollbar-thumb, .tablewrap.tall::-webkit-scrollbar-thumb, .event p::-webkit-scrollbar-thumb, .drawer::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 5px; border: 2px solid var(--paper-2); }
+@supports not selector(::-webkit-scrollbar) { .list, .tablewrap.tall, .event p, .drawer { scrollbar-width: thin; scrollbar-color: var(--muted) var(--paper-2); } }
 .grp h3 { margin: 0 0 3px; font: 13px var(--f-round); color: var(--muted); }
 .item { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 3px 5px; border-radius: 6px; cursor: pointer; font-size: 14px; border: 0; background: none; text-align: left; width: 100%; }
 .item:hover { background: var(--paper-2); }
@@ -365,7 +369,7 @@ td a { color: var(--ink-2); }
 .method > header, .refs > header { display: grid; gap: 4px; }
 .eyebrow { font: 600 11px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .method section { display: grid; gap: 6px; }
-.notes h3 { margin: 0; font: 600 12px var(--f-mono); letter-spacing: .12em; color: var(--muted); }
+.notes h3 { margin: 0; font: 400 18px/1.35 var(--f-round); color: var(--ink); letter-spacing: 0; }
 .notes p, .notes li { color: var(--ink-2); font-size: 14px; margin: 0; }
 .notes ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
 .notes a { color: var(--ink); text-underline-offset: 2px; overflow-wrap: anywhere; }
@@ -425,7 +429,7 @@ td a { color: var(--ink-2); }
   .ctl2 { gap: 6px; }
   .ctl2 .step { width: 32px; height: 32px; }
   #play { width: 42px; height: 42px; }
-  #chart { height: 190px; }
+  .tl-wrap { min-height: 190px; }
   .slide { height: 42px; }
   .keybar { gap: 6px; margin-top: -4px; }
   .trend { padding: 14px 14px 16px; }
@@ -612,11 +616,11 @@ td a { color: var(--ink-2); }
       <section>
         <h3>主要資料來源</h3>
         <div class="tablewrap" style="margin-top:0"><table class="src"><tbody>
-          <tr><td>1996</td><td>《音樂時代》月刊〈全省各大暢銷名店索引〉：用來確認哪些店在 2000 年以前就已營業，以及它們當時的地址。</td></tr>
+          <tr><td>1996</td><td>《音樂時代》月刊〈全省各大暢銷名店索引〉（宗山提供）：用來確認哪些店在 2000 年以前就已營業，以及它們當時的地址。</td></tr>
           <tr><td>2000</td><td>羅悅全〈唱片行東西南北中〉，《秘密基地》2000 年 5 月：當年台北唱片行的分區實地普查。</td></tr>
           <tr><td>2001–2005</td><td>玫瑰唱片官網門市表（2001-02 至 2002-06，8 個版本）、大眾唱片官網〈各店位址〉（2001–2005），取自網際網路檔案館（Wayback Machine）。</td></tr>
           <tr><td>2005–2021</td><td>G-Music〈關於玫瑰〉〈關於大眾〉門市表，每季抽取一個封存版本逐一比對（共 68 個版本），連鎖分店的收店時間多可精確到季。</td></tr>
-          <tr><td>2013–2026</td><td>網路唱片店名單（2013、2014）、蔡政忠提供之台灣實體唱片行清單（2020-05）、文化部與 Record Store Day 參與店家名單（2026）。</td></tr>
+          <tr><td>2013–2026</td><td>Bitetone 論壇唱片店列表（2013）、「無限期支持實體唱片」粉絲專頁製作的台北唱片行名單（2014）、蔡政忠提供之台灣實體唱片行清單（2020-05）、文化部與 Record Store Day 參與店家名單（2026）。</td></tr>
           <tr><td>照片</td><td>Wikimedia Commons 上以 CC 授權釋出的店面照片，經縮圖後使用；作者、授權與拍攝年標在各店的資料卡。其餘店家顯示示意插畫。</td></tr>
           <tr><td>其他</td><td>新聞報導、維基百科、部落格、論壇與店家官網、社群頁面，逐筆列於下方完整來源清單與店家列表。</td></tr>
         </tbody></table></div>
@@ -699,7 +703,7 @@ td a { color: var(--ink-2); }
     <div class="mk">
       <div class="eyebrow">製作者</div>
       <h2 id="makerTitle">Brien John</h2>
-      <p>《22 世紀衛星》創辦人、音樂記者，臺灣藝術大學音樂學系兼任講師。曾任最愛音樂 Love Da Music Taiwan 經理，也在攝氏三十八度音響唱片當過店員，就是<a href="#y2026-s-38c">地圖上的那家 38 度 C</a>。</p>
+      <p>《22 世紀衛星》創辦人、音樂記者，臺灣藝術大學音樂學系兼任講師。曾任最愛音樂 Love Da Music Taiwan 經理，也在攝氏三十八度音響唱片當過店員，就是<a href="#y2026-s-38c">地圖上的那家 38 度 C</a>。還經營過粉絲專頁<a href="https://www.facebook.com/SupportPhysicalMusic" target="_blank" rel="noopener">「無限期支持實體唱片」</a>，只是已經停更很久了。</p>
       <ul class="links">
         <li><a href="https://www.22cs.xyz/" target="_blank" rel="noopener">22 世紀衛星</a></li>
         <li><a href="https://www.facebook.com/brienjohn" target="_blank" rel="noopener">Facebook</a></li>
