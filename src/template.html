@@ -1,0 +1,1433 @@
+<title>台北唱片行變遷地圖</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+/* Layout: an era poster with a sticker map. The whole page takes the colour of the decade being
+   shown (2000s red, 2010s mustard, 2020s pink); the year is stamped huge on the left like a sticker,
+   the map sits on a cream card with a hard offset shadow, and the count chart under it is the timeline.
+   One deliberate look in both OS themes: the era colour is the concept. */
+:root {
+  --era: #ff5a3c;
+  --ink: #141414;
+  --ink-2: #2f2b26;
+  --muted: #645d53;
+  --paper: #fff7ee;
+  --paper-2: #f5eadb;
+  --line: #e2d4bd;
+  --land: #fff7ee;
+  --out: #efe3cf;
+  --water: #bfdfe9;
+  --water-edge: #9ccad9;
+  --road: #ecdfc9;
+  --road-major: #dccdb2;
+  --rail: #b6aa93;
+  --heat: 20, 20, 20;
+  --s-chain: #2a6fd6;
+  --s-indie: #ff6a3d;
+  --s-vinyl: #14a874;
+  --s-kpop: #5d6876;
+  --f-display: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+  --f-round: "Huninn", "Noto Sans TC", "PingFang TC", system-ui, sans-serif;
+  --f-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --stick: 3px solid var(--ink);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--era); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 22px 48px; transition: background-color .6s ease;
+}
+.wrap { max-width: 1400px; margin: 0 auto; display: grid; gap: 22px; }
+svg.ico { width: 13px; height: 13px; flex: none; }
+button { font-family: inherit; color: inherit; }
+button:focus-visible, input:focus-visible, a:focus-visible, .item:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.label { font: 600 11px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.sticker { background: var(--paper); border: var(--stick); border-radius: 14px; box-shadow: 4px 4px 0 var(--ink); }
+
+/* ---------- top bar ---------- */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--era); transition: background-color .6s ease; }
+.top { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(300px, 440px); gap: 12px 26px; align-items: center; }
+.logo { font: 400 28px/1 var(--f-round); padding: 9px 16px 8px; transform: rotate(-1.5deg); white-space: nowrap; margin: 0; justify-self: start; }
+.intro-top { display: grid; gap: 6px; min-width: 0; }
+.lede { margin: 0; max-width: 62ch; font-size: 14.5px; color: var(--ink-2); }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; font-size: 13.5px; }
+.nav a { color: var(--ink); text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.nav a.hot { background: #ffd23f; border: 2px solid var(--ink); border-radius: 999px; padding: 0 10px; text-decoration: none; }
+
+/* ---------- year chips: every block that follows the timeline carries one ---------- */
+.ychip { display: inline-block; font: 600 .9em/1.4 var(--f-mono); background: var(--ink); color: var(--paper); border-radius: 999px; padding: 0 .6em; font-variant-numeric: tabular-nums; letter-spacing: 0; }
+.ychip.pulse { animation: ypulse .8s ease-out; }
+@keyframes ypulse { 0% { background: #ffd23f; color: var(--ink); box-shadow: 0 0 0 5px #ffd23f; } 100% { box-shadow: 0 0 0 0 rgba(255, 210, 63, 0); } }
+
+/* ---------- sticky year bar: the timeline that drives every block below ---------- */
+.yearbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); z-index: 30; display: grid; grid-template-columns: 250px auto minmax(0, 1fr); grid-template-areas: "yr ctl tl"; gap: 6px 22px; align-items: center; padding: 8px 22px 8px 16px; border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); }
+.yr { grid-area: yr; display: flex; align-items: center; gap: 12px; min-width: 0; }
+.ynum { font: 900 46px/1 var(--f-display); letter-spacing: -.02em; color: var(--era); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); margin: 0; font-variant-numeric: tabular-nums; transition: color .6s ease; }
+.cnt { font: 14px/1.4 var(--f-round); white-space: nowrap; min-width: 0; }
+.cnt b { font: 600 21px var(--f-mono); }
+.cnt small { display: block; font: 11.5px/1.5 var(--f-body); color: var(--muted); height: 1.5em; overflow: hidden; text-overflow: ellipsis; }
+.ctl2 { grid-area: ctl; display: flex; align-items: center; gap: 8px; }
+.ctl2 .step { width: 36px; height: 36px; border-radius: 50%; border: 2.5px solid var(--ink); background: var(--paper); display: grid; place-items: center; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); padding: 0; }
+.ctl2 .step svg { width: 14px; height: 14px; display: block; }
+.ctl2 .step:disabled { opacity: .35; cursor: default; }
+#play { width: 52px; height: 52px; border-radius: 50%; border: var(--stick); background: var(--ink); color: var(--paper); cursor: pointer; display: grid; place-items: center; box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 40%, transparent); padding: 0; }
+/* the pinned slider: one tick per year, the track coloured by decade like the page */
+.slide { grid-area: tl; position: relative; min-width: 0; height: 44px; --th: 22px; }
+.track, .tlab { position: absolute; left: calc(var(--th) / 2); right: calc(var(--th) / 2); }
+.track { top: 8px; height: 6px; }
+.track .era { position: absolute; top: 0; height: 6px; border: 1.5px solid var(--ink); border-radius: 3px; box-sizing: border-box; }
+.track .tk { position: absolute; top: 8px; width: 1.5px; height: 4px; background: var(--ink); transform: translateX(-50%); opacity: .45; }
+.track .tk.big { height: 7px; opacity: .9; }
+.tlab { top: 25px; height: 16px; font: 11px var(--f-mono); color: var(--ink-2); }
+.tlab span { position: absolute; transform: translateX(-50%); }
+.tl-wrap { position: relative; min-width: 0; }
+#chart { width: 100%; height: 300px; display: block; overflow: visible; touch-action: pan-y; cursor: ew-resize; -webkit-user-select: none; user-select: none; }
+#year { position: absolute; left: 0; top: 0; width: 100%; height: 22px; margin: 0; padding: 0; cursor: pointer; -webkit-appearance: none; appearance: none; background: transparent; }
+#year::-webkit-slider-runnable-track { height: 22px; background: transparent; }
+#year::-webkit-slider-thumb { -webkit-appearance: none; box-sizing: border-box; width: 22px; height: 22px; margin-top: 0; border-radius: 50%; background: #ffd23f; border: 3px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); cursor: grab; }
+#year::-moz-range-track { height: 22px; background: transparent; }
+#year::-moz-range-thumb { box-sizing: border-box; width: 22px; height: 22px; border-radius: 50%; background: #ffd23f; border: 3px solid var(--ink); cursor: grab; }
+#year:focus-visible { outline: none; }
+#year:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--paper), 0 0 0 6px var(--ink); }
+.keybar { display: flex; align-items: center; gap: 8px 22px; flex-wrap: wrap; margin-top: -6px; min-width: 0; }
+.tlhint { margin: 0; flex: 1 1 300px; font-size: 13px; color: var(--ink); }
+.tlhint b { color: var(--ink); font-weight: 600; }
+.tlhint .how-s { display: none; }
+.ctip { position: absolute; top: 0; z-index: 4; pointer-events: none; white-space: nowrap; font-size: 12.5px; line-height: 1.55; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; padding: 5px 10px; box-shadow: 3px 3px 0 var(--ink); }
+.ctip b { font-family: var(--f-mono); font-weight: 600; }
+.ctip .m { display: block; color: var(--muted); font-size: 11.5px; }
+.axis text { fill: var(--ink-2); font: 11px var(--f-mono); }
+.bar { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.bar.hov { fill: color-mix(in srgb, var(--ink) 10%, transparent); }
+.bar.on { stroke-width: 3; }
+.tl-wrap:focus-within .bar.on { stroke-width: 4; }
+.ev-dot { fill: var(--ink); }
+.yr-flag rect { fill: var(--ink); } .yr-flag text { fill: var(--paper); font: 600 11px var(--f-mono); text-anchor: middle; }
+
+/* ---------- stage: map + this year's side panel, sized to one screen ---------- */
+.stage { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(330px, 1fr); gap: 22px; height: clamp(540px, calc(100svh - 124px), 820px); }
+.stage > * { min-height: 0; }
+.side { display: flex; flex-direction: column; gap: 14px; min-width: 0; min-height: 0; }
+.event { padding: 12px 16px 12px; display: grid; gap: 4px; flex: none; }
+.event .eh { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.event p { margin: 0; font-size: 14px; line-height: 1.6; height: 8em; overflow-y: auto; overscroll-behavior: contain; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 8px; flex: none; }
+.legend button { display: inline-flex; align-items: center; gap: 6px; font: 14px var(--f-round); padding: 2px 11px 2px 9px; border-radius: 999px; background: var(--paper); border: 2px solid var(--ink); cursor: pointer; box-shadow: 2px 2px 0 var(--ink); transition: transform .12s, box-shadow .12s, opacity .12s; white-space: nowrap; }
+.legend button .ts { display: none; }
+.legend button .n { font: 600 12.5px var(--f-mono); min-width: 1.4em; text-align: right; }
+.legend button[aria-pressed="false"] { background: transparent; box-shadow: none; transform: translate(2px, 2px); opacity: .5; }
+.legend button[aria-pressed="false"] :is(.t, .ts) { text-decoration: line-through; }
+.seg { display: inline-flex; border: 2px solid var(--ink); border-radius: 999px; overflow: hidden; flex: none; }
+.seg button { font: 13px var(--f-round); color: var(--ink); border: 0; background: var(--paper); padding: 2px 11px; cursor: pointer; }
+.seg button + button { border-left: 2px solid var(--ink); }
+.seg button[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.listcard { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; }
+.listcard .card-head { align-items: center; }
+.facts { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; font: 12.5px var(--f-mono); color: var(--ink-2); }
+.facts div { display: flex; gap: 6px; align-items: baseline; }
+.facts dt { order: 2; } .facts dd { margin: 0; font-weight: 600; color: var(--ink); }
+
+/* search: independent of any year; picking a shop jumps the timeline and the map */
+.search { position: relative; min-width: 0; }
+.search .box { display: flex; align-items: center; gap: 8px; padding: 0 14px; border-radius: 999px; }
+.search svg.mag { width: 18px; height: 18px; flex: none; }
+.search input { flex: 1; min-width: 0; border: 0; background: none; color: var(--ink); font: 15.5px var(--f-body); padding: 11px 0; outline: none; }
+.search input::placeholder { color: var(--muted); }
+.search .clear { border: 0; background: none; font-size: 19px; line-height: 1; cursor: pointer; padding: 2px 4px; }
+.search .count { font: 12px var(--f-mono); color: var(--muted); white-space: nowrap; }
+.results { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 40; background: var(--paper); border: var(--stick); border-radius: 14px; box-shadow: 6px 6px 0 var(--ink); max-height: min(420px, 55vh); overflow-y: auto; margin: 0; padding: 6px; list-style: none; }
+.results li { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; padding: 7px 8px; border-radius: 8px; cursor: pointer; }
+.results li[aria-selected="true"], .results li:hover { background: var(--paper-2); }
+.results .rn { font-size: 14.5px; min-width: 0; overflow-wrap: anywhere; }
+.results mark { background: #ffd23f; color: inherit; border-radius: 3px; }
+.results .ry { font: 11px var(--f-mono); color: var(--muted); white-space: nowrap; }
+.results .ra { grid-column: 2 / 4; font-size: 12px; color: var(--muted); }
+.results .empty { display: block; color: var(--muted); font-size: 13px; cursor: default; }
+
+
+.mapcard { position: relative; height: 100%; border: var(--stick); border-radius: 24px; overflow: hidden; background: var(--out); box-shadow: 10px 10px 0 var(--ink); touch-action: none; isolation: isolate; }
+#map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+#map:active { cursor: grabbing; }
+.float { position: absolute; z-index: 5; }
+.ctl { right: 14px; top: 14px; display: flex; gap: 8px; }
+.ctl button { font: 14px var(--f-round); background: var(--paper); border: 2.5px solid var(--ink); border-radius: 10px; padding: 3px 12px; cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
+.ctl button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.ctl .zb { font: 600 17px var(--f-mono); padding: 1px 11px; }
+.key { left: 14px; top: 14px; display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); background: color-mix(in srgb, var(--paper) 94%, transparent); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 12px 9px; box-shadow: 3px 3px 0 var(--ink); }
+.key b { font: 400 13px var(--f-round); color: var(--ink); margin-bottom: 2px; }
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key svg.ico { width: 15px; height: 15px; }
+.key hr { border: 0; border-top: 1.5px dashed var(--line); margin: 4px 0; width: 100%; }
+.ctl .legbtn { display: none; }
+.osm { right: 12px; bottom: 6px; font-size: 10.5px; color: var(--muted); }
+.osm a { color: inherit; }
+.zoomhint { left: 50%; top: 44%; transform: translate(-50%, -50%); font: 14px var(--f-round); padding: 8px 14px; pointer-events: none; opacity: 0; transition: opacity .25s; }
+.zoomhint.show { opacity: 1; }
+
+/* basemap + marks */
+.b-out { fill: var(--out); stroke: var(--line); stroke-width: .6; vector-effect: non-scaling-stroke; }
+.b-land { fill: var(--land); }
+.b-edge { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.b-water { fill: var(--water); stroke: var(--water-edge); stroke-width: .6; vector-effect: non-scaling-stroke; fill-rule: evenodd; }
+.b-river { fill: none; stroke: var(--water-edge); stroke-width: 1.4; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+.b-road { fill: none; stroke: var(--road); stroke-width: .8; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; }
+.b-road.major { stroke: var(--road-major); stroke-width: 1.5; }
+.b-rail { fill: none; stroke: var(--rail); stroke-width: 1.2; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-dasharray: 5 3; opacity: .8; }
+.b-sta { fill: var(--paper); stroke: var(--rail); vector-effect: non-scaling-stroke; }
+.dlabel { fill: var(--muted); font: 500 11px var(--f-body); text-anchor: middle; pointer-events: none; letter-spacing: .18em; opacity: .75; }
+.zlabel { fill: var(--ink); font: 400 13px var(--f-round); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-width: 4px; }
+.shop { cursor: pointer; stroke: var(--ink); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.shop.faint { opacity: .45; }
+.shop:focus { outline: none; }
+.shop:focus-visible, .shop.on { stroke-width: 3.2; }
+.ring { fill: #ffd23f; stroke: var(--ink); stroke-width: 1.4; vector-effect: non-scaling-stroke; pointer-events: none; }
+.xmark { stroke: var(--ink); stroke-width: 1.8; vector-effect: non-scaling-stroke; pointer-events: none; }
+/* year changes cross-fade: new marks fade in, departing ones fade out before removal */
+g.s, g.mv, g.lay, .ring, .xmark, .shop { transition: opacity .5s ease; }
+g.s.enter, g.mv.enter, g.lay.enter { animation: fadein .5s ease-out; }
+g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
+@keyframes fadein { from { opacity: 0; } }
+
+.tip { position: absolute; z-index: 8; max-width: 240px; padding: 6px 10px; font-size: 13px; line-height: 1.45; pointer-events: none; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+.tip b { display: block; font-size: 13.5px; }
+.tip span { font: 11.5px var(--f-mono); color: var(--muted); }
+
+/* shop card */
+.drawer { right: 14px; top: 62px; width: min(340px, calc(100% - 28px)); max-height: calc(100% - 80px); z-index: 12; overflow-y: auto; padding: 14px 16px 16px; border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); display: grid; align-content: start; gap: 10px; }
+.drawer .head { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 12px; align-items: start; padding-right: 30px; }
+.drawer .ph { grid-row: span 3; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--paper-2); padding: 0; display: block; }
+.drawer .ph svg { width: 100%; height: auto; display: block; }
+.drawer button.ph { cursor: zoom-in; }
+.drawer .ph img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.drawer.big .head { grid-template-columns: minmax(0, 1fr); padding-right: 0; }
+.drawer.big .ph { grid-row: auto; cursor: zoom-out; margin-top: 30px; }
+.drawer.big .ph img { aspect-ratio: auto; max-height: 52vh; object-fit: contain; background: var(--ink); }
+.drawer .credit { margin: 0; font-size: 11.5px; color: var(--muted); }
+.drawer .credit a { color: inherit; }
+.drawer .close { position: absolute; right: 10px; top: 10px; z-index: 2; width: 32px; height: 32px; border-radius: 50%; background: var(--paper); border: 2.5px solid var(--ink); padding: 0; display: grid; place-items: center; cursor: pointer; }
+.drawer .close svg { width: 12px; height: 12px; display: block; }
+.drawer .body { display: grid; gap: 10px; }
+.drawer .chip { justify-self: start; display: inline-flex; align-items: center; gap: 6px; font: 13px var(--f-round); border: 2px solid var(--ink); border-radius: 999px; padding: 1px 10px 1px 8px; }
+.drawer h3 { font: 700 19px/1.3 var(--f-display); margin: 0; text-wrap: balance; }
+.drawer .en { color: var(--muted); font-size: 13px; }
+.drawer dl { margin: 0; display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 5px 10px; font-size: 13.5px; }
+.drawer dt { color: var(--muted); }
+.drawer dd { margin: 0; }
+.drawer dd.mono { font: 13px var(--f-mono); }
+.drawer .note { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.drawer .sh { font: 600 11px var(--f-mono); letter-spacing: .12em; color: var(--muted); }
+.drawer .src { margin: 0; padding-left: 1.4em; font-size: 12.5px; display: grid; gap: 3px; }
+.drawer .src a { color: var(--ink-2); text-underline-offset: 2px; overflow-wrap: anywhere; }
+
+/* ---------- dock: supporting material at the bottom, one tab at a time ---------- */
+.dock { padding: 0; border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); min-width: 0; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px clamp(16px, 3vw, 32px) 14px; border-bottom: 2px dashed var(--line); }
+.tabs button { font: 15.5px var(--f-round); color: var(--ink); background: var(--paper); border: 2.5px solid var(--ink); border-radius: 999px; padding: 4px 15px; cursor: pointer; box-shadow: 2px 2px 0 var(--ink); }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.tabs button.hot[aria-selected="false"] { background: #ffd23f; }
+.panel { padding: 20px clamp(16px, 3vw, 32px) 28px; display: grid; gap: 20px; min-width: 0; }
+.panel.notes { grid-template-columns: minmax(0, 1fr); border-top: 0; }
+.panel .intro { margin: 0; font-size: 15px; max-width: 70ch; color: var(--ink-2); }
+.cols2 { columns: 2 340px; column-gap: 44px; }
+.cols2 > section { break-inside: avoid; display: grid; gap: 6px; margin-bottom: 24px; }
+.panel section { display: grid; gap: 8px; min-width: 0; }
+#sources { columns: 2 380px; column-gap: 44px; font-size: 12.5px; margin: 0; padding-left: 2.8em; }
+#sources li { break-inside: avoid; margin-bottom: 4px; color: var(--ink-2); }
+#sources li::marker { font-family: var(--f-mono); color: var(--muted); }
+.tablewrap.tall { max-height: min(72vh, 760px); overflow: auto; margin-top: 0; border: 2px solid var(--ink); border-radius: 12px; }
+.tablewrap.tall table { min-width: 720px; }
+.tablewrap.tall td svg.ico { vertical-align: -1px; margin-right: 4px; }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.wanted { padding: 16px 18px; display: grid; gap: 12px; border: 2.5px solid var(--ink); border-radius: 16px; background: #ffd23f; }
+.wanted h3, .contrib h3 { font: 400 19px/1.3 var(--f-round); margin: 0; }
+.wanted p { margin: 0; font-size: 14px; }
+.wanted ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; counter-reset: w; }
+.wanted li { counter-increment: w; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; background: var(--paper); border: 2px solid var(--ink); border-radius: 12px; padding: 10px 12px; }
+.wanted li::before { content: counter(w); width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #ffd23f; display: grid; place-items: center; font: 600 14px var(--f-mono); }
+.wanted li b { display: block; font-size: 15px; }
+.wanted li span { font-size: 13.5px; color: var(--ink-2); }
+.cta { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font: 16px var(--f-round); color: var(--paper); background: var(--ink); border: 0; border-radius: 999px; padding: 9px 18px; text-decoration: none; cursor: pointer; box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 35%, transparent); }
+.cta[aria-disabled="true"] { background: var(--muted); cursor: default; }
+.contrib { display: grid; gap: 12px; min-width: 0; }
+.contrib p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.contrib form { display: grid; gap: 10px; }
+.contrib label { display: grid; gap: 4px; font-size: 13.5px; font-weight: 500; }
+.contrib label small { font-weight: 400; color: var(--muted); }
+.contrib input, .contrib select, .contrib textarea { font: 14.5px var(--f-body); color: var(--ink); background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; padding: 7px 10px; width: 100%; min-width: 0; }
+.contrib textarea { min-height: 76px; resize: vertical; }
+.contrib .row2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.contrib .status { font-size: 13.5px; min-height: 1.4em; }
+.contrib .status.ok { color: #0d7a52; } .contrib .status.err { color: #b3261e; }
+.contrib .note2 { font-size: 12.5px; color: var(--muted); }
+.review { display: grid; gap: 8px; }
+.review h3 { margin: 0; font: 400 17px var(--f-round); }
+.review .rv { border: 2px solid var(--ink); border-radius: 12px; padding: 10px 12px; display: grid; gap: 4px; font-size: 13.5px; background: var(--paper); }
+.review .rv.done { opacity: .5; }
+.review .rv .meta { font: 12px var(--f-mono); color: var(--muted); }
+.review .rv a { color: var(--ink-2); }
+.review .rv button { justify-self: start; font: 13px var(--f-round); border: 2px solid var(--ink); background: var(--paper); border-radius: 999px; padding: 1px 10px; cursor: pointer; }
+.drawer .report { justify-self: start; font: 13px var(--f-round); color: var(--ink); background: var(--paper-2); border: 2px solid var(--ink); border-radius: 999px; padding: 2px 12px; cursor: pointer; }
+@media (max-width: 520px) { .contrib .row2 { grid-template-columns: minmax(0, 1fr); } }
+
+
+/* ---------- maker ---------- */
+.maker { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 22px; align-items: center; padding: 22px 24px; border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); }
+.maker img { width: 116px; height: 116px; border: 3px solid var(--ink); border-radius: 18px; image-rendering: pixelated; display: block; box-shadow: 4px 4px 0 var(--ink); }
+.maker .mk { display: grid; gap: 6px; min-width: 0; }
+.maker h2 { font: 400 28px/1.2 var(--f-round); margin: 0; }
+.maker p { margin: 0; font-size: 15px; max-width: 62ch; }
+.maker p a { color: var(--ink); text-underline-offset: 3px; }
+.maker .links { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.maker .links a { display: inline-block; font: 14px var(--f-round); color: var(--ink); text-decoration: none; border: 2px solid var(--ink); border-radius: 999px; padding: 2px 12px; background: var(--paper-2); box-shadow: 2px 2px 0 var(--ink); }
+@media (max-width: 560px) { .maker { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 16px; } .maker img { width: 84px; height: 84px; } .maker h2 { font-size: 23px; } }
+
+/* ---------- cards: list + zones ---------- */
+.card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 10px; flex-wrap: wrap; }
+h2 { font: 700 20px var(--f-display); margin: 0; letter-spacing: .03em; }
+.trends { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.trend { padding: 16px 20px 18px; display: grid; gap: 12px; min-width: 0; }
+.zonecard { padding: 16px 20px 18px; display: grid; gap: 12px; position: relative; min-width: 0; }
+.zsub { font-size: 13px; color: var(--ink-2); }
+.zones { display: grid; grid-template-columns: repeat(var(--zc, 1), minmax(0, 1fr)); gap: 0 40px; }
+.zcol { display: grid; gap: 7px; align-content: start; min-width: 0; }
+.zone { display: grid; grid-template-columns: 6.5em minmax(0, 1fr) 2.2em; gap: 10px; align-items: center; font-size: 13.5px; }
+.zone .zn { font-family: var(--f-round); }
+.zone .zc { font: 600 13px var(--f-mono); text-align: right; font-variant-numeric: tabular-nums; }
+.zone svg { width: 100%; height: 22px; display: block; }
+.zone rect { fill: var(--line); }
+.zone rect.on { fill: var(--ink); }
+.zone rect.hit { fill: transparent; cursor: pointer; }
+.zone rect.hit:hover { fill: color-mix(in srgb, var(--ink) 12%, transparent); }
+.zaxis { display: grid; grid-template-columns: 6.5em minmax(0, 1fr) 2.2em; gap: 10px; font: 11px var(--f-mono); color: var(--muted); }
+.zaxis .zx { grid-column: 2; position: relative; height: 14px; }
+.zaxis .zx span { position: absolute; top: 0; transform: translateX(-50%); }
+.zaxis .zx span:first-child { transform: none; }
+.zaxis .zx span:last-child { transform: translateX(-100%); }
+.ztip { position: absolute; z-index: 5; pointer-events: none; font: 12.5px var(--f-mono); background: var(--ink); color: var(--paper); border-radius: 6px; padding: 2px 8px; white-space: nowrap; }
+.list { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 14px 22px; padding-right: 4px; align-content: start; align-items: start; }
+.grp { display: grid; gap: 1px; }
+.grp h3 { margin: 0 0 3px; font: 13px var(--f-round); color: var(--muted); }
+.item { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 3px 5px; border-radius: 6px; cursor: pointer; font-size: 14px; border: 0; background: none; text-align: left; width: 100%; }
+.item:hover { background: var(--paper-2); }
+.item .nm { min-width: 0; overflow-wrap: anywhere; }
+.item .yy { font: 11px var(--f-mono); color: var(--muted); white-space: nowrap; }
+.pill { font: 600 10.5px var(--f-body); padding: 0 7px; border-radius: 999px; border: 1.5px solid var(--ink); margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
+.pill.new { background: #ffd23f; }
+.pill.gone { background: var(--paper-2); }
+.mapyear { left: 14px; bottom: 12px; font: 15px var(--f-round); padding: 3px 12px 4px; border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); pointer-events: none; }
+
+
+details { border: 2.5px solid var(--ink); border-radius: 16px; padding: 12px 16px; }
+summary { cursor: pointer; font: 16px var(--f-round); }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; font-size: 13px; width: 100%; min-width: 760px; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 400 11px var(--f-mono); letter-spacing: .08em; color: var(--muted); position: sticky; top: 0; background: var(--paper); }
+td.mono { font-family: var(--f-mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+td a { color: var(--ink-2); }
+
+.notes { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 20px 40px; align-items: start; border-top: 2px dashed var(--line); padding-top: 22px; }
+.method { display: grid; gap: 22px; }
+.method > header, .refs > header { display: grid; gap: 4px; }
+.eyebrow { font: 600 11px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.method section { display: grid; gap: 6px; }
+.notes h3 { margin: 0; font: 600 12px var(--f-mono); letter-spacing: .12em; color: var(--muted); }
+.notes p, .notes li { color: var(--ink-2); font-size: 14px; margin: 0; }
+.notes ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.notes a { color: var(--ink); text-underline-offset: 2px; overflow-wrap: anywhere; }
+.notes dl.defs { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; font-size: 14px; }
+.notes dl.defs dt { font-weight: 500; white-space: nowrap; }
+.notes dl.defs dt code { font: 13px var(--f-mono); }
+.notes dl.defs dd { margin: 0; color: var(--ink-2); }
+.notes table.src { min-width: 0; font-size: 13.5px; }
+.notes table.src td { color: var(--ink-2); padding: 6px 8px 6px 0; }
+.notes table.src td:first-child { font-family: var(--f-mono); white-space: nowrap; color: var(--ink); width: 1%; }
+.refs { display: grid; gap: 10px; position: sticky; top: 16px; }
+.notes .refs ol { font-size: 12.5px; max-height: min(720px, 80vh); overflow-y: auto; padding: 0 6px 0 2.8em; margin: 0; display: grid; gap: 4px; }
+.refs li::marker { font-family: var(--f-mono); color: var(--muted); }
+
+
+/* ---------- narrower screens ---------- */
+@media (max-width: 1080px) {
+  .yearbar { grid-template-columns: 230px auto minmax(0, 1fr); }
+  .stage { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .mapcard { height: 64svh; min-height: 420px; max-height: 720px; }
+  .top { grid-template-columns: auto minmax(0, 1fr); }
+  .search { grid-column: 1 / -1; }
+  .side { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; }
+  .listcard { height: 560px; }
+  .event p { height: auto; max-height: 24em; }
+}
+@media (max-width: 1080px) { .trends { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .notes, .cgrid { grid-template-columns: minmax(0, 1fr); } .refs, .sheet .refs { position: static; } .callout { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) {
+  body { padding-block: 14px 40px; }
+  .wrap { gap: 16px; }
+  .top { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .logo { font-size: 21px; padding: 7px 12px 6px; }
+  .lede { font-size: 13.5px; }
+  .nav { gap: 4px 12px; font-size: 13px; }
+  .search input { padding: 9px 0; }
+  .yearbar { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "yr ctl" "tl tl"; gap: 2px 10px; padding: 6px 12px 2px; border-radius: 16px; box-shadow: 4px 4px 0 var(--ink); top: calc(env(safe-area-inset-top, 0px) + 6px); }
+  .yr { gap: 10px; }
+  .ynum { font-size: 32px; -webkit-text-stroke-width: 1.5px; text-shadow: 2px 2px 0 var(--ink); }
+  .cnt b { font-size: 18px; }
+  .ctl2 { gap: 6px; }
+  .ctl2 .step { width: 32px; height: 32px; }
+  #play { width: 42px; height: 42px; }
+  #chart { height: 190px; }
+  .slide { height: 42px; }
+  .keybar { gap: 6px; margin-top: -4px; }
+  .trend { padding: 14px 14px 16px; }
+  .legend { gap: 5px; flex-wrap: nowrap; }
+  .legend button { font-size: 12.5px; padding: 1px 7px 1px 6px; gap: 4px; box-shadow: 1.5px 1.5px 0 var(--ink); }
+  .legend button .t { display: none; }
+  .legend button .ts { display: inline; }
+  .tlhint { flex-basis: 100%; font-size: 12px; }
+  .tlhint .how-l, .ctip { display: none; }
+  .tlhint .how-s { display: inline; }
+  .stage { gap: 16px; }
+  .mapcard { height: 58svh; min-height: 340px; max-height: 540px; box-shadow: 6px 6px 0 var(--ink); }
+  .side { display: flex; }
+  .event p { height: 6.4em; }
+  .listcard { height: 66svh; min-height: 380px; }
+  .zonecard { padding: 14px 14px 16px; }
+  .key { display: none; top: 58px; }
+  .key.open { display: grid; }
+  .ctl .legbtn { display: inline-block; }
+  .drawer { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 58%; }
+  .drawer .head { grid-template-columns: 76px minmax(0, 1fr); }
+  .dock { box-shadow: 6px 6px 0 var(--ink); }
+  .tabs button { font-size: 14px; padding: 3px 12px; }
+}
+@media (prefers-reduced-motion: reduce) { body, body::before, .ynum, .legend button, g.s, g.mv, g.lay, .ring, .xmark, .shop { transition: none; } g.s.enter, g.mv.enter, g.lay.enter, .ychip.pulse { animation: none; } }
+</style>
+<div class="wrap">
+  <header class="top">
+    <h1 class="logo sticker">台北唱片行變遷地圖</h1>
+    <div class="intro-top">
+      <p class="lede">2000 年至今，台北市實體唱片行的開店、搬遷與收店。拖曳下方時間軸，看連鎖通路退場、獨立店與黑膠店接續開張。</p>
+      <nav class="nav" aria-label="補充資料">
+        <a href="#about" data-panel="about">關於這張地圖</a>
+        <a href="#sources" data-panel="sources">資料來源</a>
+        <a href="#shops" data-panel="shops">完整店家列表</a>
+        <a href="#contribute" data-panel="contribute" class="hot">提供資料・回報錯誤</a>
+      </nav>
+    </div>
+    <div class="search" id="search">
+      <div class="box sticker">
+        <svg class="mag" viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="q" type="text" enterkeyhint="search" autocomplete="off" spellcheck="false" placeholder="搜尋店名、街道或店型，如玫瑰、黑膠" role="combobox" aria-expanded="false" aria-controls="results" aria-autocomplete="list" aria-label="搜尋唱片行（所有年份）">
+        <span class="count" id="qCount"></span>
+        <button type="button" class="clear" id="qClear" aria-label="清除搜尋" hidden>×</button>
+      </div>
+      <ul class="results" id="results" role="listbox" aria-label="搜尋結果" hidden></ul>
+    </div>
+  </header>
+
+  <section class="yearbar sticker" id="yearbar" aria-label="時間軸">
+    <div class="yr">
+      <p class="ynum" id="stampYear" aria-live="polite">2000</p>
+      <div class="cnt"><b id="stampCount">0</b> 家營業中<small id="stampExtra"></small></div>
+    </div>
+    <div class="ctl2">
+      <button type="button" class="step" id="yPrev" aria-label="前一年"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M9.5 2L4 7l5.5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" id="play" aria-label="播放年份動畫"><svg width="16" height="16" viewBox="0 0 14 14" aria-hidden="true"><path id="playIcon" d="M3 1.5v11l9-5.5z" fill="currentColor"/></svg></button>
+      <button type="button" class="step" id="yNext" aria-label="下一年"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M4.5 2L10 7l-5.5 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="slide">
+      <div class="track" id="track" aria-hidden="true"></div>
+      <input type="range" id="year" min="2000" max="2026" step="1" value="2000" aria-label="年份">
+      <div class="tlab" id="tlab" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="keybar" aria-label="店型與操作說明">
+    <div class="legend" id="legend" role="group" aria-label="店型（點選可隱藏或顯示）"></div>
+    <p class="tlhint"><span class="how-l">拖曳上方圓鈕、點任一年，或按 ← → 換年份；標著 <span class="ychip" data-yr>2000</span> 的區塊都會跟著換成這一年。點店型標籤可隱藏該類店。</span><span class="how-s">拖曳圓鈕換年份，標著 <span class="ychip" data-yr>2000</span> 的區塊跟著變；點店型可隱藏</span></p>
+  </section>
+
+  <section class="stage" aria-label="地圖與當年資料">
+    <div class="mapcard" id="mapwrap">
+      <svg id="map" role="img" aria-label="台北市唱片行分布地圖"></svg>
+      <div class="float ctl" role="group" aria-label="地圖範圍">
+        <button type="button" id="zCenter" aria-pressed="true">市中心</button>
+        <button type="button" id="zCity" aria-pressed="false">全市</button>
+        <button type="button" class="zb" id="zIn" aria-label="放大地圖">+</button>
+        <button type="button" class="zb" id="zOut" aria-label="縮小地圖">−</button>
+        <button type="button" class="legbtn" id="legBtn" aria-expanded="false" aria-controls="key">圖例</button>
+      </div>
+      <div class="float key" id="key"></div>
+      <div class="float osm">底圖 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者</div>
+      <div class="tip" id="tip" hidden></div>
+      <div class="float zoomhint sticker" id="zoomHint" aria-hidden="true">按住 Ctrl 或 ⌘ 再捲動，即可縮放地圖</div>
+      <aside class="float drawer sticker" id="drawer" aria-label="店家資料" hidden></aside>
+      <div class="float mapyear sticker" aria-hidden="true"><span class="ychip" data-yr>2000</span> 年的地圖</div>
+    </div>
+    <aside class="side" aria-label="這一年">
+      <section class="listcard sticker" aria-labelledby="listTitle">
+        <div class="card-head"><h2 id="listTitle"><span class="ychip" data-yr>2000</span> 年營業中的店</h2><div class="seg" id="grpSeg" role="radiogroup" aria-label="清單分組"><button type="button" role="radio" data-g="type" aria-checked="true">依店型</button><button type="button" role="radio" data-g="zone" aria-checked="false">依聚落</button></div></div>
+        <div class="label" id="listMeta"></div>
+        <div class="list" id="list"></div>
+      </section>
+      <div class="event sticker" aria-live="polite"><div class="eh"><span class="label">當年記事</span><span class="ychip" id="eventYear" data-yr>2000</span></div><p id="event" tabindex="0"></p></div>
+    </aside>
+  </section>
+
+  <div class="trends">
+  <section class="trend sticker" aria-labelledby="trTitle">
+    <div class="card-head"><h2 id="trTitle">店數變化</h2><span class="label">依店型堆疊　斜線：新名單補入　圓點：有記事</span></div>
+    <div class="tl-wrap">
+      <svg id="chart" aria-label="2000 到 2026 年各店型營業店數，點選長條可切換年份"></svg>
+      <div class="ctip" id="chartTip" hidden></div>
+    </div>
+  </section>
+  <section class="zonecard sticker" aria-labelledby="zTitle">
+    <div class="card-head"><h2 id="zTitle">聚落</h2><span class="label"><span class="ychip" data-yr>2000</span> 年各商圈店數</span></div>
+    <div class="zones" id="zones"></div>
+  </section>
+  </div>
+
+  <section class="dock sticker" id="dock" aria-label="補充資料">
+    <div class="tabs" role="tablist" aria-label="補充資料">
+      <button type="button" role="tab" id="t-about" data-tab="about" aria-controls="p-about" aria-selected="true">關於這張地圖</button>
+      <button type="button" role="tab" id="t-sources" data-tab="sources" aria-controls="p-sources" aria-selected="false" tabindex="-1">資料來源</button>
+      <button type="button" role="tab" id="t-shops" data-tab="shops" aria-controls="p-shops" aria-selected="false" tabindex="-1">完整店家列表</button>
+      <button type="button" role="tab" id="t-contribute" data-tab="contribute" aria-controls="p-contribute" aria-selected="false" tabindex="-1" class="hot">提供資料・回報錯誤</button>
+    </div>
+    <div class="panel notes" id="p-about" role="tabpanel" aria-labelledby="t-about">
+      <p class="intro">這張地圖整理 2000 年至今台北市實體唱片行的店址與營業期間。連鎖通路在 2000 年代陸續退場，2010 年代起獨立唱片行與黑膠店接續開張，聚落從西門町、台北車站一帶擴散到師大、中山與東區。</p>
+      <dl class="facts" id="facts"></dl>
+      <div class="cols2">
+      <section>
+        <h3>收錄範圍</h3>
+        <p>台北市十二個行政區內，以販售實體音樂（CD、黑膠、卡帶）為主要業務的店面，涵蓋 2000 年 1 月至 2026 年 11 月；2000 年以前的舊址只寫進該店的沿革，不畫在地圖上。連鎖通路與量販店內的唱片專櫃以門市為單位收錄；單純販售樂譜、音響器材或二手書而兼賣少量唱片的店，原則上不收。資料整理於 2026 年 11 月。</p>
+      </section>
+
+      <section>
+        <h3>店型</h3>
+        <dl class="defs">
+          <dt>連鎖通路</dt><dd>多店經營的唱片連鎖與複合通路，如淘兒、玫瑰、大眾、五大、佳佳、誠品音樂館、光南。</dd>
+          <dt>獨立唱片行</dt><dd>以新品或二手 CD 為主的個人經營店家。</dd>
+          <dt>黑膠與複合店</dt><dd>以黑膠為主，或結合咖啡、酒吧、展演空間的店家。</dd>
+          <dt>韓國流行專輯店</dt><dd>以 K-pop 專輯與周邊為主，多集中在赤峰街一帶；可在圖例中隱藏。</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>年份標記</h3>
+        <dl class="defs">
+          <dt><code>2015</code></dt><dd>有明確資料佐證的開店或收店年。</dd>
+          <dt><code>約2015</code></dt><dd>依前後資料推估的年份，例如 2001 年 2 月門市表上已有的店，推定 2000 年已營業。</dd>
+          <dt><code>≤2015</code></dt><dd>最早見於該年的資料，實際開店可能更早。</dd>
+          <dt><code>2015後不明</code></dt><dd>最後一次見於該年的資料，之後的狀況不詳；地圖只畫到該年為止。</dd>
+          <dt>空心記號</dt><dd>只出現在單一年份的店家名單，未經其他資料證實，不計入店數。</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h3>搬遷與改名</h3>
+        <p>同一家店搬遷或改名時，新舊店址各列一筆，但店數只計一家。新址的說明會列出最早的開店年份與歷次搬遷；搬遷當年，地圖以虛線連回舊址。</p>
+      </section>
+
+      <section>
+        <h3>定位與聚落</h3>
+        <p>地址以 ArcGIS 地理編碼服務轉為座標，比對不到門牌時以街道或地標位置代替。「聚落」依各商圈中心點的固定半徑歸類，未落在任何範圍內的店家列為「其他」。底圖為台北市與周邊行政區界。</p>
+      </section>
+
+      <section>
+        <h3>已知限制</h3>
+        <ul>
+          <li>2002 年 6 月至 2005 年 11 月之間沒有連鎖門市表的封存，這段期間有幾家分店的收店時間只能估計。光南大批發早年的門市清單未能取得。</li>
+          <li>2013、2014、2019、2020、2026 年的店家名單一次補進多家開業年不詳的店，店數曲線在這幾年的上升有一部分來自資料本身。</li>
+          <li>韓國流行專輯店大多只查得到 2024 年以後的資料。</li>
+          <li>查證後未收錄：HMV 從未在台北開設門市（2013 年僅取得台灣品牌授權）；交叉線、派地、學院、昌彥等 1990 年代名店在 2000 年前已結束；當代樂集、Avant Garden、九五樂府西寧南路店、ABCD、FNAC 站前店、Lounge Lounge 在 2000 年前後確實存在，但查無門牌；光華唱片（1996 年總店在八德路二段 25 號 2 樓）與搖滾萬歲（士林文林路 468 號 2 樓）有地址，但查不到 2000 年後仍營業的紀錄。1996 年《音樂時代》名單上的台北市 48 家中，有 34 家（包括上述的交叉線、派地、光華、搖滾萬歲，以及書店與百貨公司的唱片專櫃）查不到 2000 年後仍營業的紀錄，未收錄。</li>
+        </ul>
+      </section>
+      </div>
+    </div>
+    <div class="panel notes" id="p-sources" role="tabpanel" aria-labelledby="t-sources" hidden>
+      <section>
+        <h3>主要資料來源</h3>
+        <div class="tablewrap" style="margin-top:0"><table class="src"><tbody>
+          <tr><td>1996</td><td>《音樂時代》月刊〈全省各大暢銷名店索引〉：用來確認哪些店在 2000 年以前就已營業，以及它們當時的地址。</td></tr>
+          <tr><td>2000</td><td>羅悅全〈唱片行東西南北中〉，《秘密基地》2000 年 5 月：當年台北唱片行的分區實地普查。</td></tr>
+          <tr><td>2001–2005</td><td>玫瑰唱片官網門市表（2001-02 至 2002-06，8 個版本）、大眾唱片官網〈各店位址〉（2001–2005），取自網際網路檔案館（Wayback Machine）。</td></tr>
+          <tr><td>2005–2021</td><td>G-Music〈關於玫瑰〉〈關於大眾〉門市表，每季抽取一個封存版本逐一比對（共 68 個版本），連鎖分店的收店時間多可精確到季。</td></tr>
+          <tr><td>2013–2026</td><td>網路唱片店名單（2013、2014）、蔡政忠提供之台灣實體唱片行清單（2020-05）、文化部與 Record Store Day 參與店家名單（2026）。</td></tr>
+          <tr><td>照片</td><td>Wikimedia Commons 上以 CC 授權釋出的店面照片，經縮圖後使用；作者、授權與拍攝年標在各店的資料卡。其餘店家顯示示意插畫。</td></tr>
+          <tr><td>其他</td><td>新聞報導、維基百科、部落格、論壇與店家官網、社群頁面，逐筆列於下方完整來源清單與店家列表。</td></tr>
+        </tbody></table></div>
+      </section>
+      <section>
+        <h3>完整來源清單（<span id="nSrc"></span> 筆）</h3>
+        <ol id="sources"></ol>
+      </section>
+    </div>
+    <div class="panel" id="p-shops" role="tabpanel" aria-labelledby="t-shops" hidden>
+      <p class="intro">全部 <span id="nAll"></span> 筆店址，依開店年份排序，包含 2000 年以前的舊址。店名前的記號代表店型，與時間軸上的店型標籤相同。</p>
+      <div class="tablewrap tall"><table id="table"><thead><tr><th>店名</th><th>地址</th><th>營業期間</th><th>聚落</th><th>備註</th><th>來源</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="panel cgrid" id="p-contribute" role="tabpanel" aria-labelledby="t-contribute" hidden>
+      <section class="wanted" aria-labelledby="wantedTitle">
+        <h3 id="wantedTitle">地圖上還有這些空白</h3>
+        <p>資料來自網路封存、舊雜誌與網友的記憶。下面這幾塊目前查不到，如果你手上有資料，或記得當年的樣子，請告訴我們。</p>
+        <ol>
+          <li><div><b>2002–2005 年的玫瑰大眾門市</b><span>玫瑰與大眾合併前後這幾年沒有門市表存檔，許昌店、光復店、西門店等分店的結束時間只能估計。</span></div></li>
+          <li><div><b>百貨公司與書店裡的唱片專櫃</b><span>海山、大地之音、新學友、金石堂等的專櫃位置與營業期間，目前多半只出現在單一名單上。</span></div></li>
+          <li><div><b>店家的開店、搬遷與收店年份</b><span>例如士林的搖滾萬歲、元元唱片、光華唱片，以及地圖上標著「≤」或「後不明」的店。</span></div></li>
+          <li><div><b>你自己拍的店面照片</b><span>新的、舊的都好。照片會標註拍攝者，請一併說明是否同意以 CC BY 授權公開。</span></div></li>
+        </ol>
+      </section>
+      <section class="contrib" id="contribute" aria-label="投稿">
+        <h3>怎麼提供</h3>
+        <p>送出的內容只供我們查證，不會直接改動地圖；確認後才會更新，並在來源中註明。</p>
+        <a class="cta" id="gfLink" href="#" aria-disabled="true">公開投稿表單</a>
+        <p class="note2" id="gfNote">公開表單在 Google 表單上，可以附上照片或 PDF（最多 5 個、每個 10 MB 以內；附檔需要登入 Google 帳號）。</p>
+        <div id="inpage" hidden>
+          <p class="note2">你是這張地圖的協作者，也可以直接在這裡送出：</p>
+          <form id="rf" novalidate>
+            <div class="row2">
+              <label>類型
+                <select id="rfType">
+                  <option>更正錯誤</option><option>新增店家</option><option>提供照片或文件</option><option>其他</option>
+                </select>
+              </label>
+              <label>相關店家 <small>可留空</small>
+                <input id="rfShop" list="shopList" autocomplete="off" placeholder="例如：玫瑰唱片 天母店">
+              </label>
+            </div>
+            <label>你認為正確的資訊 <small>必填</small>
+              <textarea id="rfInfo" required placeholder="例如：天母店 1993 年就開了，2006 年春天收掉"></textarea>
+            </label>
+            <label>資料來源 <small>必填：網址、書刊名稱與頁碼，或「親身經歷」</small>
+              <textarea id="rfSrc" required placeholder="例如：《音樂時代》1996 年 5 月號第 586 頁"></textarea>
+            </label>
+            <label>附加檔案 <small>照片、PDF 等，每個 20 MB 以內</small>
+              <input id="rfFiles" type="file" multiple accept="image/*,application/pdf">
+            </label>
+            <div class="row2">
+              <label>稱呼 <small>可留空</small><input id="rfName" autocomplete="nickname"></label>
+              <label>聯絡方式 <small>可留空，只有製作者看得到</small><input id="rfContact" autocomplete="email"></label>
+            </div>
+            <button type="submit" class="cta" id="rfSubmit">送出</button>
+            <div class="status" id="rfStatus" role="status"></div>
+          </form>
+        </div>
+        <div class="review" id="review" hidden></div>
+        <datalist id="shopList"></datalist>
+      </section>
+    </div>
+  </section>
+  <section class="maker sticker" aria-labelledby="makerTitle">
+    <img src="img/brienjohn.png" alt="Brien John 的像素頭像" width="116" height="116">
+    <div class="mk">
+      <div class="eyebrow">製作者</div>
+      <h2 id="makerTitle">Brien John</h2>
+      <p>《22 世紀衛星》創辦人、音樂記者，臺灣藝術大學音樂學系兼任講師。曾任最愛音樂 Love Da Music Taiwan 經理，也在攝氏三十八度音響唱片當過店員，就是<a href="#y2026-s-38c">地圖上的那家 38 度 C</a>。</p>
+      <ul class="links">
+        <li><a href="https://www.22cs.xyz/" target="_blank" rel="noopener">22 世紀衛星</a></li>
+        <li><a href="https://www.facebook.com/brienjohn" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.threads.com/@brienjohn" target="_blank" rel="noopener">Threads</a></li>
+        <li><a href="https://www.instagram.com/brienjohn/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const DATA = /*DATA*/null;
+const GEO = /*GEO*/null;
+const BASE = /*BASE*/null;
+
+const Y0 = 2000, Y1 = 2026;
+// years whose count jumps partly because a new shop list was added (see 已知限制)
+const LIST_YEARS = new Set([2013, 2014, 2019, 2020, 2026]);
+const TYPES = [
+  { k: "chain", n: "連鎖通路", s: "連鎖", shape: "square" },
+  { k: "indie", n: "獨立唱片行", s: "獨立", shape: "circle" },
+  { k: "vinyl", n: "黑膠與複合店", s: "黑膠", shape: "diamond" },
+  { k: "kpop", n: "韓國流行專輯店", s: "韓專", shape: "triangle" }
+];
+const TYPE = Object.fromEntries(TYPES.map(t => [t.k, t]));
+const ZONES = DATA.zones;
+const S = DATA.stores;
+const SRC = DATA.sources;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const color = k => `var(--s-${k})`;
+const visible = new Set(TYPES.map(t => t.k));
+const reduceMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isPhone = () => innerWidth <= 640;
+
+const BY = Object.fromEntries(S.map(s => [s.id, s]));
+S.forEach(s => { if (s.prev && BY[s.prev]) { s.prevS = BY[s.prev]; BY[s.prev].nextS = s; } });
+S.forEach(s => { s.single = s.y0q === "b" && s.y1q === "u" && s.y0 === s.y1; });
+// A shop that moved is one shop: the old address stops being drawn/counted the year the new one opens.
+const active = (s, y) => y >= s.y0 && (s.y1 == null || y <= s.y1) && !(s.nextS && y >= s.nextS.y0);
+const yfmt = (y, q) => q === "b" ? `≤${y}` : q === "a" ? `約${y}` : `${y}`;
+const shortAddr = a => a.replace(/^台北市\S{2}區/, "").replace(/（.*$/, "");
+function historyOf(s) {
+  const chain = [];
+  for (let r = s; r; r = r.prevS) chain.unshift(r);
+  const r0 = chain[0];
+  if (chain.length === 1 && !r0.est) return "";
+  const parts = [];
+  if (r0.est) parts.push(`${yfmt(r0.est.y, r0.est.q)} 年在${r0.est.at}開店`);
+  chain.forEach((c, i) => {
+    const last = i === chain.length - 1;
+    if (i === 0 && !r0.est) { parts.push(`${yfmt(c.y0, c.y0q)} 年在${shortAddr(c.a)}開店`); return; }
+    if (i > 0 && shortAddr(chain[i - 1].a) === shortAddr(c.a)) { parts.push(`${yfmt(c.y0, c.y0q)} 年改名為${c.n}`); return; }
+    parts.push(`${yfmt(c.y0, c.y0q)} 年遷到${last ? "這裡" : shortAddr(c.a)}`);
+  });
+  return parts.join("，");
+}
+function yrs(s) {
+  const a = yfmt(s.y0, s.y0q);
+  let b;
+  if (s.y1 == null) b = "營業中";
+  else if (s.y1q === "u") b = `${s.y1}後不明`;
+  else if (s.y1q === "a") b = `約${s.y1}`;
+  else b = `${s.y1}`;
+  return `${a} – ${b}`;
+}
+function shapePath(shape, r) {
+  if (shape === "square") { const a = r * 0.9; return `M${-a},${-a}H${a}V${a}H${-a}Z`; }
+  if (shape === "diamond") { const a = r * 1.25; return `M0,${-a}L${a},0L0,${a}L${-a},0Z`; }
+  if (shape === "triangle") { const a = r * 1.3; return `M0,${-a}L${a * 0.95},${a * 0.7}L${-a * 0.95},${a * 0.7}Z`; }
+  return `M${r},0A${r},${r} 0 1,1 ${-r},0A${r},${r} 0 1,1 ${r},0Z`;
+}
+function icon(k) {
+  return `<svg class="ico" viewBox="-7 -7 14 14" aria-hidden="true"><path d="${shapePath(TYPE[k].shape, 5)}" style="fill:${color(k)}"/></svg>`;
+}
+const esc = x => String(x).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* ---------- legend: sticker chips that also filter ---------- */
+const legend = document.getElementById("legend");
+legend.innerHTML = TYPES.map(t => `<button type="button" data-k="${t.k}" aria-pressed="true">${icon(t.k)}<span class="t">${t.n}</span><span class="ts">${t.s}</span><span class="n" data-n="${t.k}">0</span></button>`).join("");
+legend.addEventListener("click", e => {
+  const b = e.target.closest("button[data-k]"); if (!b) return;
+  const k = b.dataset.k;
+  if (visible.has(k)) { if (visible.size > 1) visible.delete(k); } else visible.add(k);
+  syncLegend();
+  renderChart();
+  render();
+});
+function syncLegend() { legend.querySelectorAll("button[data-k]").forEach(x => x.setAttribute("aria-pressed", visible.has(x.dataset.k))); }
+// map legend: every mark and line drawn on the map, in one place
+const keyEl = document.getElementById("key");
+const ico = inner => `<svg class="ico" viewBox="-8 -8 16 16" aria-hidden="true">${inner}</svg>`;
+keyEl.innerHTML = `<b>圖例</b>` +
+  TYPES.map(t => `<span>${ico(`<path d="${shapePath(t.shape, 5)}" style="fill:${color(t.k)}" stroke="#141414" stroke-width="1.4"/>`)}${t.n}</span>`).join("") +
+  `<hr>` +
+  `<span>${ico(`<circle r="7" fill="#ffd23f" stroke="#141414" stroke-width="1.3"/><circle r="3.6" fill="#141414"/>`)}黃色底圈：這一年新開</span>` +
+  `<span>${ico(`<path d="M-4.5,-4.5L4.5,4.5M4.5,-4.5L-4.5,4.5" stroke="#141414" stroke-width="2"/>`)}叉號：這一年收店</span>` +
+  `<span>${ico(`<path d="M-6,5L6,-5" stroke="#141414" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="-6" cy="5" r="2" fill="none" stroke="#141414" stroke-width="1.2"/>`)}虛線：這一年搬家，小圈是舊址</span>` +
+  `<span>${ico(`<circle r="4.6" fill="#fff7ee" stroke="#141414" stroke-width="1.8"/>`)}空心：只見於當年名單</span>` +
+  `<span>${ico(`<circle r="7" fill="#141414" opacity=".14"/><circle r="4" fill="#141414" opacity=".14"/>`)}灰色暈染：店家密集處</span>`;
+const legBtn = document.getElementById("legBtn");
+legBtn.addEventListener("click", () => { const o = keyEl.classList.toggle("open"); legBtn.setAttribute("aria-expanded", o); });
+
+// each decade paints the page: 2000s red, 2010s mustard, 2020s pink
+const ERA = y => y < 2010 ? "#ff5a3c" : y < 2020 ? "#f4b63f" : "#ff5cb5";
+
+/* ---------- map ---------- */
+const wrap = document.getElementById("mapwrap");
+const svg = d3.select("#map");
+const gRoot = svg.append("g");
+const gLand = gRoot.append("g");
+const gWater = gRoot.append("g");
+const gRoad = gRoot.append("g");
+const gRail = gRoot.append("g");
+const gEdge = gRoot.append("g");
+const gHeat = gRoot.append("g");
+const gLabel = gRoot.append("g");
+const gZone = gRoot.append("g");
+const gMove = gRoot.append("g");
+const gShop = gRoot.append("g");
+const tp = { type: "FeatureCollection", features: GEO.features.filter(f => f.properties.tp) };
+let W = 0, H = 0, proj, path, zoom, curK = 1, pxPerKm = 100, selected = null;
+
+// screen area not covered by floating panels, used to frame the city
+function safeBox() {
+  if (isPhone()) return [[14, 58], [W - 14, H - 14]];
+  return [[28, 64], [W - 28, H - 48]];
+}
+// a shop counts as "opened this year" only when the year is known, or estimated after the first map year
+const openedIn = (s, y) => s.y0 === y && !s.prevS && (s.y0q === "e" || (s.y0q === "a" && s.y0 > Y0));
+function linePath(pts) {
+  let d = "";
+  for (let i = 0; i < pts.length; i++) { const p = proj(pts[i]); d += (i ? "L" : "M") + p[0].toFixed(1) + "," + p[1].toFixed(1); }
+  return d;
+}
+function layout() {
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  proj = d3.geoMercator().fitExtent(safeBox(), tp);
+  path = d3.geoPath(proj);
+  gLand.selectAll("path").data(GEO.features).join("path")
+    .attr("class", d => d.properties.tp ? "b-land" : "b-out").attr("d", path);
+  gWater.selectAll("path.b-water").data(BASE.water).join("path").attr("class", "b-water")
+    .attr("d", poly => poly.map(r => linePath(r) + "Z").join(""));
+  gWater.selectAll("path.b-river").data([BASE.rivers.map(r => linePath(r.c)).join("")]).join("path").attr("class", "b-river").attr("d", d => d);
+  gRoad.selectAll("path").data([
+    { c: "b-road", d: BASE.roads.primary.map(linePath).join("") },
+    { c: "b-road major", d: BASE.roads.trunk.concat(BASE.roads.motorway).map(linePath).join("") }
+  ]).join("path").attr("class", d => d.c).attr("d", d => d.d);
+  gRail.selectAll("path").data(BASE.mrt).join("path").attr("class", "b-rail").attr("d", m => m.c.map(linePath).join(""));
+  gRail.selectAll("circle").data(BASE.stations).join("circle").attr("class", "b-sta")
+    .attr("cx", s => proj([s.x, s.y])[0]).attr("cy", s => proj([s.x, s.y])[1]);
+  gEdge.selectAll("path").data(tp.features).join("path").attr("class", "b-edge").attr("d", path);
+  gLabel.selectAll("text").data(tp.features).join("text").attr("class", "dlabel")
+    .attr("transform", d => `translate(${path.centroid(d)})`).text(d => d.properties.n);
+  S.forEach(s => { [s.px, s.py] = proj([s.lng, s.lat]); });
+  pxPerKm = Math.abs(proj([121.5, 25.04])[0] - proj([121.51, 25.04])[0]) / 1.009;
+  ZONES.forEach(z => { [z.px, z.py] = proj([z.lng, z.lat]); });
+  gZone.selectAll("text").data(ZONES.filter(z => z.label)).join("text").attr("class", "zlabel")
+    .attr("x", d => d.px + (d.dx || 0)).attr("y", d => d.py + (d.dy || 0)).text(d => d.n);
+  zoom = d3.zoom().scaleExtent([1, 16]).translateExtent([[-W, -H], [2 * W, 2 * H]])
+    // the wheel scrolls the page; Ctrl/⌘ + wheel (and trackpad pinch) zooms the map
+    .filter(ev => ev.type === "wheel" ? (ev.ctrlKey || ev.metaKey) : (!ev.ctrlKey || ev.type === "touchstart") && !ev.button)
+    .on("zoom", e => { gRoot.attr("transform", e.transform); curK = e.transform.k; sizeMarks(); hideTip(); });
+  svg.call(zoom).on("dblclick.zoom", null);
+}
+function centerTransform() {
+  const pts = S.filter(s => s.zone !== "其他").map(s => [s.px, s.py]);
+  const xs = d3.extent(pts, p => p[0]), ys = d3.extent(pts, p => p[1]);
+  const [[l, t], [r, b]] = safeBox();
+  const pad = 24, bw = xs[1] - xs[0] + pad * 2, bh = ys[1] - ys[0] + pad * 2;
+  const k = Math.min(10, Math.min((r - l) / bw, (b - t) / bh));
+  const cx = (xs[0] + xs[1]) / 2, cy = (ys[0] + ys[1]) / 2;
+  return d3.zoomIdentity.translate((l + r) / 2 - k * cx, (t + b) / 2 - k * cy).scale(k);
+}
+function setView(which) {
+  const t = which === "city" ? d3.zoomIdentity : centerTransform();
+  (reduceMotion() ? svg : svg.transition().duration(600)).call(zoom.transform, t);
+  document.getElementById("zCenter").setAttribute("aria-pressed", which !== "city");
+  document.getElementById("zCity").setAttribute("aria-pressed", which === "city");
+}
+document.getElementById("zCenter").onclick = () => setView("center");
+document.getElementById("zCity").onclick = () => setView("city");
+document.getElementById("zIn").onclick = () => svg.transition().duration(reduceMotion() ? 0 : 250).call(zoom.scaleBy, 1.6);
+document.getElementById("zOut").onclick = () => svg.transition().duration(reduceMotion() ? 0 : 250).call(zoom.scaleBy, 1 / 1.6);
+const zoomHint = document.getElementById("zoomHint");
+let zht;
+svg.on("wheel.hint", ev => { if (ev.ctrlKey || ev.metaKey) return; zoomHint.classList.add("show"); clearTimeout(zht); zht = setTimeout(() => zoomHint.classList.remove("show"), 1400); });
+
+function sizeMarks() {
+  const k = curK, m = Math.min(1.6, Math.pow(k, 0.35));
+  gShop.selectAll("path.shop").attr("d", d => shapePath(TYPE[d.t].shape, 5.4 / k * m));
+  gShop.selectAll("circle.ring").attr("r", 10 / k * m);
+  gShop.selectAll("path.xmark").attr("d", () => { const a = 4.6 / k * m; return `M${-a},${-a}L${a},${a}M${a},${-a}L${-a},${a}`; });
+  gMove.selectAll("line").style("stroke-width", 1.5 / k * m + "px").style("stroke-dasharray", `${4 / k * m},${3 / k * m}`);
+  gMove.selectAll("circle").attr("r", 3 / k * m).style("stroke-width", 1.3 / k * m + "px");
+  gRail.selectAll("circle").attr("r", 2 / k * m).style("stroke-width", "1px").attr("display", k >= 5 ? null : "none");
+  gZone.selectAll("text").style("font-size", 12.5 / k + "px").style("stroke-width", 3 / k + "px");
+  gLabel.selectAll("text").style("font-size", 11 / k + "px");
+}
+
+/* ---------- hover tip + drawer ---------- */
+const tip = document.getElementById("tip");
+function showTip(s, ev) {
+  tip.innerHTML = `<b>${esc(s.n)}</b><span>${yrs(s)}</span>`;
+  tip.hidden = false;
+  const r = wrap.getBoundingClientRect();
+  let x, y;
+  if (ev && ev.clientX != null) { x = ev.clientX - r.left; y = ev.clientY - r.top; }
+  else { [x, y] = d3.zoomTransform(svg.node()).apply([s.px, s.py]); }
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  x = x + 14 + tw > r.width ? x - tw - 14 : x + 14;
+  y = Math.max(8, Math.min(r.height - th - 8, y - th - 6));
+  tip.style.left = Math.max(8, x) + "px"; tip.style.top = y + "px";
+}
+function hideTip() { tip.hidden = true; }
+const drawer = document.getElementById("drawer");
+// placeholder storefront until a real photo or a commissioned illustration exists
+function storefront(s) {
+  const sign = s.n.replace(/（.*?）/g, "").replace(/\s.*$/, "").slice(0, 8);
+  const c = `var(--s-${s.t})`;
+  const stripes = d3.range(8).map(i => `<path d="M${24 + i * 34},64h34l-6,18h-22z" fill="${i % 2 ? "var(--paper)" : c}" stroke="var(--ink)" stroke-width="2.5"/>`).join("");
+  return `<svg viewBox="0 0 320 168" role="img" aria-label="${esc(s.n)} 示意插畫">
+    <rect width="320" height="168" fill="var(--paper-2)"/>
+    <rect x="24" y="22" width="272" height="146" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+    <rect x="44" y="30" width="232" height="28" rx="6" fill="${c}" stroke="var(--ink)" stroke-width="2.5"/>
+    <text x="160" y="50" text-anchor="middle" font-family="Huninn, Noto Sans TC, sans-serif" font-size="17" fill="var(--paper)" stroke="var(--ink)" stroke-width="3" paint-order="stroke">${esc(sign)}</text>
+    ${stripes}
+    <rect x="44" y="96" width="110" height="72" fill="var(--water)" stroke="var(--ink)" stroke-width="2.5"/>
+    <circle cx="80" cy="132" r="22" fill="var(--ink)"/><circle cx="80" cy="132" r="7" fill="${c}"/><circle cx="80" cy="132" r="2" fill="var(--ink)"/>
+    <rect x="114" y="112" width="30" height="40" fill="${c}" stroke="var(--ink)" stroke-width="2"/>
+    <rect x="186" y="96" width="78" height="72" fill="#ffd23f" stroke="var(--ink)" stroke-width="2.5"/>
+    <circle cx="252" cy="134" r="3.5" fill="var(--ink)"/>
+  </svg>`;
+}
+function openDrawer(s) {
+  selected = s;
+  const h = historyOf(s);
+  drawer.innerHTML =
+    `<button type="button" class="close" id="dClose" aria-label="關閉店家資料"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5,1.5L10.5,10.5M10.5,1.5L1.5,10.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>` +
+    `<div class="head">${s.photo ? `<button type="button" class="ph" id="dPh" aria-label="放大照片"><img src="${s.photo.f}" alt="${esc(s.n)} 店面照片，${s.photo.date} 年攝"></button>` : `<div class="ph" title="示意插畫">${storefront(s)}</div>`}<span class="chip">${icon(s.t)}${TYPE[s.t].n}</span>` +
+    `<h3>${esc(s.n)}</h3>${s.en ? `<div class="en">${esc(s.en)}</div>` : ""}</div>` +
+    `<div class="body">` +
+    `<dl><dt>地址</dt><dd>${esc(s.a)}</dd>` +
+    `<dt>${s.prevS || s.est ? "此址期間" : "營業期間"}</dt><dd class="mono">${yrs(s)}</dd>` +
+    (h ? `<dt>沿革</dt><dd>${esc(h)}</dd>` : "") +
+    `<dt>聚落</dt><dd>${esc(s.zone)}</dd></dl>` +
+    (s.photo ? `<p class="credit">照片：<a href="${s.photo.page}" target="_blank" rel="noopener">${esc(s.photo.by)}</a>，${esc(s.photo.lic)}，${s.photo.date} 年攝，經縮圖（Wikimedia Commons）</p>` : "") +
+    (s.note ? `<p class="note">${esc(s.note)}</p>` : "") +
+    `<button type="button" class="report" id="dReport">這家店的資料有誤？回報</button>` +
+    `<div class="sh">資料來源</div><ol class="src">${s.src.map(i => `<li>${SRC[i].u ? `<a href="${SRC[i].u}" target="_blank" rel="noopener">${esc(SRC[i].t)}</a>` : esc(SRC[i].t)}</li>`).join("")}</ol></div>`;
+  drawer.classList.remove("big");
+  drawer.hidden = false;
+  drawer.scrollTop = 0;
+  document.getElementById("dClose").onclick = closeDrawer;
+  document.getElementById("dReport").onclick = () => reportShop(s);
+  const ph = document.getElementById("dPh");
+  if (ph) ph.onclick = () => { const b = drawer.classList.toggle("big"); ph.setAttribute("aria-label", b ? "縮小照片" : "放大照片"); };
+  writeHash();
+  gShop.selectAll("path.shop").classed("on", d => d === selected);
+}
+function closeDrawer() {
+  drawer.hidden = true; selected = null;
+  gShop.selectAll("path.shop").classed("on", false);
+  writeHash();
+}
+addEventListener("keydown", e => { if (e.key === "Escape" && !drawer.hidden && document.activeElement !== qEl) closeDrawer(); });
+// a click on empty map closes the card (d3-zoom swallows the click that ends a drag)
+svg.on("click", e => { if (!e.target.classList.contains("shop")) { hideTip(); if (!drawer.hidden) closeDrawer(); } });
+
+/* ---------- year state ---------- */
+const yearInput = document.getElementById("year");
+let year = Y0;
+const EV = Object.fromEntries(DATA.events.map(e => [e.y, e.t]));
+const eventEl = document.getElementById("event");
+const eventYear = document.getElementById("eventYear");
+// every block that follows the timeline wears a year chip; it flashes when the year changes
+const chips = [...document.querySelectorAll(".ychip[data-yr]")];
+function setChips(y) {
+  chips.forEach(el => {
+    if (el.textContent === String(y)) return;
+    el.textContent = y;
+    if (booting || reduceMotion()) return;
+    el.classList.remove("pulse"); void el.offsetWidth; el.classList.add("pulse");
+  });
+}
+function showEvent(y) { eventEl.scrollTop = 0; eventEl.innerHTML = EV[y] ? EV[y] : `<span style="color:var(--muted)">這一年沒有記事。</span>`; }
+
+// departing map marks get class "out" (CSS fades them) and are removed once the fade is done
+function fadeRemove() { const el = this; clearTimeout(el._rm); el._rm = setTimeout(() => el.remove(), reduceMotion() ? 0 : 560); }
+function keepEl() { clearTimeout(this._rm); }
+function render() {
+  const live = S.filter(s => active(s, year) && visible.has(s.t));
+  const solid = live.filter(s => !s.single);
+  document.getElementById("stampYear").textContent = year;
+  setChips(year);
+  yPrev.disabled = year <= Y0; yNext.disabled = year >= Y1;
+  document.documentElement.style.setProperty("--era", ERA(year));
+  document.getElementById("stampCount").textContent = solid.length;
+  document.getElementById("stampExtra").textContent = live.length > solid.length ? `另 ${live.length - solid.length} 家只見於這年的名單` : "";
+  TYPES.forEach(t => { legend.querySelector(`[data-n="${t.k}"]`).textContent = S.filter(s => !s.single && s.t === t.k && active(s, year)).length; });
+  showEvent(year);
+
+  // density contours: where shops cluster this year
+  const dens = d3.contourDensity().x(d => d.px).y(d => d.py).size([W, H]).cellSize(2).bandwidth(Math.max(2, 0.32 * pxPerKm)).thresholds(6)(solid);
+  const maxV = d3.max(dens, d => d.value) || 1;
+  // contours cross-fade: last year's layer fades out while this year's fades in
+  gHeat.selectAll("g.lay:not(.out)").classed("out", true).each(fadeRemove);
+  gHeat.append("g").attr("class", booting ? "lay" : "lay enter").selectAll("path").data(dens).join("path").attr("d", d3.geoPath())
+    .attr("fill", d => `rgba(${css("--heat")}, ${0.04 + 0.09 * d.value / maxV})`).attr("stroke", "none");
+
+  // dashed move line only in the year the shop moved
+  const moves = live.filter(s => s.prevS && s.y0 === year && Math.hypot(s.px - s.prevS.px, s.py - s.prevS.py) > 0.5);
+  const mv = gMove.selectAll("g.mv").data(moves, d => d.id).join(enter => {
+    const e = enter.append("g").attr("class", "mv enter");
+    e.append("line"); e.append("circle").style("fill", "none");
+    return e;
+  }, update => update, exit => exit.classed("out", true).each(fadeRemove));
+  mv.classed("out", false).each(keepEl).style("opacity", 0.9);
+  mv.select("line").attr("x1", d => d.prevS.px).attr("y1", d => d.prevS.py).attr("x2", d => d.px).attr("y2", d => d.py).style("stroke", d => color(d.t));
+  mv.select("circle").attr("cx", d => d.prevS.px).attr("cy", d => d.prevS.py).style("stroke", d => color(d.t));
+
+  const g = gShop.selectAll("g.s").data(live, d => d.id).join(
+    enter => {
+      const e = enter.append("g").attr("class", "s enter");
+      e.append("circle").attr("class", "ring");
+      e.append("path").attr("class", "shop").attr("tabindex", 0).attr("role", "button")
+        .on("mouseenter", (ev, d) => showTip(d, ev)).on("mousemove", (ev, d) => showTip(d, ev))
+        .on("mouseleave", hideTip).on("focus", (ev, d) => showTip(d)).on("blur", hideTip)
+        .on("click", (ev, d) => { ev.stopPropagation(); hideTip(); d === selected ? closeDrawer() : openDrawer(d); })
+        .on("keydown", (ev, d) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openDrawer(d); } });
+      e.append("path").attr("class", "xmark");
+      return e;
+    }, update => update, exit => exit.classed("out", true).each(fadeRemove));
+  g.classed("out", false).each(keepEl);
+  g.attr("transform", d => `translate(${d.px},${d.py})`);
+  g.select("path.shop").style("fill", d => d.single ? "var(--land)" : color(d.t)).style("stroke", d => d.single ? color(d.t) : null).style("stroke-width", d => d.single ? "2px" : null).attr("aria-label", d => `${d.n}，${d.a}，${yrs(d)}`)
+    .classed("faint", d => d.y1 === year && d.y1q !== "u" && !d.nextS).classed("on", d => d === selected);
+  g.select("circle.ring").style("opacity", d => openedIn(d, year) ? 1 : 0);
+  g.select("path.xmark").style("opacity", d => d.y1 === year && d.y1q !== "u" && !d.nextS ? 1 : 0);
+  g.sort((a, b) => a.py - b.py);
+  sizeMarks();
+
+  renderChartCursor();
+  renderZones();
+  renderList(live);
+}
+
+/* ---------- timeline: stacked count bars are the scrubber ---------- */
+const years = d3.range(Y0, Y1 + 1);
+const chart = d3.select("#chart");
+let bx, by, cW, cH;
+const cm = { t: 22, r: 4, b: 20, l: 4 };
+function counts() {
+  return years.map(y => { const o = { y }; TYPES.forEach(t => o[t.k] = visible.has(t.k) ? S.filter(s => !s.single && s.t === t.k && active(s, y)).length : 0); o.single = S.filter(s => s.single && visible.has(s.t) && active(s, y)).length; return o; });
+}
+function renderChart() {
+  const el = chart.node(); cW = el.clientWidth; cH = el.clientHeight;
+  const compact = cH < 70;
+  cm.t = compact ? 3 : 22; cm.b = compact ? 15 : 20;
+  chart.attr("viewBox", `0 0 ${cW} ${cH}`).selectAll("*").remove();
+  const rows = counts();
+  const stack = d3.stack().keys(TYPES.map(t => t.k))(rows);
+  const tot = r => TYPES.reduce((a, t) => a + r[t.k], 0);
+  const max = d3.max(rows, tot) || 1;
+  bx = d3.scaleBand(years, [cm.l, cW - cm.r]).paddingInner(cW < 520 ? .18 : .26);
+  by = d3.scaleLinear([0, max], [cH - cm.b, cm.t]);
+  const defs = chart.append("defs");
+  defs.append("pattern").attr("id", "hatch").attr("width", 5).attr("height", 5).attr("patternUnits", "userSpaceOnUse").attr("patternTransform", "rotate(45)")
+    .append("line").attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 5).style("stroke", "var(--ink)").attr("stroke-width", 1.4).attr("opacity", .45);
+  const g = chart.append("g");
+  stack.forEach(layer => g.append("g").selectAll("rect").data(layer).join("rect")
+    .attr("x", d => bx(d.data.y)).attr("width", bx.bandwidth()).attr("y", d => by(d[1])).attr("height", d => Math.max(0, by(d[0]) - by(d[1])))
+    .style("fill", color(layer.key)));
+  g.append("g").selectAll("rect").data(rows.filter(r => LIST_YEARS.has(r.y))).join("rect")
+    .attr("x", r => bx(r.y)).attr("width", bx.bandwidth()).attr("y", r => by(tot(r))).attr("height", r => by(0) - by(tot(r))).attr("fill", "url(#hatch)");
+  g.append("g").selectAll("rect").data(rows).join("rect").attr("class", "bar")
+    .attr("x", r => bx(r.y)).attr("width", bx.bandwidth()).attr("y", r => by(tot(r))).attr("height", r => by(0) - by(tot(r))).attr("rx", 2.5);
+  chart.append("g").selectAll("circle").data(years.filter(y => EV[y])).join("circle").attr("class", "ev-dot")
+    .attr("cx", y => bx(y) + bx.bandwidth() / 2).attr("cy", cH - 4).attr("r", 2.2).attr("display", compact ? "none" : null);
+  chart.append("g").attr("class", "axis").selectAll("text").data(cW < 520 ? [2000, 2010, 2020, 2026] : [2000, 2005, 2010, 2015, 2020, 2026]).join("text")
+    .attr("x", y => bx(y) + bx.bandwidth() / 2).attr("y", compact ? cH - 3 : cH - 8).attr("text-anchor", "middle").style("font-size", compact ? "10px" : null).text(y => y);
+  const flag = chart.append("g").attr("class", "yr-flag").attr("display", compact ? "none" : null);
+  flag.append("rect").attr("width", 44).attr("height", 18).attr("rx", 9).attr("y", 0);
+  flag.append("text").attr("x", 22).attr("y", 13);
+  chart.node()._rows = rows; chart.node()._tot = tot;
+  renderSlider();
+  renderChartCursor();
+}
+const ctip = document.getElementById("chartTip");
+// the pinned slider's track: decade-coloured segments and a tick per year, centred under the thumb positions
+function renderSlider() {
+  const pc = y => (y - Y0) / (Y1 - Y0) * 100;
+  const eras = [[Y0, 2009.5], [2009.5, 2019.5], [2019.5, Y1]];
+  document.getElementById("track").innerHTML = eras.map(([a, b]) => `<i class="era" style="left:${pc(a)}%;width:${pc(b) - pc(a)}%;background:${ERA(Math.ceil(a))}"></i>`).join("") +
+    years.map(y => `<span class="tk${y % 5 === 0 || y === Y1 ? " big" : ""}" style="left:${pc(y)}%"></span>`).join("");
+  const w = document.getElementById("tlab").clientWidth;
+  const labs = w < 360 ? [2000, 2010, 2020, 2026] : [2000, 2005, 2010, 2015, 2020, 2026];
+  document.getElementById("tlab").innerHTML = labs.map(y => `<span style="left:${pc(y)}%">${y}</span>`).join("");
+}
+function chartTip(y) {
+  const rows = chart.node()._rows, r = rows && y != null && rows.find(d => d.y === y);
+  if (!r) { ctip.hidden = true; return; }
+  ctip.innerHTML = `<b>${y}</b>　共 <b>${chart.node()._tot(r)}</b> 家<br>` +
+    TYPES.filter(t => visible.has(t.k)).map(t => `${icon(t.k)} ${t.s} <b>${r[t.k]}</b>`).join("　") +
+    (r.single ? `<span class="m">另 ${r.single} 家只見於當年名單（空心）</span>` : "") +
+    (LIST_YEARS.has(y) ? `<span class="m">這年一次補進多家開業年不詳的店</span>` : "");
+  ctip.hidden = false;
+  const x = bx(y) + bx.bandwidth() / 2, tw = ctip.offsetWidth;
+  let left = x + bx.step() * 0.9;
+  if (left + tw > cW) left = x - bx.step() * 0.9 - tw;
+  ctip.style.left = Math.max(0, left) + "px";
+  ctip.style.top = Math.max(0, by(chart.node()._tot(r)) - 10) + "px";
+}
+function renderChartCursor() {
+  if (!bx) return;
+  chart.selectAll(".bar").classed("on", r => r.y === year).classed("hov", false);
+  const r = chart.node()._rows.find(d => d.y === year), x = bx(year) + bx.bandwidth() / 2;
+  chart.select(".yr-flag").attr("transform", `translate(${Math.min(cW - 46, Math.max(0, x - 22))},${Math.max(0, by(chart.node()._tot(r)) - 22)})`).select("text").text(year);
+}
+// the bars themselves are the scrubber: press, drag or tap anywhere on them
+function yearAt(clientX) {
+  const r = chart.node().getBoundingClientRect(), st = bx.step();
+  const x0 = bx(Y0) - (st - bx.bandwidth()) / 2;
+  return Math.max(Y0, Math.min(Y1, Y0 + Math.floor((clientX - r.left - x0) / st)));
+}
+function hover(y) { chart.selectAll(".bar").classed("hov", r => y != null && r.y === y && r.y !== year); chartTip(y); }
+let scrub = null;
+chart.on("pointerdown", e => {
+  if (!bx || e.button > 0) return;
+  // a finger may be starting a vertical page scroll, so touch waits for a sideways move or a tap
+  scrub = { id: e.pointerId, x: e.clientX, live: e.pointerType === "mouse" };
+  if (scrub.live) { e.preventDefault(); chart.node().setPointerCapture(e.pointerId); stop(); setYear(yearAt(e.clientX)); }
+});
+chart.on("pointermove", e => {
+  if (!bx) return;
+  const y = yearAt(e.clientX);
+  if (!scrub || scrub.id !== e.pointerId) { if (e.pointerType === "mouse") hover(y); return; }
+  if (!scrub.live && Math.abs(e.clientX - scrub.x) > 6) { scrub.live = true; try { chart.node().setPointerCapture(e.pointerId); } catch (_) {} stop(); }
+  if (scrub.live && y !== year) setYear(y);
+});
+chart.on("pointerup", e => {
+  if (scrub && scrub.id === e.pointerId && !scrub.live) { stop(); setYear(yearAt(e.clientX)); }
+  scrub = null;
+});
+chart.on("pointercancel", () => { scrub = null; });
+chart.on("pointerleave", () => { if (!scrub) hover(null); });
+
+/* ---------- zones ---------- */
+const zoneEl = document.getElementById("zones");
+function renderZones() {
+  const list = ZONES.map(z => z.n).concat(["其他"]);
+  const per = list.map(n => ({ n, c: years.map(y => S.filter(s => s.zone === n && visible.has(s.t) && active(s, y)).length) }));
+  const max = d3.max(per, p => d3.max(p.c)) || 1;
+  const bw = 100 / years.length;
+  const cols = zoneEl.clientWidth >= 760 ? 2 : 1, perCol = Math.ceil(per.length / cols);
+  zoneEl.style.setProperty("--zc", cols);
+  const axis = `<div class="zaxis"><i></i><div class="zx">${[2000, 2010, 2020, 2026].map(y => `<span style="left:${(y - Y0 + 0.5) / years.length * 100}%">${y}</span>`).join("")}</div></div>`;
+  const row = p => `<div class="zone" data-z="${p.n}"><span class="zn">${p.n}</span>` +
+    `<svg viewBox="0 0 100 22" preserveAspectRatio="none" aria-hidden="true">${p.c.map((c, i) => {
+      const h = Math.max(c ? 2 : 0.6, 20 * c / max);
+      return `<rect class="${years[i] === year ? "on" : ""}" x="${i * bw + 0.25}" width="${bw - 0.5}" y="${22 - h}" height="${h}" rx="0.6"/>` +
+        `<rect class="hit" data-y="${years[i]}" data-c="${c}" x="${i * bw}" width="${bw}" y="0" height="22"/>`;
+    }).join("")}</svg><span class="zc">${p.c[year - Y0]}</span></div>`;
+  zoneEl.innerHTML = d3.range(cols).map(i => `<div class="zcol">${per.slice(i * perCol, (i + 1) * perCol).map(row).join("")}${axis}</div>`).join("");
+}
+// hovering a bar names its year; clicking it jumps the whole page to that year
+const ztip = document.createElement("div");
+ztip.className = "ztip"; ztip.hidden = true;
+zoneEl.parentElement.appendChild(ztip);
+zoneEl.addEventListener("mousemove", e => {
+  const r = e.target.closest("rect.hit"); if (!r) { ztip.hidden = true; return; }
+  const z = r.closest(".zone").dataset.z;
+  ztip.textContent = `${z}・${r.dataset.y} 年：${r.dataset.c} 家`;
+  ztip.hidden = false;
+  const box = zoneEl.parentElement.getBoundingClientRect(), rb = r.getBoundingClientRect();
+  ztip.style.left = Math.min(box.width - ztip.offsetWidth - 6, Math.max(6, rb.left - box.left + rb.width / 2 - ztip.offsetWidth / 2)) + "px";
+  ztip.style.top = (rb.top - box.top - ztip.offsetHeight - 6) + "px";
+});
+zoneEl.addEventListener("mouseleave", () => { ztip.hidden = true; });
+zoneEl.addEventListener("click", e => { const r = e.target.closest("rect.hit"); if (r) { stop(); setYear(+r.dataset.y); } });
+
+/* ---------- list ---------- */
+const listEl = document.getElementById("list");
+// the list can be grouped by shop type (matches the timeline colours) or by cluster
+let groupBy = "type";
+try { const v = localStorage.getItem("rsm-group"); if (v === "type" || v === "zone") groupBy = v; } catch (e) { /* per-viewer convenience only */ }
+const segEl = document.getElementById("grpSeg");
+function syncSeg() { segEl.querySelectorAll("button[data-g]").forEach(b => b.setAttribute("aria-checked", b.dataset.g === groupBy)); }
+syncSeg();
+segEl.addEventListener("click", e => {
+  const b = e.target.closest("button[data-g]"); if (!b || b.dataset.g === groupBy) return;
+  groupBy = b.dataset.g; syncSeg(); listEl.scrollTop = 0;
+  try { localStorage.setItem("rsm-group", groupBy); } catch (_) { /* ignore */ }
+  renderList(S.filter(s => active(s, year) && visible.has(s.t)));
+});
+function renderList(live) {
+  const opened = live.filter(s => openedIn(s, year)).length;
+  const closed = live.filter(s => s.y1 === year && s.y1q !== "u" && !s.nextS).length;
+  const moved = live.filter(s => s.prevS && s.y0 === year).length;
+  document.getElementById("listMeta").textContent = `開 ${opened} · 收 ${closed}` + (moved ? ` · 搬 ${moved}` : "");
+  let groups;
+  if (groupBy === "type") groups = TYPES.filter(t => visible.has(t.k)).map(t => ({ h: `${icon(t.k)} ${t.n}`, list: live.filter(s => s.t === t.k) })).filter(g => g.list.length);
+  else { const gz = d3.group(live, s => s.zone); groups = ZONES.map(z => z.n).concat(["其他"]).filter(z => gz.has(z)).map(z => ({ h: z, list: gz.get(z) })); }
+  listEl.innerHTML = groups.map(g => `<div class="grp"><h3>${g.h}　${g.list.length}</h3>` +
+    g.list.sort((a, b) => a.y0 - b.y0 || a.n.localeCompare(b.n, "zh-Hant")).map(s => {
+      const pill = s.prevS && s.y0 === year ? `<span class="pill new">搬來</span>` : openedIn(s, year) ? `<span class="pill new">開店</span>` : (s.y1 === year && s.y1q !== "u" && !s.nextS ? `<span class="pill gone">收店</span>` : "");
+      return `<button type="button" class="item" data-id="${s.id}">${icon(s.t)}<span class="nm">${esc(s.n)}${pill}</span><span class="yy">${yrs(s)}</span></button>`;
+    }).join("") + `</div>`).join("") || `<p class="label">這一年沒有符合篩選的店。</p>`;
+}
+listEl.addEventListener("click", e => {
+  const b = e.target.closest(".item"); if (!b) return;
+  focusStore(BY[b.dataset.id]);
+});
+listEl.addEventListener("mouseover", e => {
+  const b = e.target.closest(".item");
+  gShop.selectAll("path.shop").classed("on", d => d === selected || (b && d.id === b.dataset.id));
+});
+// last year a shop is drawn at this address (a moved shop hands over to its new address)
+const lastYear = s => { let e = s.y1 == null ? Y1 : s.y1; if (s.nextS) e = Math.min(e, s.nextS.y0 - 1); return Math.min(Y1, e); };
+function focusStore(s) {
+  if (!visible.has(s.t)) { visible.add(s.t); syncLegend(); renderChart(); }
+  if (!active(s, year)) { stop(); setYear(year < s.y0 ? Math.max(Y0, s.y0) : lastYear(s)); }
+  openDrawer(s);
+  const t = d3.zoomTransform(svg.node());
+  const k = Math.max(t.k, 6);
+  const fx = isPhone() ? W / 2 : (W - 360) / 2, fy = isPhone() ? H * 0.28 : H / 2;
+  const nt = d3.zoomIdentity.translate(fx - k * s.px, fy - k * s.py).scale(k);
+  (reduceMotion() ? svg : svg.transition().duration(500)).call(zoom.transform, nt);
+  const ybH = document.getElementById("yearbar").offsetHeight + 8, mr = wrap.getBoundingClientRect();
+  if (mr.top < ybH + 4 || mr.bottom > innerHeight + 4) scrollTo({ top: scrollY + mr.top - ybH - 14, behavior: reduceMotion() || booting ? "auto" : "smooth" });
+}
+
+/* ---------- search ---------- */
+const qEl = document.getElementById("q"), resEl = document.getElementById("results");
+const qCount = document.getElementById("qCount"), qClear = document.getElementById("qClear");
+const norm = x => (x || "").toLowerCase().replace(/臺/g, "台").replace(/[\s　・·．.、，,()（）]/g, "");
+S.forEach(s => { s._k = [norm(s.n), norm(s.en), norm(s.a), norm(s.zone + TYPE[s.t].n), norm(s.note)]; });
+let hits = [], sel = -1;
+function search(q) {
+  const k = norm(q);
+  if (!k) return [];
+  const w = [100, 80, 60, 40, 10];
+  return S.map(s => {
+    let sc = 0;
+    s._k.forEach((f, i) => { if (f.includes(k)) sc = Math.max(sc, w[i] + (i === 0 && f.startsWith(k) ? 15 : 0)); });
+    return { s, sc };
+  }).filter(r => r.sc > 0 && lastYear(r.s) >= Y0)
+    .sort((a, b) => b.sc - a.sc || (active(b.s, year) - active(a.s, year)) || a.s.y0 - b.s.y0)
+    .map(r => r.s);
+}
+function hl(text, q) {
+  const k = q.trim(); if (!k) return esc(text);
+  const i = text.toLowerCase().replace(/臺/g, "台").indexOf(k.toLowerCase().replace(/臺/g, "台"));
+  return i < 0 ? esc(text) : esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + k.length)) + "</mark>" + esc(text.slice(i + k.length));
+}
+function showResults() {
+  const q = qEl.value;
+  hits = search(q); sel = hits.length ? 0 : -1;
+  qClear.hidden = !q;
+  qCount.textContent = q.trim() ? `${hits.length} 筆` : "";
+  if (!q.trim()) { resEl.hidden = true; qEl.setAttribute("aria-expanded", "false"); return; }
+  resEl.innerHTML = hits.length ? hits.slice(0, 40).map((s, i) => {
+    const h = historyOf(s);
+    const now = active(s, year) ? "" : `　・${year} 年未營業`;
+    return `<li role="option" id="opt-${i}" data-i="${i}" aria-selected="${i === sel}">${icon(s.t)}<span class="rn">${hl(s.n, q)}</span><span class="ry">${yrs(s)}</span>` +
+      `<span class="ra">${hl(s.a, q)}${h ? `　・${esc(h)}` : ""}${now}</span></li>`;
+  }).join("") : `<li class="empty" role="option" aria-disabled="true">找不到符合「${esc(q.trim())}」的店家。可以試試店名的一部分、路名或店型（如「黑膠」）。</li>`;
+  resEl.hidden = false; qEl.setAttribute("aria-expanded", "true");
+  qEl.setAttribute("aria-activedescendant", sel >= 0 ? "opt-0" : "");
+}
+function moveSel(d) {
+  if (!hits.length) return;
+  const n = Math.min(hits.length, 40);
+  sel = (sel + d + n) % n;
+  resEl.querySelectorAll("li[role=option]").forEach((li, i) => li.setAttribute("aria-selected", i === sel));
+  const li = resEl.querySelector(`#opt-${sel}`); if (li) li.scrollIntoView({ block: "nearest" });
+  qEl.setAttribute("aria-activedescendant", `opt-${sel}`);
+}
+function pick(i) {
+  const s = hits[i]; if (!s) return;
+  resEl.hidden = true; qEl.setAttribute("aria-expanded", "false");
+  focusStore(s);
+}
+qEl.addEventListener("input", showResults);
+qEl.addEventListener("focus", () => { if (qEl.value.trim()) showResults(); });
+qEl.addEventListener("keydown", e => {
+  if (e.key === "ArrowDown") { e.preventDefault(); if (resEl.hidden) showResults(); else moveSel(1); }
+  else if (e.key === "ArrowUp") { e.preventDefault(); moveSel(-1); }
+  else if (e.key === "Enter") { e.preventDefault(); if (sel >= 0) pick(sel); }
+  else if (e.key === "Escape") { if (!resEl.hidden) { resEl.hidden = true; qEl.setAttribute("aria-expanded", "false"); } else { qEl.value = ""; showResults(); } }
+});
+resEl.addEventListener("mousedown", e => e.preventDefault());
+resEl.addEventListener("click", e => { const li = e.target.closest("li[data-i]"); if (li) pick(+li.dataset.i); });
+qClear.addEventListener("click", () => { qEl.value = ""; showResults(); qEl.focus(); });
+document.addEventListener("click", e => { if (!e.target.closest("#search")) { resEl.hidden = true; qEl.setAttribute("aria-expanded", "false"); } });
+
+/* ---------- table + sources ---------- */
+function renderTable() {
+  document.getElementById("nAll").textContent = S.length;
+  document.getElementById("nSrc").textContent = SRC.length;
+  const tb = document.querySelector("#table tbody");
+  tb.innerHTML = [...S].sort((a, b) => a.y0 - b.y0 || a.n.localeCompare(b.n, "zh-Hant")).map(s =>
+    `<tr><td>${icon(s.t)}${esc(s.n)}${s.en ? `<br><span style="color:var(--muted)">${esc(s.en)}</span>` : ""}</td><td>${esc(s.a)}</td><td class="mono">${yrs(s)}</td><td>${s.zone}</td><td>${historyOf(s) ? esc(historyOf(s)) + "。" : ""}${esc(s.note || "")}</td>` +
+    `<td>${s.src.map(i => SRC[i].u ? `<a href="${SRC[i].u}" target="_blank" rel="noopener">[${i + 1}]</a>` : `[${i + 1}]`).join(" ")}</td></tr>`).join("");
+  document.getElementById("sources").innerHTML = SRC.map(s => `<li>${s.u ? `<a href="${s.u}" target="_blank" rel="noopener">${esc(s.t)}</a>` : esc(s.t)}</li>`).join("");
+}
+
+/* ---------- header facts ---------- */
+function renderFacts() {
+  const n = y => S.filter(s => !s.single && active(s, y)).length;
+  const chain = y => S.filter(s => !s.single && s.t === "chain" && active(s, y)).length;
+  const items = [
+    [S.filter(s => lastYear(s) >= Y0).length, "筆店址"],
+    [SRC.length, "份來源"],
+    [`${n(Y0)} → ${n(Y1)}`, `家（${Y0} → ${Y1}）`],
+  ];
+  document.getElementById("facts").innerHTML = items.map(([v, k]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+}
+
+/* ---------- playback ---------- */
+let timer = null;
+const playBtn = document.getElementById("play"), playIcon = document.getElementById("playIcon");
+const yPrev = document.getElementById("yPrev"), yNext = document.getElementById("yNext");
+function setYear(y) {
+  year = Math.max(Y0, Math.min(Y1, y)); yearInput.value = year;
+  if (selected && !active(selected, year)) closeDrawer();
+  render(); writeHash();
+}
+/* ---------- shareable link: #y2003 or #y2003-s-<shop id> ---------- */
+let booting = true, lastSize = "";
+function writeHash() {
+  if (booting) return;
+  const h = `#y${year}` + (selected ? `-s-${selected.id}` : "");
+  if (location.hash !== h) { try { history.replaceState(null, "", h); } catch (e) { /* hash is a convenience only */ } }
+}
+function readHash() {
+  const d = /^#(about|sources|shops|contribute)$/.exec(location.hash || "");
+  if (d) { openPanel(d[1]); return true; }
+  const m = /^#y(\d{4})(?:-s-([A-Za-z0-9-]+))?$/.exec(location.hash || "");
+  if (!m) return false;
+  const s = m[2] && BY[m[2]];
+  stop();
+  setYear(+m[1]);
+  if (s) focusStore(s);
+  return true;
+}
+addEventListener("hashchange", () => readHash());
+function stop() { clearInterval(timer); timer = null; playIcon.setAttribute("d", "M3 1.5v11l9-5.5z"); playBtn.setAttribute("aria-label", "播放年份動畫"); }
+playBtn.onclick = () => {
+  if (timer) return stop();
+  if (year >= Y1) setYear(Y0);
+  playIcon.setAttribute("d", "M2.5 1.5h3.2v11H2.5zM8.3 1.5h3.2v11H8.3z"); playBtn.setAttribute("aria-label", "暫停");
+  timer = setInterval(() => { if (year >= Y1) return stop(); setYear(year + 1); }, 1000);
+};
+yearInput.addEventListener("input", () => { stop(); setYear(+yearInput.value); });
+yPrev.onclick = () => { stop(); setYear(year - 1); };
+yNext.onclick = () => { stop(); setYear(year + 1); };
+// ← → step the year from anywhere on the page, unless the key belongs to a field or an open dialog
+addEventListener("keydown", e => {
+  if ((e.key !== "ArrowLeft" && e.key !== "ArrowRight") || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+  const a = document.activeElement;
+  if (a && (a === yearInput || /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) || a.isContentEditable || (a.closest && a.closest('[role="tablist"], .seg')))) return;
+  e.preventDefault(); stop(); setYear(year + (e.key === "ArrowLeft" ? -1 : 1));
+});
+
+/* ---------- dock: about / sources / all shops / contribute, as tabs at the bottom ---------- */
+const dock = document.getElementById("dock");
+const tabEls = [...dock.querySelectorAll('[role="tab"]')];
+function selectTab(name, focus) {
+  tabEls.forEach(b => {
+    const on = b.dataset.tab === name;
+    b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1;
+    document.getElementById("p-" + b.dataset.tab).hidden = !on;
+    if (on && focus) b.focus();
+  });
+}
+function setHash(h) { if (!booting && location.hash !== h) { try { history.replaceState(null, "", h); } catch (e) { /* convenience only */ } } }
+function openPanel(name) {
+  if (!document.getElementById("p-" + name)) return;
+  selectTab(name);
+  const ybH = document.getElementById("yearbar").offsetHeight + 8;
+  scrollTo({ top: scrollY + dock.getBoundingClientRect().top - ybH - 16, behavior: booting || reduceMotion() ? "auto" : "smooth" });
+  setHash("#" + name);
+}
+const tablist = dock.querySelector('[role="tablist"]');
+tablist.addEventListener("click", e => { const b = e.target.closest('[role="tab"]'); if (b) { selectTab(b.dataset.tab); setHash("#" + b.dataset.tab); } });
+tablist.addEventListener("keydown", e => {
+  if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+  e.preventDefault();
+  const i = tabEls.findIndex(b => b.getAttribute("aria-selected") === "true");
+  const n = tabEls[(i + (e.key === "ArrowRight" ? 1 : -1) + tabEls.length) % tabEls.length];
+  selectTab(n.dataset.tab, true); setHash("#" + n.dataset.tab);
+});
+document.addEventListener("click", e => { const a = e.target.closest("[data-panel]"); if (a) { e.preventDefault(); openPanel(a.dataset.panel); } });
+
+/* ---------- boot ---------- */
+function boot() {
+  layout();
+  svg.call(zoom.transform, centerTransform());
+  renderChart();
+  renderTable();
+  renderFacts();
+  render();
+  readHash();
+  booting = false;
+  lastSize = [wrap.clientWidth, wrap.clientHeight, chart.node().clientWidth, chart.node().clientHeight, zoneEl.clientWidth].join(",");
+}
+boot();
+
+/* ---------- contribute: public Google Form + in-page form for invited contributors ---------- */
+// Set to the public Google Form's link once it exists; until then the button stays disabled.
+const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScidKGXfjAx23GmA4CLM-8LAYVDAXzVUNKJTh6z2UHKCckIgQ/viewform";
+const gfLink = document.getElementById("gfLink");
+if (FORM_URL) { gfLink.href = FORM_URL; gfLink.target = "_blank"; gfLink.rel = "noopener"; gfLink.removeAttribute("aria-disabled"); gfLink.textContent = "前往投稿表單 ↗"; }
+else gfLink.addEventListener("click", e => e.preventDefault());
+document.getElementById("shopList").innerHTML = S.filter(s => lastYear(s) >= Y0).map(s => `<option value="${esc(s.n)}">`).join("");
+function reportShop(s) {
+  document.getElementById("rfShop").value = s.n;
+  openPanel("contribute");
+  if (!document.getElementById("inpage").hidden) document.getElementById("rfInfo").focus({ preventScroll: true });
+}
+(async () => {
+  const c = window.claude;
+  if (!c || !c.use) return;
+  const [db, user, assets] = await Promise.all([c.use("db"), c.use("user"), c.use("assets")]);
+  if (!db || !user) return;
+  const uid = await user.id();
+  const canWrite = await user.can("data.write");
+  const isEditor = await user.canEdit();
+  if (uid && canWrite !== false) {
+    document.getElementById("inpage").hidden = false;
+    const form = document.getElementById("rf"), status = document.getElementById("rfStatus"), btn = document.getElementById("rfSubmit");
+    const say = (m, k) => { status.textContent = m; status.className = "status " + (k || ""); };
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const info = document.getElementById("rfInfo").value.trim(), src = document.getElementById("rfSrc").value.trim();
+      if (!info || !src) { say("請填寫「正確的資訊」與「資料來源」。", "err"); return; }
+      btn.disabled = true; say("送出中…");
+      try {
+        const files = [...document.getElementById("rfFiles").files];
+        const up = [];
+        for (const f of files) {
+          if (!assets) throw new Error("這個檢視無法上傳檔案，請改用公開投稿表單，或拿掉附件後再送出。");
+          if (f.size > 20 * 1024 * 1024) throw new Error(`「${f.name}」超過 20 MB。`);
+          const r = await assets.upload(f);
+          up.push({ id: r.id, name: f.name, type: r.contentType, size: r.sizeBytes });
+        }
+        const ref = db.doc("reports/" + uid);
+        const cur = await ref.get();
+        const items = cur.exists ? [...(cur.data().items || [])] : [];
+        items.push({
+          at: new Date().toISOString(), type: document.getElementById("rfType").value,
+          shop: document.getElementById("rfShop").value.trim(), info, src, files: up,
+          name: document.getElementById("rfName").value.trim(), contact: document.getElementById("rfContact").value.trim(), done: false
+        });
+        await ref.set({ items });
+        form.reset(); say("已送出，謝謝！我們查證後會更新地圖。", "ok");
+      } catch (err) {
+        say(err && err.code === "invalid_argument" ? "你目前的權限無法在這裡送出，請改用公開投稿表單。" : (err && err.message) || "送出失敗，請稍後再試。", "err");
+      } finally { btn.disabled = false; }
+    });
+  }
+  // the creator (and editors) see every submission here, newest first
+  if (isEditor) {
+    const box = document.getElementById("review");
+    box.hidden = false;
+    box.innerHTML = `<h3>待查證的投稿</h3><p class="note2">只有製作者與編輯者看得到這一區。</p><div id="rvList"><p class="note2">讀取中…</p></div>`;
+    const list = document.getElementById("rvList");
+    const timer = setTimeout(() => { list.innerHTML = `<p class="note2">暫時讀不到投稿，請稍後重新整理。</p>`; }, 10000);
+    db.collection("reports").onSnapshot(snap => {
+      clearTimeout(timer);
+      const rows = [];
+      snap.docs.forEach(d => (d.data().items || []).forEach((it, i) => rows.push({ doc: d.id, i, it })));
+      rows.sort((a, b) => (b.it.at || "").localeCompare(a.it.at || ""));
+      list.innerHTML = rows.length ? rows.map(r => `<div class="rv${r.it.done ? " done" : ""}">` +
+        `<div class="meta">${esc((r.it.at || "").slice(0, 16).replace("T", " "))}・${esc(r.it.type || "")}${r.it.shop ? "・" + esc(r.it.shop) : ""}${r.it.name ? "・" + esc(r.it.name) : ""}</div>` +
+        `<div>${esc(r.it.info || "")}</div><div class="meta">來源：${esc(r.it.src || "")}</div>` +
+        (r.it.contact ? `<div class="meta">聯絡：${esc(r.it.contact)}</div>` : "") +
+        ((r.it.files || []).length ? `<div class="meta">附件：${r.it.files.map(f => `<a href="/_blob/${encodeURIComponent(f.id)}" target="_blank" rel="noopener">${esc(f.name)}</a>`).join("、")}</div>` : "") +
+        `<button type="button" data-doc="${esc(r.doc)}" data-i="${r.i}">${r.it.done ? "標為未處理" : "標為已處理"}</button></div>`).join("") : `<p class="note2">目前沒有投稿。</p>`;
+    }, () => { clearTimeout(timer); list.innerHTML = `<p class="note2">暫時讀不到投稿。</p>`; });
+    list.addEventListener("click", async e => {
+      const b = e.target.closest("button[data-doc]"); if (!b) return;
+      b.disabled = true;
+      try {
+        const ref = db.doc("reports/" + b.dataset.doc), cur = await ref.get();
+        const items = [...(cur.data().items || [])].map(x => ({ ...x }));
+        items[+b.dataset.i].done = !items[+b.dataset.i].done;
+        await ref.set({ items });
+      } catch (err) { b.disabled = false; }
+    });
+  }
+})();
+let rt;
+addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
+  const sz = [wrap.clientWidth, wrap.clientHeight, chart.node().clientWidth, chart.node().clientHeight, zoneEl.clientWidth].join(",");
+  if (sz === lastSize) return; lastSize = sz; const v = document.getElementById("zCity").getAttribute("aria-pressed") === "true" ? "city" : "center"; layout(); svg.call(zoom.transform, v === "city" ? d3.zoomIdentity : centerTransform()); renderChart(); render(); }, 150); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => render());
+</script>
