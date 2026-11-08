@@ -51,7 +51,9 @@ button:focus-visible, input:focus-visible, a:focus-visible, .item:focus-visible 
 /* ---------- top bar ---------- */
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--era); transition: background-color .6s ease; }
 .top { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(300px, 440px); gap: 12px 26px; align-items: center; }
-.logo { font: 400 28px/1 var(--f-round); padding: 9px 16px 8px; transform: rotate(-1.5deg); white-space: nowrap; margin: 0; justify-self: start; }
+.logo { font: 400 28px/1 var(--f-round); padding: 9px 16px 8px; transform: rotate(-1.5deg); white-space: nowrap; margin: 0; justify-self: start; transition: transform .15s ease, box-shadow .15s ease; }
+.logo a { color: inherit; text-decoration: none; }
+.logo:hover { transform: rotate(-1.5deg) translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
 .brandline { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .by22 { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); text-decoration: none; font: 600 13px var(--f-mono); transform: rotate(2deg); }
 .by22 img { display: block; height: 32px; width: auto; border: 2.5px solid var(--ink); border-radius: 8px; box-shadow: 3px 3px 0 var(--ink); }
@@ -168,6 +170,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ctl button { font: 14px var(--f-round); background: var(--paper); border: 2.5px solid var(--ink); border-radius: 10px; padding: 3px 12px; cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
 .ctl button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .ctl .zb { font: 600 17px var(--f-mono); padding: 1px 11px; }
+.ctl .act { transition: background-color .25s ease, color .25s ease; }
+.ctl .act:active, .ctl .act.tap { background: var(--ink); color: var(--paper); transition: none; }
 .key { left: 14px; top: 58px; display: none; max-width: calc(100% - 28px); gap: 3px; font-size: 12.5px; color: var(--ink-2); background: color-mix(in srgb, var(--paper) 94%, transparent); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 12px 9px; box-shadow: 3px 3px 0 var(--ink); }
 .key b { font: 400 13px var(--f-round); color: var(--ink); margin-bottom: 2px; }
 .key span { display: inline-flex; align-items: center; gap: 8px; }
@@ -529,7 +533,7 @@ td a { color: var(--ink-2); }
 <div class="wrap">
   <header class="top">
     <div class="brandline">
-      <h1 class="logo sticker">台北唱片行變遷地圖</h1>
+      <h1 class="logo sticker"><a href="./" id="homeLink" title="重新載入，回到最初的畫面">台北唱片行變遷地圖</a></h1>
       <a class="by22" href="https://www.22cs.xyz/" target="_blank" rel="noopener" aria-label="22 世紀衛星（開啟主站）"><span>by</span><img src="img/22cs.png" alt="22CS" width="105" height="32"></a>
     </div>
     <div class="intro-top">
@@ -580,10 +584,10 @@ td a { color: var(--ink-2); }
       <div class="float ctl" role="group" aria-label="地圖操作">
         <button type="button" class="legbtn" id="legBtn" aria-expanded="false" aria-controls="key">圖例</button>
         <button type="button" id="zLogo" aria-pressed="false" title="以店家招牌顯示：有標誌的用標誌，其他寫店名">招牌</button>
-        <button type="button" class="zb" id="zIn" aria-label="放大地圖">+</button>
-        <button type="button" class="zb" id="zOut" aria-label="縮小地圖">−</button>
-        <button type="button" id="zCenter" aria-pressed="true">市中心</button>
-        <button type="button" id="zCity" aria-pressed="false">全市</button>
+        <button type="button" class="zb act" id="zIn" aria-label="放大地圖">+</button>
+        <button type="button" class="zb act" id="zOut" aria-label="縮小地圖">−</button>
+        <button type="button" class="act" id="zCenter">市中心</button>
+        <button type="button" class="act" id="zCity">全市</button>
       </div>
       <div class="float key" id="key"></div>
       <div class="float osm">底圖 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者</div>
@@ -979,12 +983,23 @@ function centerTransform() {
   const cx = (xs[0] + xs[1]) / 2, cy = (ys[0] + ys[1]) / 2;
   return d3.zoomIdentity.translate((l + r) / 2 - k * cx, (t + b) / 2 - k * cy).scale(k);
 }
+let curView = "center";  // which preset the map was last set to; a window resize re-applies it
 function setView(which) {
   const t = which === "city" ? d3.zoomIdentity : centerTransform();
   (reduceMotion() ? svg : svg.transition().duration(600)).call(zoom.transform, t);
-  document.getElementById("zCenter").setAttribute("aria-pressed", which !== "city");
-  document.getElementById("zCity").setAttribute("aria-pressed", which === "city");
+  curView = which;
 }
+// zoom and view buttons are actions, not switches: they flash dark when pressed and go straight back
+document.querySelectorAll(".ctl .act").forEach(b => b.addEventListener("click", () => {
+  b.classList.add("tap"); setTimeout(() => b.classList.remove("tap"), 160);
+}));
+// the title reloads the page from the start, like a site logo (the year/shop part of the address is dropped)
+document.getElementById("homeLink").addEventListener("click", e => {
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  try { history.replaceState(null, "", location.pathname + location.search); } catch (_) {}
+  location.reload();
+});
 document.getElementById("zCenter").onclick = () => setView("center");
 document.getElementById("zCity").onclick = () => setView("city");
 document.getElementById("zIn").onclick = () => svg.transition().duration(reduceMotion() ? 0 : 250).call(zoom.scaleBy, 1.6);
@@ -1921,6 +1936,6 @@ function reportShop(s) {
 let rt;
 addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
   const sz = [wrap.clientWidth, wrap.clientHeight, chart.node().clientWidth, chart.node().clientHeight, zoneEl.clientWidth].join(",");
-  if (sz === lastSize) return; lastSize = sz; const v = document.getElementById("zCity").getAttribute("aria-pressed") === "true" ? "city" : "center"; layout(); svg.call(zoom.transform, v === "city" ? d3.zoomIdentity : centerTransform()); renderChart(); render(); if (chartStale()) renderChart(); sortMarks(); }, 150); });
+  if (sz === lastSize) return; lastSize = sz; const v = curView; layout(); svg.call(zoom.transform, v === "city" ? d3.zoomIdentity : centerTransform()); renderChart(); render(); if (chartStale()) renderChart(); sortMarks(); }, 150); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => render());
 </script>

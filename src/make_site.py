@@ -36,6 +36,11 @@ head = f"""<!doctype html>
 <meta property="og:title" content="台北唱片行變遷地圖">
 <meta property="og:description" content="{desc}">
 {f'<meta property="og:url" content="https://{domain}/">' if domain else ''}
+{f'<meta property="og:image" content="https://{domain}/img/og.png">' if domain else ''}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="台北唱片行變遷地圖：2000 年至今台北市唱片行的分布與店數變化">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{icon}">
 <style>body{{margin:0}}[hidden]{{display:none!important}}img{{max-width:100%}}</style>
 </head>

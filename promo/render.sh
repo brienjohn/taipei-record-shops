@@ -19,3 +19,4 @@ shot() { # format width height outfile
 shot portrait 1080 1350 ig-fb-threads-1080x1350.png
 shot story 1080 1920 story-1080x1920.png
 shot wide 1200 630 link-preview-1200x630.png
+cp promo/out/link-preview-1200x630.png docs/img/og.png  # the site's share thumbnail (og:image)
