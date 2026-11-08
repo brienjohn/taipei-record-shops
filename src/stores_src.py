@@ -130,6 +130,18 @@ SOURCES = [
     ("製作者 Brien John 提供（2026 年 11 月）：agnès b. music store 營業至 2017 年、三創黑膠 2026 年歇業、KAERU 預計 2026 年底開店、佳佳站前店遷址經過、攝氏三十八度 1989 年設立、第一唱片行 2026 年仍營業", ""),  # 123
     ("KAERU 官方網站（網路商店，聯絡地址與門市自取）", "https://www.kaerutw.com/"),  # 124
     ("Google 地圖：蒙得你安唱片 Mondrian Vinyls（2026 年 11 月查詢）", "https://maps.app.goo.gl/vVseBPLPSg77cg8Y7"),  # 125
+    ("PopDaily：台灣 14 間 K-POP 專輯周邊店, 2025", "https://www.popdaily.com.tw/korea/1513994"),  # 126
+    ("仙女樹 FAIRYTREE 官網門市資訊", "https://www.fairytree.com.tw/pages/new-page"),  # 127
+    ("TVBS 新聞：K-pop 全台實體專輯店, 2025", "https://news.tvbs.com.tw/entertainment/3029319"),  # 128
+    ("KEEDAN 起點：中山站周邊 K-POP 專輯店, 2026-05-12（2026-10-29 更新）", "https://keedan.com/track/2026/05/12/zhongshan-kpop-store-guide/"),  # 129
+    ("統編速搜：微樂客有限公司各門市部登記資料", "https://site.reurl.tw/details/00605911"),  # 130
+    ("聯合新聞網：全台實體專輯店, 2025-10", "https://travel.udn.com/travel/story/7934/9103225"),  # 131
+    ("V-EIGHT CORP. 公司沿革（K-MONSTAR 展店年表）", "https://www.v8corp.com/"),  # 132
+    ("MOOK 景點家：台北 K-POP 專賣店, 2025-08-27", "https://www.mook.com.tw/article/38533/page/2/"),  # 133
+    ("韓居 HGmusic 官網〈商店介紹〉", "https://www.hgmusic.com.tw/zh-TW/pages/about-us-copy"),  # 134
+    ("104 人力銀行：ALL MY DAY 經營公司簡介", "https://www.104.com.tw/company/1a2x6bnf05"),  # 135
+    ("ALL MY DAY 官網：中山門市開幕活動", "https://allmyday.com.tw/post/%E4%B8%AD%E5%B1%B1%E9%96%80%E5%B8%82%E9%96%8B%E5%B9%95%E6%B4%BB%E5%8B%9568e7fe9de6716"),  # 136
+    ("KOREEPOP 官網〈關於我們〉", "https://www.koreepop.com/pages/about-us"),  # 137
 ]
 
 ZONES = [
@@ -401,21 +413,37 @@ STORES = [
       "東門市場旁，黑膠兼音響，主辦放碟祭。文化部名單另列汀州路二段219號，兩址先後不詳。"),
     S("parstore", "PAR Store", "indie", "台北市大同區赤峰街3巷1號B1", 2020, "b", None, None, [41, 90], "選品店，有黑膠、卡帶與 zine。"),
     # ---- 韓國流行專輯店 ----
-    S("kmonstar-zs", "K-MONSTAR 中山門市", "kpop", "台北市大同區赤峰街49巷7號1樓", 2023, "e", None, None, [65, 64, 41],
+    S("kmonstar-zs", "K-MONSTAR 中山門市", "kpop", "台北市大同區赤峰街49巷7號1樓", 2023, "e", None, None, [65, 132, 64, 41],
       "K-MONSTAR 2023 年在赤峰街開出台灣第一家實體店。"),
-    S("kmonstar-ns", "K-MONSTAR 微風南山門市", "kpop", "台北市信義區松智路17號B1", 2024, "e", None, None, [65, 64, 41], "2024 年 5 月開幕。",
+    S("kmonstar-ns", "K-MONSTAR 微風南山門市", "kpop", "台北市信義區松智路17號B1", 2024, "e", None, None, [65, 132, 64, 41], "2024 年 5 月開幕。",
       geo="台北市信義區松智路17號"),
-    S("kmonstar-bf", "K-MONSTAR 微風廣場門市", "kpop", "台北市松山區復興南路一段39號GF", 2026, "b", None, None, [41], geo="台北市松山區復興南路一段39號"),
+    S("kmonstar-bf", "K-MONSTAR 微風廣場門市", "kpop", "台北市松山區復興南路一段39號GF", 2025, "e", None, None, [133, 132, 41], "2025 年 4 月底開幕。", geo="台北市松山區復興南路一段39號"),
     S("willmusic1", "微樂客 Will Music 赤峰門市", "kpop", "台北市大同區赤峰街12巷5號1樓", 2024, "e", None, None, [121, 64, 41],
       "2017 年起在網路販售進口音樂商品，2024 年 3 月在赤峰街開出第一家實體門市試營運，也有黑膠區。"),
-    S("willmusic2", "微樂客 Will Music 中山北路", "kpop", "台北市中山區中山北路二段16巷25號2樓", 2026, "b", None, None, [41]),
-    S("fairytree1", "仙女樹 fairytree（敦化南路）", "kpop", "台北市大安區敦化南路一段177巷25號之2", 2024, "b", 2024, "u", [64], "之後搬到中山北路，搬遷年不詳。"),
-    S("fairytree2", "仙女樹 fairytree（中山北路）", "kpop", "台北市中山區中山北路二段36巷27號", 2026, "b", None, None, [41]),
+    S("willmusic2", "微樂客 Will Music 南西旗艦店", "kpop", "台北市中山區中山北路二段16巷25號2樓", 2026, "e", None, None, [129, 130, 41],
+      "2026 年 1 月辦理門市登記，5 月的報導已列入。"),
+    S("willmusic-att", "微樂客 Will Music ATT 4 FUN", "kpop", "台北市信義區松壽路12號5樓", 2025, "b", None, None, [131, 130],
+      "2024 年 10 月辦理門市登記，2025 年 10 月的店家整理已列入，開幕月份不詳。"),
+    S("willmusic-one", "微樂客 OneMusic 赤峰", "kpop", "台北市大同區赤峰街71巷26號1樓", 2025, "e", None, None, [131, 130],
+      "2025 年 4 月辦理門市登記，同年 10 月的店家整理已列入。"),
+    S("willmusic-ximen", "微樂客 Will Music 西門", "kpop", "台北市萬華區西寧南路50巷13-1號2樓", 2025, "e", None, None, [131, 130],
+      "報導預告 2025 年 10 月 31 日起試營運。"),
+    S("platbum", "PLATBUM", "kpop", "台北市中山區南京西路23巷1-3號2樓", 2026, "b", None, None, [129],
+      "以男團專輯與周邊為主，店名取 platform 與 album 合成。"),
+    S("fairytree1", "仙女樹 fairytree（敦化南路）", "kpop", "台北市大安區敦化南路一段177巷25號之2", 2024, "e", 2025, "u", [126, 128, 64],
+      "2024 年開出第一家實體店，2025 年 10 月的報導仍列這個地址。之後搬到中山北路，確切月份不詳。"),
+    S("fairytree2", "仙女樹 fairytree（中山北路）", "kpop", "台北市中山區中山北路二段36巷27號", 2026, "b", None, None, [129, 127, 41],
+      "從東區搬到中山北路二段，二樓有拆專區。"),
     S("ygm", "YGM STORE", "kpop", "台北市大安區敦化南路一段177巷14號", 2024, "b", 2024, "u", [64]),
-    S("hanju", "韓居 HG music", "kpop", "台北市大同區赤峰街47巷16號1樓", 2026, "b", None, None, [41]),
-    S("koreepop", "KOREEPOP 西門", "kpop", "台北市萬華區成都路32號1樓", 2026, "b", None, None, [41]),
-    S("allmyday1", "ALL MY DAY 赤峰街", "kpop", "台北市大同區赤峰街23巷15號", 2026, "b", None, None, [41]),
-    S("allmyday2", "ALL MY DAY 信義", "kpop", "台北市信義區莊敬路423巷8弄10號", 2026, "b", None, None, [41]),
+    S("hanju", "韓居 HG music 赤峰一店", "kpop", "台北市大同區赤峰街47巷16號1樓", 2025, "e", None, None, [133, 134, 41],
+      "原本在官網與蝦皮販售，2025 年 5 月底開出實體店。"),
+    S("hanju2", "韓居 HG music 赤峰二店", "kpop", "台北市大同區赤峰街47巷15號1樓", 2026, "b", None, None, [129, 134],
+      "與一店隔著巷子相對，一間賣男團、一間賣女團。"),
+    S("koreepop", "KOREEPOP 西門", "kpop", "台北市萬華區成都路32號1樓", 2025, "e", None, None, [137, 41], "官網寫自 2025 年 9 月 8 日起營運。"),
+    S("allmyday1", "ALL MY DAY 中山（赤峰街）", "kpop", "台北市大同區赤峰街23巷15號", 2025, "e", None, None, [135, 136, 41],
+      "經營公司自述 2025 年開出中山門市。"),
+    S("allmyday2", "ALL MY DAY 信義", "kpop", "台北市信義區莊敬路423巷8弄10號", 2024, "e", None, None, [135, 41],
+      "2017 年起經營網路賣場，2024 年底在信義開出第一家實體店。"),
     # ---- 2014 年名單補充 ----
     S("xiaomin", "小閔的古典音樂世界", "indie", "台北市中正區中山南路21-1號（國家音樂廳）", 2005, "e", 2014, "e", [68, 69, 66],
       "國家音樂廳一樓的古典 CD／DVD 專賣店，2005 年 3 月開幕，2014 年底結束，之後改在網路與音樂會現場販售。", geo="台北市中正區中山南路21-1號"),
@@ -571,7 +599,7 @@ LOGOS = {
     "soundsgood": ("logos/soundsgood.png", OFFICIAL, "https://soundsgoodtaipei.com.tw/", ["soundsgood"], "#231f20"),
     "chaobar": ("logos/chaobar.png", OFFICIAL, "https://chaobar.com/", ["chaobar"], "#fff"),
     "rotten": ("logos/rotten.png", OFFICIAL, "https://www.rottenblues.com/", ["rotten"], "#000"),
-    "willmusic": ("logos/willmusic.png", OFFICIAL, "https://www.willmusic.com.tw/", ["willmusic1", "willmusic2"], "#1d1d1f"),
+    "willmusic": ("logos/willmusic.png", OFFICIAL, "https://www.willmusic.com.tw/", ["willmusic1", "willmusic2", "willmusic-att", "willmusic-ximen"], "#1d1d1f"),
     "tower": ("logos/tower.svg", COMMONS, "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg", ["tower"], "#ffe000"),
     "fnac": ("logos/fnac.svg", COMMONS, "https://commons.wikimedia.org/wiki/File:Fnac_Logo.svg", ["fnac"], "#fff"),
     "joyaudio": ("logos/joyaudio.png", MAKER, "", ["joyaudio"], "#000"),
@@ -610,7 +638,7 @@ LOGOS = {
     "allmyday": ("logos/allmyday.png", MAKER, "", ["allmyday1", "allmyday2"], "#fff"),
     "koreepop": ("logos/koreepop.png", MAKER, "", ["koreepop"], "#fff"),
     "fairytree": ("logos/fairytree.png", MAKER, "", ["fairytree1", "fairytree2"], "#fff"),
-    "hanju": ("logos/hanju.png", MAKER, "", ["hanju"], "#fff"),
+    "hanju": ("logos/hanju.png", MAKER, "", ["hanju", "hanju2"], "#fff"),
     "taiwane": ("logos/taiwane.png", MAKER, "", ["taiwane"], "#d8ecd0"),
     "thokphai": ("logos/thokphai.png", MAKER, "", ["thokphai"], "#4a1c25"),
     "dalangman": ("logos/dalangman.png", MAKER, "", ["dalangman"], "#fff"),

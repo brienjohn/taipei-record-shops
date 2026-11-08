@@ -503,6 +503,54 @@
   {
    "t": "Google 地圖：蒙得你安唱片 Mondrian Vinyls（2026 年 11 月查詢）",
    "u": "https://maps.app.goo.gl/vVseBPLPSg77cg8Y7"
+  },
+  {
+   "t": "PopDaily：台灣 14 間 K-POP 專輯周邊店, 2025",
+   "u": "https://www.popdaily.com.tw/korea/1513994"
+  },
+  {
+   "t": "仙女樹 FAIRYTREE 官網門市資訊",
+   "u": "https://www.fairytree.com.tw/pages/new-page"
+  },
+  {
+   "t": "TVBS 新聞：K-pop 全台實體專輯店, 2025",
+   "u": "https://news.tvbs.com.tw/entertainment/3029319"
+  },
+  {
+   "t": "KEEDAN 起點：中山站周邊 K-POP 專輯店, 2026-05-12（2026-10-29 更新）",
+   "u": "https://keedan.com/track/2026/05/12/zhongshan-kpop-store-guide/"
+  },
+  {
+   "t": "統編速搜：微樂客有限公司各門市部登記資料",
+   "u": "https://site.reurl.tw/details/00605911"
+  },
+  {
+   "t": "聯合新聞網：全台實體專輯店, 2025-10",
+   "u": "https://travel.udn.com/travel/story/7934/9103225"
+  },
+  {
+   "t": "V-EIGHT CORP. 公司沿革（K-MONSTAR 展店年表）",
+   "u": "https://www.v8corp.com/"
+  },
+  {
+   "t": "MOOK 景點家：台北 K-POP 專賣店, 2025-08-27",
+   "u": "https://www.mook.com.tw/article/38533/page/2/"
+  },
+  {
+   "t": "韓居 HGmusic 官網〈商店介紹〉",
+   "u": "https://www.hgmusic.com.tw/zh-TW/pages/about-us-copy"
+  },
+  {
+   "t": "104 人力銀行：ALL MY DAY 經營公司簡介",
+   "u": "https://www.104.com.tw/company/1a2x6bnf05"
+  },
+  {
+   "t": "ALL MY DAY 官網：中山門市開幕活動",
+   "u": "https://allmyday.com.tw/post/%E4%B8%AD%E5%B1%B1%E9%96%80%E5%B8%82%E9%96%8B%E5%B9%95%E6%B4%BB%E5%8B%9568e7fe9de6716"
+  },
+  {
+   "t": "KOREEPOP 官網〈關於我們〉",
+   "u": "https://www.koreepop.com/pages/about-us"
   }
  ],
  "zones": [
@@ -3553,6 +3601,7 @@
    "y1q": null,
    "src": [
     65,
+    132,
     64,
     41
    ],
@@ -3576,6 +3625,7 @@
    "y1q": null,
    "src": [
     65,
+    132,
     64,
     41
    ],
@@ -3594,13 +3644,16 @@
    "n": "K-MONSTAR 微風廣場門市",
    "t": "kpop",
    "a": "台北市松山區復興南路一段39號GF",
-   "y0": 2026,
-   "y0q": "b",
+   "y0": 2025,
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    133,
+    132,
     41
    ],
+   "note": "2025 年 4 月底開幕。",
    "geo": "台北市松山區復興南路一段39號",
    "logo": {
     "f": "logos/kmonstar.png",
@@ -3635,16 +3688,19 @@
   },
   {
    "id": "willmusic2",
-   "n": "微樂客 Will Music 中山北路",
+   "n": "微樂客 Will Music 南西旗艦店",
    "t": "kpop",
    "a": "台北市中山區中山北路二段16巷25號2樓",
    "y0": 2026,
-   "y0q": "b",
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    129,
+    130,
     41
    ],
+   "note": "2026 年 1 月辦理門市登記，5 月的報導已列入。",
    "logo": {
     "f": "logos/willmusic.png",
     "k": "site",
@@ -3654,18 +3710,93 @@
    }
   },
   {
+   "id": "willmusic-att",
+   "n": "微樂客 Will Music ATT 4 FUN",
+   "t": "kpop",
+   "a": "台北市信義區松壽路12號5樓",
+   "y0": 2025,
+   "y0q": "b",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    131,
+    130
+   ],
+   "note": "2024 年 10 月辦理門市登記，2025 年 10 月的店家整理已列入，開幕月份不詳。",
+   "logo": {
+    "f": "logos/willmusic.png",
+    "k": "site",
+    "u": "https://www.willmusic.com.tw/",
+    "bg": "#1d1d1f",
+    "a": 3.429
+   }
+  },
+  {
+   "id": "willmusic-one",
+   "n": "微樂客 OneMusic 赤峰",
+   "t": "kpop",
+   "a": "台北市大同區赤峰街71巷26號1樓",
+   "y0": 2025,
+   "y0q": "e",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    131,
+    130
+   ],
+   "note": "2025 年 4 月辦理門市登記，同年 10 月的店家整理已列入。"
+  },
+  {
+   "id": "willmusic-ximen",
+   "n": "微樂客 Will Music 西門",
+   "t": "kpop",
+   "a": "台北市萬華區西寧南路50巷13-1號2樓",
+   "y0": 2025,
+   "y0q": "e",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    131,
+    130
+   ],
+   "note": "報導預告 2025 年 10 月 31 日起試營運。",
+   "logo": {
+    "f": "logos/willmusic.png",
+    "k": "site",
+    "u": "https://www.willmusic.com.tw/",
+    "bg": "#1d1d1f",
+    "a": 3.429
+   }
+  },
+  {
+   "id": "platbum",
+   "n": "PLATBUM",
+   "t": "kpop",
+   "a": "台北市中山區南京西路23巷1-3號2樓",
+   "y0": 2026,
+   "y0q": "b",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    129
+   ],
+   "note": "以男團專輯與周邊為主，店名取 platform 與 album 合成。"
+  },
+  {
    "id": "fairytree1",
    "n": "仙女樹 fairytree（敦化南路）",
    "t": "kpop",
    "a": "台北市大安區敦化南路一段177巷25號之2",
    "y0": 2024,
-   "y0q": "b",
-   "y1": 2024,
+   "y0q": "e",
+   "y1": 2025,
    "y1q": "u",
    "src": [
+    126,
+    128,
     64
    ],
-   "note": "之後搬到中山北路，搬遷年不詳。",
+   "note": "2024 年開出第一家實體店，2025 年 10 月的報導仍列這個地址。之後搬到中山北路，確切月份不詳。",
    "next": "fairytree2",
    "logo": {
     "f": "logos/fairytree.png",
@@ -3685,8 +3816,11 @@
    "y1": null,
    "y1q": null,
    "src": [
+    129,
+    127,
     41
    ],
+   "note": "從東區搬到中山北路二段，二樓有拆專區。",
    "prev": "fairytree1",
    "logo": {
     "f": "logos/fairytree.png",
@@ -3718,16 +3852,41 @@
   },
   {
    "id": "hanju",
-   "n": "韓居 HG music",
+   "n": "韓居 HG music 赤峰一店",
    "t": "kpop",
    "a": "台北市大同區赤峰街47巷16號1樓",
+   "y0": 2025,
+   "y0q": "e",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    133,
+    134,
+    41
+   ],
+   "note": "原本在官網與蝦皮販售，2025 年 5 月底開出實體店。",
+   "logo": {
+    "f": "logos/hanju.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.004
+   }
+  },
+  {
+   "id": "hanju2",
+   "n": "韓居 HG music 赤峰二店",
+   "t": "kpop",
+   "a": "台北市大同區赤峰街47巷15號1樓",
    "y0": 2026,
    "y0q": "b",
    "y1": null,
    "y1q": null,
    "src": [
-    41
+    129,
+    134
    ],
+   "note": "與一店隔著巷子相對，一間賣男團、一間賣女團。",
    "logo": {
     "f": "logos/hanju.png",
     "k": "maker",
@@ -3741,13 +3900,15 @@
    "n": "KOREEPOP 西門",
    "t": "kpop",
    "a": "台北市萬華區成都路32號1樓",
-   "y0": 2026,
-   "y0q": "b",
+   "y0": 2025,
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    137,
     41
    ],
+   "note": "官網寫自 2025 年 9 月 8 日起營運。",
    "logo": {
     "f": "logos/koreepop.png",
     "k": "maker",
@@ -3758,16 +3919,19 @@
   },
   {
    "id": "allmyday1",
-   "n": "ALL MY DAY 赤峰街",
+   "n": "ALL MY DAY 中山（赤峰街）",
    "t": "kpop",
    "a": "台北市大同區赤峰街23巷15號",
-   "y0": 2026,
-   "y0q": "b",
+   "y0": 2025,
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    135,
+    136,
     41
    ],
+   "note": "經營公司自述 2025 年開出中山門市。",
    "logo": {
     "f": "logos/allmyday.png",
     "k": "maker",
@@ -3781,13 +3945,15 @@
    "n": "ALL MY DAY 信義",
    "t": "kpop",
    "a": "台北市信義區莊敬路423巷8弄10號",
-   "y0": 2026,
-   "y0q": "b",
+   "y0": 2024,
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    135,
     41
    ],
+   "note": "2017 年起經營網路賣場，2024 年底在信義開出第一家實體店。",
    "logo": {
     "f": "logos/allmyday.png",
     "k": "maker",

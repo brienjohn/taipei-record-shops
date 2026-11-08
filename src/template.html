@@ -74,7 +74,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 /* ---------- sticky year bar: the timeline that drives every block below ---------- */
 .yearbar { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 8px); z-index: 30; display: grid; grid-template-columns: 272px auto minmax(0, 1fr); grid-template-areas: "yr ctl tl"; gap: 6px 22px; align-items: center; padding: 8px 22px 8px 16px; border-radius: 18px; box-shadow: 5px 5px 0 var(--ink); }
 .yr { grid-area: yr; display: flex; align-items: center; gap: 12px; min-width: 0; }
-.ynum { font: 900 46px/1 var(--f-display); letter-spacing: -.02em; color: var(--era); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); margin: 0; font-variant-numeric: tabular-nums; transition: color .6s ease; }
+.ynum { user-select: none; -webkit-user-select: none; font: 900 46px/1 var(--f-display); letter-spacing: -.02em; color: var(--era); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); margin: 0; font-variant-numeric: tabular-nums; transition: color .6s ease; }
 .cnt { font: 14px/1.4 var(--f-round); white-space: nowrap; min-width: 0; }
 .cnt b { font: 600 21px var(--f-mono); }
 .cnt small { display: flex; align-items: center; gap: 5px; font: 12px/1.5 var(--f-body); color: var(--ink-2); height: 1.5em; overflow: hidden; white-space: nowrap; }
@@ -163,16 +163,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #map { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
 #map:active { cursor: grabbing; }
 .float { position: absolute; z-index: 5; }
-.ctl { right: 14px; top: 14px; display: flex; gap: 8px; }
+.ctl { left: 14px; top: 14px; right: 14px; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; }
+.ctl > * { pointer-events: auto; }
 .ctl button { font: 14px var(--f-round); background: var(--paper); border: 2.5px solid var(--ink); border-radius: 10px; padding: 3px 12px; cursor: pointer; box-shadow: 3px 3px 0 var(--ink); }
 .ctl button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
 .ctl .zb { font: 600 17px var(--f-mono); padding: 1px 11px; }
-.key { left: 14px; top: 14px; display: grid; gap: 3px; font-size: 12.5px; color: var(--ink-2); background: color-mix(in srgb, var(--paper) 94%, transparent); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 12px 9px; box-shadow: 3px 3px 0 var(--ink); }
+.key { left: 14px; top: 58px; display: none; max-width: calc(100% - 28px); gap: 3px; font-size: 12.5px; color: var(--ink-2); background: color-mix(in srgb, var(--paper) 94%, transparent); border: 2px solid var(--ink); border-radius: 12px; padding: 8px 12px 9px; box-shadow: 3px 3px 0 var(--ink); }
 .key b { font: 400 13px var(--f-round); color: var(--ink); margin-bottom: 2px; }
 .key span { display: inline-flex; align-items: center; gap: 8px; }
 .key svg.ico { width: 15px; height: 15px; }
 .key hr { border: 0; border-top: 1.5px dashed var(--line); margin: 4px 0; width: 100%; }
-.ctl .legbtn { display: none; }
+.key.open { display: grid; }
+.ctl .legbtn[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
 .osm { right: 12px; bottom: 6px; font-size: 10.5px; color: var(--muted); }
 .osm a { color: inherit; }
 .zoomhint { left: 50%; top: 44%; transform: translate(-50%, -50%); font: 14px var(--f-round); padding: 8px 14px; pointer-events: none; opacity: 0; transition: opacity .25s; }
@@ -220,17 +222,36 @@ body:not(.signs-on) .g-stem, body:not(.signs-on) .g-pin { display: none; }
 .sg.single .edge { stroke-dasharray: 3 2; }
 .sg.on .edge, .sg:focus-visible .edge, .sg:hover .edge { stroke-width: 3px; }
 .sg.faint { opacity: .5; }
-/* the hidden track (after three idle minutes) */
+/* after 90 s idle the whole page goes dark and only the shops give light, revealing the streets around them */
 .fadeg { transition: opacity .9s ease; }
 .ghosting .fadeg { opacity: 0; }
-.ghost path { transition: fill .5s ease, opacity .5s ease; stroke: var(--ink); stroke-width: 1.3px; vector-effect: non-scaling-stroke; }
-.ghost path.gone { fill: #9d968b; opacity: .45; stroke: none; }
-.ghost .glow { fill: #ffd23f; stroke: var(--ink); stroke-width: 1.4px; vector-effect: non-scaling-stroke; transition: opacity .5s ease; }
-.ghostcap { left: 50%; bottom: 14px; transform: translateX(-50%); width: min(560px, calc(100% - 28px)); padding: 10px 16px 11px; display: grid; gap: 3px; text-align: center; pointer-events: none; }
-.ghostcap b { font: 400 18px var(--f-round); }
-.ghostcap .gl { font-size: 14px; color: var(--ink-2); }
-.ghostcap .gnow { font: 600 14px var(--f-mono); min-height: 1.5em; }
-.ghostcap small { font-size: 11.5px; color: var(--muted); }
+.base, .lbl { transition: opacity 2.4s ease; }
+.ghosting .base, .ghosting .lbl { opacity: 0; }
+.ghosting.lit .base { opacity: .5; mask: url(#ghMask); transition: opacity 1.2s ease; }
+.night { position: fixed; inset: 0; z-index: 35; background: #050608; opacity: 0; pointer-events: none; transition: opacity .7s ease; }
+.ghosting .night { opacity: 1; transition: opacity 2.6s ease; }
+#mapwrap { transition: background-color 2.6s ease, box-shadow 2.6s ease, border-color 2.6s ease; }
+.ghosting #mapwrap { z-index: 36; background: #050608; border-color: #050608; box-shadow: 0 0 0 0 transparent; }
+.ghosting .float:not(.ghostcap) { opacity: 0; pointer-events: none; transition: opacity 1s ease; }
+.ghm { opacity: 0; animation: ghUp 1.6s ease-out var(--del) forwards; }
+.ghm.off { animation: ghSnuff 1.3s ease-out forwards; }
+.ghost .gh { --del: 0s; --fl: 3s; }
+.ghost .halo { fill: url(#ghGlow); opacity: 0; animation: ghUp 1.6s ease-out var(--del) forwards, ghFlick var(--fl) ease-in-out calc(var(--del) + 1.6s) infinite alternate; }
+.ghost .core { fill: #fff6dc; opacity: 0; animation: ghCore 1.6s ease-out var(--del) forwards; }
+.ghost .gh.off .halo { animation: ghSnuff 1.3s ease-out forwards; }
+.ghost .gh.off .core { animation: ghEmber 1.3s ease-out forwards; }
+.ghost .smoke { fill: none; stroke: #cfc8bc; stroke-width: 1.3px; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: 0; }
+@keyframes ghUp { from { opacity: 0; } 40% { opacity: 1; } to { opacity: .9; } }
+@keyframes ghCore { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ghFlick { from { opacity: .9; } 45% { opacity: .78; } 55% { opacity: .96; } to { opacity: .84; } }
+@keyframes ghSnuff { 0% { opacity: 1; } 10% { opacity: .35; } 18% { opacity: 1; } 28% { opacity: .2; } 36% { opacity: .7; } 48% { opacity: .1; } 56% { opacity: .32; } 100% { opacity: 0; } }
+@keyframes ghEmber { 0% { fill: #fff6dc; opacity: 1; } 50% { fill: #c9632b; opacity: .9; } 100% { fill: #3a302a; opacity: .7; } }
+.float.ghostcap { position: fixed; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); width: min(560px, calc(100% - 28px)); display: grid; gap: 4px; text-align: center; pointer-events: none; color: #efe6d3; opacity: 0; transition: opacity 2s ease 1.4s; }
+.ghosting .ghostcap { opacity: 1; }
+.ghostcap > * { text-shadow: 0 0 12px #050608, 0 0 4px #050608; }
+.ghostcap b { font: 400 22px var(--f-round); color: #ffe7b0; font-variant-numeric: tabular-nums; }
+.ghostcap .gl { font-size: 13.5px; color: #b9b0a0; }
+.ghostcap .gnow { font: 500 14px var(--f-mono); min-height: 1.5em; color: #efe6d3; }
 .ghosting .mapyear { opacity: 0; }
 .drawer .ph.logo { display: grid; place-items: center; aspect-ratio: 4 / 3; }
 .drawer .ph.logo img { width: 78%; height: 78%; aspect-ratio: auto; object-fit: contain; }
@@ -498,15 +519,12 @@ td a { color: var(--ink-2); }
   .event p { height: 6.4em; }
   .listcard { height: 66svh; min-height: 380px; }
   .zonecard { padding: 14px 14px 16px; }
-  .key { display: none; top: 58px; }
-  .key.open { display: grid; }
-  .ctl .legbtn { display: inline-block; }
   .drawer { left: 10px; right: 10px; top: auto; bottom: 10px; width: auto; max-height: 58%; }
   .drawer .head { grid-template-columns: 76px minmax(0, 1fr); }
   .dock { box-shadow: 6px 6px 0 var(--ink); }
   .tabs button { font-size: 14px; padding: 3px 12px; }
 }
-@media (prefers-reduced-motion: reduce) { body, body::before, .ynum, .legend button, g.s, g.mv, g.lay, .ring, .xmark, .shop { transition: none; } g.s.enter, g.mv.enter, g.lay.enter, .ychip.pulse { animation: none; } }
+@media (prefers-reduced-motion: reduce) { body, body::before, .ynum, .legend button, g.s, g.mv, g.lay, .ring, .xmark, .shop { transition: none; } g.s.enter, g.mv.enter, g.lay.enter, .ychip.pulse { animation: none; } .ghost .halo, .ghost .core, .ghm { animation: none; opacity: .9; } .ghost .gh.off .halo, .ghm.off { opacity: 0; } .ghost .gh.off .core { fill: #3a302a; opacity: .7; } }
 </style>
 <div class="wrap">
   <header class="top">
@@ -559,13 +577,13 @@ td a { color: var(--ink-2); }
   <section class="stage" aria-label="地圖與當年資料">
     <div class="mapcard" id="mapwrap">
       <svg id="map" role="img" aria-label="台北市唱片行分布地圖"></svg>
-      <div class="float ctl" role="group" aria-label="地圖範圍">
-        <button type="button" id="zCenter" aria-pressed="true">市中心</button>
-        <button type="button" id="zCity" aria-pressed="false">全市</button>
+      <div class="float ctl" role="group" aria-label="地圖操作">
+        <button type="button" class="legbtn" id="legBtn" aria-expanded="false" aria-controls="key">圖例</button>
+        <button type="button" id="zLogo" aria-pressed="false" title="以店家招牌顯示：有標誌的用標誌，其他寫店名">招牌</button>
         <button type="button" class="zb" id="zIn" aria-label="放大地圖">+</button>
         <button type="button" class="zb" id="zOut" aria-label="縮小地圖">−</button>
-        <button type="button" id="zLogo" aria-pressed="false" title="以店家招牌顯示：有標誌的用標誌，其他寫店名">招牌</button>
-        <button type="button" class="legbtn" id="legBtn" aria-expanded="false" aria-controls="key">圖例</button>
+        <button type="button" id="zCenter" aria-pressed="true">市中心</button>
+        <button type="button" id="zCity" aria-pressed="false">全市</button>
       </div>
       <div class="float key" id="key"></div>
       <div class="float osm">底圖 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者</div>
@@ -573,7 +591,7 @@ td a { color: var(--ink-2); }
       <div class="float zoomhint sticker" id="zoomHint" aria-hidden="true">按住 Ctrl 或 ⌘ 再捲動，即可縮放地圖</div>
       <aside class="float drawer sticker" id="drawer" aria-label="店家資料" hidden></aside>
       <div class="float mapyear sticker" aria-hidden="true"><span class="ychip" data-yr>2000</span> 年的地圖</div>
-      <div class="float ghostcap sticker" id="ghostCap" aria-live="polite" hidden><b>隱藏曲目</b><span class="gl" id="ghostLead"></span><span class="gnow" id="ghostNow"></span><small>動一下滑鼠或按任意鍵，就回到原本的地圖</small></div>
+      <div class="float ghostcap" id="ghostCap" aria-live="polite" hidden><b id="ghostCount"></b><span class="gl" id="ghostLead"></span><span class="gnow" id="ghostNow"></span></div>
     </div>
     <aside class="side" aria-label="這一年">
       <section class="listcard sticker" aria-labelledby="listTitle">
@@ -633,7 +651,7 @@ td a { color: var(--ink-2); }
           <dt><code>2000–2003</code></dt><dd><b>連鎖通路為主</b>：連鎖門市是家數最多的店型，2001 年達 29 家，獨立唱片行約 21 家。</dd>
           <dt><code>2004–</code></dt><dd><b>獨立唱片行為主</b>：淘兒 2003 年 11 月撤出台灣，連鎖門市接連歇業。2004 年獨立唱片行 25 家、連鎖 21 家，此後每年獨立店都多於連鎖；連鎖在 2026 年剩 9 家。</dd>
         </dl>
-        <p>2004 年以後沒有同樣明確的轉折：複合店 2014 年才出現第一家，到 2026 年有 7 家；韓國流行專輯店 2023 年才出現，家數都還少，因此不另分時期。分界年份依目前的資料劃定，資料補充後可能調整。</p>
+        <p>2004 年以後沒有同樣明確的轉折：複合店 2014 年才出現第一家，到 2026 年有 7 家；韓國流行專輯店 2023 年才出現，近兩年增加很快，2026 年的家數已多於連鎖門市，但前後只有幾年，因此暫不另分時期。分界年份依目前的資料劃定，資料補充後可能調整。</p>
       </section>
       <section>
         <h3>年份標記</h3>
@@ -648,7 +666,7 @@ td a { color: var(--ink-2); }
 
       <section>
         <h3>搬遷與改名</h3>
-        <p>同一家店搬遷或改名時，新舊店址各列一筆，但店數只計一家。新址的說明會列出最早的開店年份與歷次搬遷；搬遷當年，地圖以虛線連回舊址。</p>
+        <p>同一家店搬遷或改名時，新舊店址各列一筆，但店數只計一家。新址的說明會列出最早的開店年份與歷次搬遷；搬遷當年，地圖以虛線箭頭從舊址指向新址。</p>
       </section>
 
       <section>
@@ -866,12 +884,17 @@ keyEl.innerHTML = `<b>圖例</b>` +
   `<hr>` +
   `<span>${ico(`<circle r="7" fill="#ffd23f" stroke="#141414" stroke-width="1.3"/><circle r="3.6" fill="#141414"/>`)}黃色底圈：這一年新開幕</span>` +
   `<span>${ico(`<path d="M-4.5,-4.5L4.5,4.5M4.5,-4.5L-4.5,4.5" stroke="#141414" stroke-width="2"/>`)}叉號：這一年歇業</span>` +
-  `<span>${ico(`<path d="M-6,5L6,-5" stroke="#141414" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="-6" cy="5" r="2" fill="none" stroke="#141414" stroke-width="1.2"/>`)}虛線：這一年搬遷，小圈是舊址</span>` +
+  `<span>${ico(`<path d="M-6,5L6.5,-5.5" stroke="#141414" stroke-width="1.6" stroke-dasharray="3 2"/><path d="M1.2,-5.2L6.5,-5.5L5.6,-0.4" fill="none" stroke="#141414" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-6" cy="5" r="2" fill="none" stroke="#141414" stroke-width="1.2"/>`)}虛線箭頭：這一年搬遷，從小圈（舊址）指向新址</span>` +
   `<span>${ico(`<circle r="4.6" fill="#fff7ee" stroke="#141414" stroke-width="1.8"/>`)}空心：只見於當年名單</span>` +
   `<span>${ico(`<circle r="7" fill="#141414" opacity=".14"/><circle r="4" fill="#141414" opacity=".14"/>`)}灰色暈染：店家密集處</span>` +
   `<span>${ico(`<rect x="-7" y="-5" width="14" height="8" rx="1.5" fill="#ff6a3d" stroke="#141414" stroke-width="1.3"/><circle cx="0" cy="6" r="1.6" fill="#141414"/>`)}招牌模式：有標誌顯示標誌，其餘寫店名，底色是店型</span>`;
 const legBtn = document.getElementById("legBtn");
-legBtn.addEventListener("click", () => { const o = keyEl.classList.toggle("open"); legBtn.setAttribute("aria-expanded", o); });
+function setKey(o) {  // the panel opens right under the button row, however many lines it wraps to
+  if (o) { const c = legBtn.parentElement; keyEl.style.top = c.offsetTop + c.offsetHeight + 10 + "px"; }
+  keyEl.classList.toggle("open", o); legBtn.setAttribute("aria-expanded", o);
+}
+legBtn.addEventListener("click", () => setKey(!keyEl.classList.contains("open")));
+addEventListener("keydown", e => { if (e.key === "Escape" && keyEl.classList.contains("open")) setKey(false); });
 
 // two periods, split where independents overtake the chains (see 關於這張地圖 → 兩個時期); each paints the page
 const PHASES = [
@@ -886,18 +909,20 @@ const pyr = p => `${p.y0}–${p.y1 >= 2026 ? "" : p.y1}`;
 const wrap = document.getElementById("mapwrap");
 const svg = d3.select("#map");
 const gRoot = svg.append("g");
-const gLand = gRoot.append("g");
-const gWater = gRoot.append("g");
-const gRoad = gRoot.append("g");
-const gRail = gRoot.append("g");
-const gEdge = gRoot.append("g");
+const gBase = gRoot.append("g").attr("class", "base");  // in the dark easter egg only the shops' light reveals this
+const gLand = gBase.append("g");
+const gWater = gBase.append("g");
+const gRoad = gBase.append("g");
+const gRail = gBase.append("g");
+const gEdge = gBase.append("g");
 const gHeat = gRoot.append("g").attr("class", "fadeg");
-const gLabel = gRoot.append("g");
-const gZone = gRoot.append("g");
+const gLabel = gRoot.append("g").attr("class", "lbl");
+const gZone = gRoot.append("g").attr("class", "lbl");
 const gMove = gRoot.append("g").attr("class", "fadeg");
 const gStem = gRoot.append("g").attr("class", "fadeg g-stem");  // 招牌 leader lines, under all boards
 const gShop = gRoot.append("g").attr("class", "fadeg g-shop");
 const gPin = gRoot.append("g").attr("class", "fadeg g-pin");    // exact locations, above all boards
+const gMoveHot = gRoot.append("g").attr("class", "fadeg").style("pointer-events", "none");  // the hovered shop's move line, above everything
 const tp = { type: "FeatureCollection", features: GEO.features.filter(f => f.properties.tp) };
 let W = 0, H = 0, proj, path, zoom, curK = 1, pxPerKm = 100, selected = null;
 
@@ -1017,7 +1042,20 @@ function sizeSigns(k) {
 var hotShop = null;  // var: syncLogos() can run before this line on load
 // hovering a sign greys out every other sign and draws its leader line on top, so the whole line shows;
 // an open shop card keeps its line on top too, without greying the rest
+// a hovered shop that moved this year brings its dashed line and arrow to the very top (a copy; the original hides meanwhile)
+function syncMoveHot() {
+  gMoveHot.selectAll("*").remove();
+  gMove.selectAll("g.mv").style("visibility", null);
+  if (!hotShop) return;
+  const src = gMove.selectAll("g.mv").filter(d => d === hotShop);
+  if (src.empty() || src.classed("out")) return;
+  const c = src.node().cloneNode(true);
+  c.classList.remove("enter");
+  gMoveHot.node().appendChild(c);
+  src.style("visibility", "hidden");
+}
 function markHot() {
+  syncMoveHot();
   const h = d => d === hotShop || d === selected, any = !!(hotShop || selected);
   gStem.classed("has-hot", any).selectAll("g").classed("hot", h);
   gPin.classed("has-hot", any).selectAll("circle").classed("hot", h);
@@ -1058,13 +1096,31 @@ function layoutSigns() {
   for (const n of nodes) { n.d._ox = n.x - n.ax; n.d._oy = n.y + n.h / 2 - gap / 2 - n.ay; }
   sizeSigns(k);
 }
+// move line: dashed from the old address, ending in an arrowhead just short of the new one
+function moveGeom(k) {
+  const m = Math.min(1.6, Math.pow(k, 0.35)), gap = 8 / k * m, L = 9 / k * m, W = 5 / k * m;
+  gMove.selectAll("g.mv").each(function (d) {
+    const dx = d.px - d.prevS.px, dy = d.py - d.prevS.py, len = Math.hypot(dx, dy) || 1, ux = dx / len, uy = dy / len;
+    const tx = d.px - ux * gap, ty = d.py - uy * gap, bx = tx - ux * L, by = ty - uy * L;
+    const g = d3.select(this);
+    g.selectAll("line").attr("x2", tx).attr("y2", ty);
+    const head = `M${bx - uy * W},${by + ux * W}L${tx},${ty}L${bx + uy * W},${by - ux * W}`;
+    g.select("path.mvhead").attr("d", head)
+      .style("stroke-width", 1.8 / k * m + "px").style("stroke-linejoin", "round").style("stroke-linecap", "round");
+    g.select("path.mvheadcase").attr("d", head).style("fill", "none").style("stroke", "var(--paper)")
+      .style("stroke-width", 5 / k * m + "px").style("stroke-linejoin", "round").style("stroke-linecap", "round");
+    g.select("line.mvcase").style("stroke", "var(--paper)").style("stroke-width", 4.5 / k * m + "px").style("stroke-linecap", "round");
+  });
+  if (typeof hotShop !== "undefined" && hotShop) syncMoveHot();
+}
 function sizeMarks() {
   const k = curK, m = Math.min(1.6, Math.pow(k, 0.35));
   gShop.selectAll("path.shop").attr("d", d => shapePath(TYPE[d.t].shape, 5.4 / k * m));
   gShop.selectAll("circle.ring").attr("r", (signsOn ? 7 : 10) / k * m);
   if (signsOn) sizeSigns(k);
   gShop.selectAll("path.xmark").attr("d", () => { const a = 4.6 / k * m; return `M${-a},${-a}L${a},${a}M${a},${-a}L${-a},${a}`; });
-  gMove.selectAll("line").style("stroke-width", 1.5 / k * m + "px").style("stroke-dasharray", `${4 / k * m},${3 / k * m}`);
+  gMove.selectAll("line.mvline").style("stroke-width", 1.5 / k * m + "px").style("stroke-dasharray", `${4 / k * m},${3 / k * m}`);
+  moveGeom(k);
   gMove.selectAll("circle").attr("r", 3 / k * m).style("stroke-width", 1.3 / k * m + "px");
   gRail.selectAll("circle").attr("r", 2 / k * m).style("stroke-width", "1px").attr("display", k >= 5 ? null : "none");
   gZone.selectAll("text").style("font-size", 12.5 / k + "px").style("stroke-width", 3 / k + "px");
@@ -1210,12 +1266,17 @@ function render() {
   const moves = live.filter(s => s.prevS && s.y0 === year && Math.hypot(s.px - s.prevS.px, s.py - s.prevS.py) > 0.5);
   const mv = gMove.selectAll("g.mv").data(moves, d => d.id).join(enter => {
     const e = enter.append("g").attr("class", "mv enter").call(settle);
-    e.append("line"); e.append("circle").style("fill", "none");
+    // a pale casing under the dashed line and arrow keeps them readable where they cross a mark of the same colour
+    e.append("line").attr("class", "mvcase"); e.append("path").attr("class", "mvheadcase");
+    e.append("line").attr("class", "mvline"); e.append("circle").style("fill", "none"); e.append("path").attr("class", "mvhead");
     return e;
   }, update => update, exit => exit.classed("out", true).each(fadeRemove));
   mv.classed("out", false).each(keepEl).style("opacity", 0.9);
-  mv.select("line").attr("x1", d => d.prevS.px).attr("y1", d => d.prevS.py).attr("x2", d => d.px).attr("y2", d => d.py).style("stroke", d => color(d.t));
+  mv.selectAll("line").attr("x1", d => d.prevS.px).attr("y1", d => d.prevS.py).attr("x2", d => d.px).attr("y2", d => d.py);
+  mv.select("line.mvline").style("stroke", d => color(d.t));
   mv.select("circle").attr("cx", d => d.prevS.px).attr("cy", d => d.prevS.py).style("stroke", d => color(d.t));
+  mv.select("path.mvhead").style("fill", "none").style("stroke", d => color(d.t));
+  moveGeom(curK);
 
   const g = gShop.selectAll("g.s").data(live, d => d.id).join(
     enter => {
@@ -1653,49 +1714,107 @@ tablist.addEventListener("keydown", e => {
 });
 document.addEventListener("click", e => { const a = e.target.closest("[data-panel]"); if (a) { e.preventDefault(); openPanel(a.dataset.panel); } });
 
-/* ---------- hidden track: after three idle minutes the map shows every address since 2000;
-   the ones that are gone light up one by one, in the order they closed. Any input brings the map back. ---------- */
-const IDLE_MS = 180000;
+/* ---------- after 90 s idle the page goes dark: every shop since 2000 lights up in the order it opened,
+   then the ones that are gone flicker out one by one, in the order they closed. A shop that moved is one light,
+   at its last address. Any input brings the map back. ---------- */
+const IDLE_MS = 90000, STEP_MS = 1700;
 let idleT = null, ghost = null;
 const ghostCap = document.getElementById("ghostCap");
+const night = document.body.appendChild(Object.assign(document.createElement("div"), { className: "night" }));
+night.setAttribute("aria-hidden", "true");
+svg.append("defs").html(`<radialGradient id="ghGlow"><stop offset="0" stop-color="#fff3cf" stop-opacity=".95"/><stop offset=".16" stop-color="#ffd27a" stop-opacity=".6"/><stop offset=".45" stop-color="#ff9a3c" stop-opacity=".2"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/></radialGradient>` +
+  `<radialGradient id="ghFall"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="ghMask"></mask>`);
+const ghMask = svg.select("#ghMask");
 function armIdle() { clearTimeout(idleT); idleT = setTimeout(startGhost, IDLE_MS); }
-function wake() { if (ghost) endGhost(); armIdle(); }
+let graceUntil = 0;  // input right after the secret trigger must not switch it off again
+function wake() { if (performance.now() < graceUntil) return; if (ghost) endGhost(); armIdle(); }
 ["pointermove", "pointerdown", "keydown", "wheel", "touchstart", "scroll"].forEach(ev => addEventListener(ev, wake, { passive: true, capture: true }));
 document.addEventListener("visibilitychange", wake);
-function startGhost() {
+const ghTxt = (id, t) => { document.getElementById(id).textContent = t; };
+// secret ways in, no waiting: click the big year five times in a row, or type "lightsout"
+{
+  let taps = [], typed = "";
+  document.getElementById("stampYear").addEventListener("click", () => {
+    const t = performance.now(); taps = taps.filter(x => t - x < 2000); taps.push(t);
+    if (taps.length >= 5) { taps = []; startGhost(true); }
+  });
+  addEventListener("keydown", e => {
+    if (e.target.closest && e.target.closest("input, textarea, select")) return;
+    if (e.key.length !== 1) return;
+    typed = (typed + e.key.toLowerCase()).slice(-9);
+    if (typed === "lightsout") { typed = ""; setTimeout(() => startGhost(true), 0); }
+  });
+}
+const chainStart = s => { while (s.prevS) s = s.prevS; return s.y0; };
+function startGhost(force) {
+  if (ghost) return;
   const r = wrap.getBoundingClientRect();
-  if (document.visibilityState !== "visible" || r.bottom < 120 || r.top > innerHeight - 120) return armIdle();
+  if (force === true) {
+    if (r.bottom < 120 || r.top > innerHeight - 120) wrap.scrollIntoView({ block: "center" });
+    graceUntil = performance.now() + 2000;
+  } else if (document.visibilityState !== "visible" || r.bottom < 120 || r.top > innerHeight - 120) return armIdle();
   stop(); hideTip();
-  const all = S.filter(s => lastYear(s) >= Y0);  // every address drawn at least once, hollow ones included
+  const all = S.filter(s => !s.nextS && lastYear(s) >= Y0);  // one light per shop, at its last address; hollow ones included
   const openNow = s => s.y1 == null && active(s, Y1);
   const gone = all.filter(s => !openNow(s)).sort((a, b) => lastYear(a) - lastYear(b) || a.y0 - b.y0);
-  const k = curK, m = Math.min(1.6, Math.pow(k, 0.35));
+  const k = curK, m = Math.min(1.5, Math.pow(k, 0.3));
   const layer = gRoot.append("g").attr("class", "ghost");
-  const g = layer.selectAll("g").data(all.sort((a, b) => a.py - b.py)).join("g").attr("transform", d => `translate(${d.px},${d.py})`);
-  g.append("circle").attr("class", "glow").attr("r", 10 / k * m).style("opacity", 0);
-  g.append("path").attr("d", d => shapePath(TYPE[d.t].shape, 5 / k * m)).attr("class", d => openNow(d) ? "open" : "gone")
-    .style("fill", d => openNow(d) ? color(d.t) : null);
+  ghost = { layer, gone, all, k, m, i: 0, timer: null, wait: null, lit: all.length };
   document.body.classList.add("ghosting");
-  document.getElementById("ghostLead").textContent = `2000 年以來，這張地圖上出現過 ${all.length} 個店址，其中 ${gone.length} 個已經不在了。`;
-  document.getElementById("ghostNow").textContent = "";
+  ghTxt("ghostLead", `2000 年以來，這座城市被 ${all.length} 間店點亮。`);
   ghostCap.hidden = false;
-  ghost = { layer, i: 0, timer: null };
-  if (reduceMotion()) return;
-  let last = null;
-  ghost.timer = setInterval(() => {
-    if (last) { last.select("path").style("fill", null).style("opacity", null); last.select(".glow").style("opacity", 0); }
-    if (ghost.i >= gone.length) { ghost.i = 0; last = null; document.getElementById("ghostNow").textContent = ""; return; }
-    const s = gone[ghost.i++];
-    last = g.filter(d => d === s);
-    last.raise().select("path").style("fill", color(s.t)).style("opacity", 1);
-    last.select(".glow").style("opacity", 1);
-    document.getElementById("ghostNow").textContent = `${s.n}　${yrs(s)}`;
-  }, 650);
+  lightAll(2.6);
+}
+function lightAll(t0) {  // light every shop, in the order it opened, over about three seconds, starting t0 seconds from now
+  const { layer, all, k, m } = ghost, still = reduceMotion();
+  const order = all.slice().sort((a, b) => chainStart(a) - chainStart(b) || a.py - b.py), n = order.length;
+  const del = (d, i) => `--del:${still ? 0 : (t0 + 2.6 * i / n).toFixed(2)}s`;
+  layer.selectAll("g.gh").remove();
+  const g = layer.selectAll("g.gh").data(order).join("g").attr("class", "gh")
+    .attr("transform", d => `translate(${d.px},${d.py})`)
+    .attr("style", (d, i) => `${del(d, i)};--fl:${(2.2 + Math.random() * 2.4).toFixed(2)}s`);
+  g.append("circle").attr("class", "halo").attr("r", 34 / k * m);
+  g.append("circle").attr("class", "core").attr("r", 1.9 / k * m);
+  ghMask.selectAll("circle").data(order).join("circle").attr("class", "ghm").attr("fill", "url(#ghFall)")
+    .attr("cx", d => d.px).attr("cy", d => d.py).attr("r", 46 / k * m).attr("style", del);
+  setTimeout(() => { if (ghost) document.body.classList.add("lit"); }, still ? 0 : t0 * 1000);
+  ghost.lit = n; ghost.i = 0;
+  ghTxt("ghostCount", `${n} 盞燈`); ghTxt("ghostNow", "");
+  if (still) {
+    g.filter(d => ghost.gone.includes(d)).classed("off", true);
+    ghMask.selectAll("circle").filter(d => ghost.gone.includes(d)).classed("off", true);
+    ghTxt("ghostCount", `還亮著 ${n - ghost.gone.length} 盞`); return;
+  }
+  ghost.wait = setTimeout(() => { ghost.timer = setInterval(snuffNext, STEP_MS); }, (t0 + 4.4) * 1000);
+}
+function snuffNext() {
+  const { layer, gone, k, m } = ghost;
+  if (ghost.i >= gone.length) {  // only the shops still open are lit; hold, then start over
+    clearInterval(ghost.timer); ghost.timer = null;
+    ghTxt("ghostNow", `到 ${Y1} 年，還亮著的是仍在營業的店`);
+    ghost.wait = setTimeout(() => lightAll(0.4), 7000);
+    return;
+  }
+  const s = gone[ghost.i++], g = layer.selectAll("g.gh").filter(d => d === s);
+  g.classed("off", true);
+  ghMask.selectAll("circle").filter(d => d === s).classed("off", true);
+  const u = 1 / k * m;
+  g.append("path").attr("class", "smoke")
+    .attr("d", `M0,${-2 * u}c${2.6 * u},${-3 * u} ${-2.6 * u},${-6 * u} 0,${-9 * u}s${-2.4 * u},${-6 * u} 0,${-9 * u}`)
+    .transition().delay(380).duration(300).style("opacity", .55)
+    .transition().duration(1500).ease(d3.easeSinOut).style("opacity", 0).attr("transform", `translate(${1.5 * u},${-9 * u})`)
+    .remove();
+  ghost.lit--;
+  ghTxt("ghostCount", `還亮著 ${ghost.lit} 盞`);
+  ghTxt("ghostNow", `${lastYear(s)}　${s.n}　${s.y1q === "u" ? "之後未再見於名單" : "歇業"}`);
 }
 function endGhost() {
-  clearInterval(ghost.timer); ghost.layer.remove(); ghost = null;
-  ghostCap.hidden = true;
-  document.body.classList.remove("ghosting");
+  clearInterval(ghost.timer); clearTimeout(ghost.wait);
+  const layer = ghost.layer; ghost = null;
+  layer.transition().duration(600).style("opacity", 0).remove();
+  document.body.classList.remove("ghosting", "lit");
+  ghMask.selectAll("circle").remove();
+  setTimeout(() => { if (!ghost) ghostCap.hidden = true; }, 700);
 }
 armIdle();
 
