@@ -123,6 +123,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .tlhint .how-s { display: none; }
 .ctip { position: absolute; top: 0; z-index: 4; pointer-events: none; white-space: nowrap; font-size: 12.5px; line-height: 1.55; background: var(--paper); border: 2px solid var(--ink); border-radius: 10px; padding: 5px 10px; box-shadow: 3px 3px 0 var(--ink); }
 .ctip b { font-family: var(--f-mono); font-weight: 600; }
+.ctip .tg { display: grid; grid-template-columns: auto auto; gap: 1px 14px; margin-top: 2px; }
 .ctip .m { display: block; color: var(--muted); font-size: 11.5px; }
 .axis text { fill: var(--ink-2); font: 11px var(--f-mono); }
 .bar { fill: none; stroke: var(--ink); stroke-width: 1.6; }
@@ -277,18 +278,22 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 #table tr.gh th { position: sticky; top: 30px; z-index: 1; background: var(--paper-2); font: 400 14px var(--f-round); color: var(--ink); letter-spacing: 0; padding: 6px 8px; }
 #table .go { font: inherit; color: var(--ink); background: none; border: 0; padding: 0; text-align: left; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 #table .go:hover { text-decoration-color: var(--ink); }
-.cgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: start; }
 .wanted { padding: 16px 18px; display: grid; gap: 12px; border: 2.5px solid var(--ink); border-radius: 16px; background: #ffd23f; }
 .wanted h3, .contrib h3 { font: 400 19px/1.3 var(--f-round); margin: 0; }
 .wanted p { margin: 0; font-size: 14px; }
-.wanted ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; counter-reset: w; }
+.wanted ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; counter-reset: w; }
 .wanted li { counter-increment: w; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; background: var(--paper); border: 2px solid var(--ink); border-radius: 12px; padding: 10px 12px; }
 .wanted li::before { content: counter(w); width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #ffd23f; display: grid; place-items: center; font: 600 14px var(--f-mono); }
 .wanted li b { display: block; font-size: 15px; }
 .wanted li span { font-size: 13.5px; color: var(--ink-2); }
 .cta { justify-self: start; display: inline-flex; align-items: center; gap: 8px; font: 16px var(--f-round); color: var(--paper); background: var(--ink); border: 0; border-radius: 999px; padding: 9px 18px; text-decoration: none; cursor: pointer; box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink) 35%, transparent); }
 .cta[aria-disabled="true"] { background: var(--muted); cursor: default; }
-.contrib { display: grid; gap: 12px; min-width: 0; }
+.contrib { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 28px; align-items: center; min-width: 0; padding: 16px 18px; border: 2.5px solid var(--ink); border-radius: 16px; background: var(--paper-2); }
+.contrib > * { grid-column: 1; }
+.contrib > #gfLink { grid-column: 2; grid-row: 1 / span 3; justify-self: end; }
+.contrib > #inpage, .contrib > .review { grid-column: 1 / -1; }
+@media (max-width: 640px) { .contrib { grid-template-columns: minmax(0, 1fr); } .contrib > #gfLink { grid-column: 1; grid-row: auto; justify-self: start; } }
 .contrib p { margin: 0; font-size: 14px; color: var(--ink-2); }
 .contrib form { display: grid; gap: 10px; }
 .contrib label { display: grid; gap: 4px; font-size: 13.5px; font-weight: 500; }
@@ -311,15 +316,20 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 
 
 /* ---------- maker ---------- */
-.maker { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 22px; align-items: center; padding: 22px 24px; border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); }
-.maker img { width: 116px; height: 116px; border: 3px solid var(--ink); border-radius: 18px; image-rendering: pixelated; display: block; box-shadow: 4px 4px 0 var(--ink); }
+.maker { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(250px, 1fr); align-items: stretch; padding: 0; border-radius: 22px; box-shadow: 8px 8px 0 var(--ink); }
+.mk-who { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 22px; align-items: center; padding: 22px 24px; min-width: 0; }
+.mk-site { display: grid; align-content: center; justify-items: start; gap: 12px; padding: 22px 26px; border-left: 2px dashed var(--line); min-width: 0; }
+.mk-site p { font-size: 14px; color: var(--ink-2); }
+.mk-site .mk-logo { display: block; height: 44px; width: auto; border: 2.5px solid var(--ink); border-radius: 10px; box-shadow: 3px 3px 0 var(--ink); }
+.mk-who > img { width: 116px; height: 116px; border: 3px solid var(--ink); border-radius: 18px; image-rendering: pixelated; display: block; box-shadow: 4px 4px 0 var(--ink); }
 .maker .mk { display: grid; gap: 6px; min-width: 0; }
 .maker h2 { font: 400 28px/1.2 var(--f-round); margin: 0; }
 .maker p { margin: 0; font-size: 15px; max-width: 62ch; }
 .maker p a { color: var(--ink); text-underline-offset: 3px; }
 .maker .links { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .maker .links a { display: inline-block; font: 14px var(--f-round); color: var(--ink); text-decoration: none; border: 2px solid var(--ink); border-radius: 999px; padding: 2px 12px; background: var(--paper-2); box-shadow: 2px 2px 0 var(--ink); }
-@media (max-width: 560px) { .maker { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 16px; } .maker img { width: 84px; height: 84px; } .maker h2 { font-size: 23px; } }
+@media (max-width: 760px) { .maker { grid-template-columns: minmax(0, 1fr); } .mk-site { border-left: 0; border-top: 2px dashed var(--line); } }
+@media (max-width: 560px) { .mk-who { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 16px; } .mk-site { padding: 16px; } .mk-who > img { width: 84px; height: 84px; } .maker h2 { font-size: 23px; } }
 
 /* ---------- cards: list + zones ---------- */
 .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 4px 10px; flex-wrap: wrap; }
@@ -716,24 +726,25 @@ td a { color: var(--ink-2); }
     </div>
   </section>
   <section class="maker sticker" aria-labelledby="makerTitle">
+    <div class="mk-who">
     <img src="img/brienjohn.png" alt="Brien John 的像素頭像" width="116" height="116">
     <div class="mk">
       <div class="eyebrow">製作者</div>
       <h2 id="makerTitle">Brien John</h2>
       <p>《22 世紀衛星》創辦人、音樂記者，臺灣藝術大學音樂學系兼任講師。曾任最愛音樂 Love Da Music Taiwan 經理，也在攝氏三十八度音響唱片當過店員，就是<a href="#y2026-s-38c">地圖上的那家 38 度 C</a>。還經營過粉絲專頁<a href="https://www.facebook.com/SupportPhysicalMusic" target="_blank" rel="noopener">「無限期支持實體唱片」</a>，只是已經停更很久了。</p>
       <ul class="links">
-        <li><a href="https://www.22cs.xyz/" target="_blank" rel="noopener">22 世紀衛星</a></li>
         <li><a href="https://www.facebook.com/brienjohn" target="_blank" rel="noopener">Facebook</a></li>
         <li><a href="https://www.threads.com/@brienjohn" target="_blank" rel="noopener">Threads</a></li>
         <li><a href="https://www.instagram.com/brienjohn/" target="_blank" rel="noopener">Instagram</a></li>
       </ul>
     </div>
+    </div>
+    <div class="mk-site">
+      <a href="https://www.22cs.xyz/" target="_blank" rel="noopener" aria-label="22 世紀衛星"><img class="mk-logo" src="img/22cs.png" alt="22 世紀衛星" width="144" height="44"></a>
+      <p>台北唱片行變遷地圖是 22 世紀衛星的資料專題。資料整理至 2026 年 11 月。</p>
+      <a class="cta" href="https://www.22cs.xyz/" target="_blank" rel="noopener">回到 22 世紀衛星主站 →</a>
+    </div>
   </section>
-
-  <footer class="foot">
-    <a class="home" href="https://www.22cs.xyz/" target="_blank" rel="noopener"><img src="img/22cs.png" alt="" width="92" height="28">回到 22 世紀衛星主站 →</a>
-    <span>台北唱片行變遷地圖是 22 世紀衛星的資料專題。資料整理至 2026 年 11 月。</span>
-  </footer>
 </div>
 
 
@@ -1160,19 +1171,22 @@ function renderSlider() {
   const labs = w < 360 ? [2000, 2010, 2020, 2026] : [2000, 2005, 2010, 2015, 2020, 2026];
   document.getElementById("tlab").innerHTML = labs.map(y => `<span style="left:${pc(y)}%">${y}</span>`).join("");
 }
-function chartTip(y) {
+function chartTip(y, ev) {
   const rows = chart.node()._rows, r = rows && y != null && rows.find(d => d.y === y);
   if (!r) { ctip.hidden = true; return; }
-  ctip.innerHTML = `<b>${y}</b>　共 <b>${chart.node()._tot(r)}</b> 家<br>` +
-    TYPES.filter(t => visible.has(t.k)).map(t => `${icon(t.k)} ${t.n} <b>${r[t.k]}</b>`).join("　") +
+  ctip.innerHTML = `<b>${y}</b>　共 <b>${chart.node()._tot(r)}</b> 家` +
+    `<span class="tg">${TYPES.filter(t => visible.has(t.k)).map(t => `<span>${icon(t.k)} ${t.n} <b>${r[t.k]}</b></span>`).join("")}</span>` +
     (r.single ? `<span class="m">另 ${r.single} 家只見於當年名單（空心）</span>` : "") +
     (LIST_YEARS.has(y) ? `<span class="m">這年一次補進多家開業年不詳的店</span>` : "");
   ctip.hidden = false;
-  const x = bx(y) + bx.bandwidth() / 2, tw = ctip.offsetWidth;
-  let left = x + bx.step() * 0.9;
-  if (left + tw > cW) left = x - bx.step() * 0.9 - tw;
-  ctip.style.left = Math.max(0, left) + "px";
-  ctip.style.top = Math.max(0, by(chart.node()._tot(r)) - 10) + "px";
+  // sit just above-right of the pointer; flip left near the right edge, below when near the top
+  const wr = chart.node().parentElement.getBoundingClientRect(), tw = ctip.offsetWidth, th = ctip.offsetHeight;
+  const px = ev ? ev.clientX - wr.left : bx(y) + bx.bandwidth() / 2, py = ev ? ev.clientY - wr.top : by(chart.node()._tot(r));
+  let left = px + 14, top = py - th - 12;
+  if (left + tw > wr.width) left = px - 14 - tw;
+  if (top < -24) top = py + 18;
+  ctip.style.left = Math.max(-8, left) + "px";
+  ctip.style.top = top + "px";
 }
 function renderChartCursor() {
   if (!bx) return;
@@ -1186,7 +1200,7 @@ function yearAt(clientX) {
   const x0 = bx(Y0) - (st - bx.bandwidth()) / 2;
   return Math.max(Y0, Math.min(Y1, Y0 + Math.floor((clientX - r.left - x0) / st)));
 }
-function hover(y) { chart.selectAll(".bar").classed("hov", r => y != null && r.y === y && r.y !== year); chartTip(y); }
+function hover(y, ev) { chart.selectAll(".bar").classed("hov", r => y != null && r.y === y && r.y !== year); chartTip(y, ev); }
 let scrub = null;
 chart.on("pointerdown", e => {
   if (!bx || e.button > 0) return;
@@ -1197,7 +1211,7 @@ chart.on("pointerdown", e => {
 chart.on("pointermove", e => {
   if (!bx) return;
   const y = yearAt(e.clientX);
-  if (!scrub || scrub.id !== e.pointerId) { if (e.pointerType === "mouse") hover(y); return; }
+  if (!scrub || scrub.id !== e.pointerId) { if (e.pointerType === "mouse") hover(y, e); return; }
   if (!scrub.live && Math.abs(e.clientX - scrub.x) > 6) { scrub.live = true; try { chart.node().setPointerCapture(e.pointerId); } catch (_) {} stop(); }
   if (scrub.live && y !== year) setYear(y);
 });
