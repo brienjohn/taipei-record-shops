@@ -127,8 +127,9 @@ SOURCES = [
     ("PTT clmusic 板〈[情報] 駱克唱片行的二手CD〉，2007-05-30", "https://www.ptt.cc/bbs/clmusic/M.1180460156.A.23D.html"),  # 120
     ("KEEDAN 起點：微樂客實體門市正式上路，2024-03-07", "https://keedan.com/track/2024/03/07/keedan-scene-willmusic/"),  # 121
     ("老闆娘的店營業期間（製作者 Brien John 提供）", ""),  # 122
-    ("製作者 Brien John 提供（2026 年 11 月）：agnès b. music store 營業至 2017 年、三創黑膠 2026 年收店、KAERU 預計 2026 年底開店、佳佳站前店遷址經過、攝氏三十八度 1989 年設立", ""),  # 123
+    ("製作者 Brien John 提供（2026 年 11 月）：agnès b. music store 營業至 2017 年、三創黑膠 2026 年歇業、KAERU 預計 2026 年底開店、佳佳站前店遷址經過、攝氏三十八度 1989 年設立、第一唱片行 2026 年仍營業", ""),  # 123
     ("KAERU 官方網站（網路商店，聯絡地址與門市自取）", "https://www.kaerutw.com/"),  # 124
+    ("Google 地圖：蒙得你安唱片 Mondrian Vinyls（2026 年 11 月查詢）", "https://maps.app.goo.gl/vVseBPLPSg77cg8Y7"),  # 125
 ]
 
 ZONES = [
@@ -165,11 +166,11 @@ STORES = [
     S("rose-gongguan", "玫瑰唱片 公館店（142號）", "chain", "台北市文山區羅斯福路四段142號", 1987, "e", 2001, "e", [10, 15, 55, 57, 106, 107, 117],
       "玫瑰唱片 1987 年在公館開出全台第一家門市。玫瑰官網 2001 年 6 月還列出「公館店 1F」在 142 號，8 月起名單上已沒有這個地址。", geo="台北市中正區羅斯福路四段142號"),
     S("rose-ntu", "玫瑰唱片 公館店（羅斯福路 110 號）", "chain", "台北市中正區羅斯福路四段110號1-2樓", 2000, "a", 2007, "e", [106, 107, 10, 15, 109, 114],
-      "玫瑰官網 2001–2002 年稱台大店，2005 年起改稱公館店；推定 2000 年已營業。142 號老店收掉後這裡是玫瑰在公館唯一的店。門市表 2007 年 4 月還在、7 月已無，與報導所說 2007 年 3 月「玫瑰公館店」結束相符。"),
+      "玫瑰官網 2001–2002 年稱台大店，2005 年起改稱公館店；推定 2000 年已營業。142 號老店歇業後，這裡是玫瑰在公館唯一的店。門市表 2007 年 4 月還在、7 月已無，與報導所說 2007 年 3 月「玫瑰公館店」結束相符。"),
     S("rose-music99", "音樂 99（玫瑰體系）", "chain", "台北市中正區汀州路三段194號2樓之1", 2001, "b", 2001, "a", [106],
       "宇宙城原址，玫瑰官網 2001 年 2 月與 4 月的門市表稱「音樂 99」（店號 202），6 月已不在名單上。"),
     S("rose-ufo", "飛碟樂地 UFO 忠孝店（玫瑰）", "chain", "台北市大安區忠孝東路四段209號2樓", 1999, "e", 2003, "a", [108, 106, 107, 109],
-      "玫瑰併入飛碟集團後，民國 88 年開了「飛碟樂地」。2001 年初官網稱「忠孝 UFO」，後改稱忠孝店，2002 年 6 月仍在名單上；淘兒 2003 年底退出後，忠孝店搬到頂好的忠孝東路四段 71-1 號。", "UFO"),
+      "玫瑰併入飛碟集團後，1999 年開了「飛碟樂地」。2001 年初官網稱「忠孝 UFO」，後改稱忠孝店，2002 年 6 月仍在名單上；淘兒 2003 年底退出後，忠孝店搬到頂好的忠孝東路四段 71-1 號。", "UFO"),
     S("rose-station", "玫瑰唱片 站前店（公園路）", "chain", "台北市中正區公園路22號之2", 2000, "b", 2006, "e", [57, 106, 107, 109, 114],
       "2000 年《秘密基地》提到玫瑰站前店「有高手坐鎮，是古典、爵士迷尋寶的地方」；玫瑰門市表從 2001 年一路列到 2006 年 10 月（2005 年寫明二樓到四樓），2007 年 1 月起不在名單上。"),
     S("rose-tongh0", "玫瑰唱片 通化店（文昌街）", "chain", "台北市大安區文昌街192號", 2000, "a", 2008, "e", [106, 107, 109, 115],
@@ -194,6 +195,12 @@ STORES = [
       "2000 年《秘密基地》把「前衛」列為車站前的唱片行之一；2003 年 4 月前的店家清單寫作「大地之音唱片（前衛店）」，大地之音在基隆、鳳山、屏東也有分店。"),
     S("qianwei0", "前衛唱片（許昌街）", "chain", "台北市中正區許昌街8號1樓", 1996, "b", 1996, "u", [117],
       "1996 年《音樂時代》名單上的地址；之後搬到開封街，搬遷年不詳。"),
+    S("abcd", "ABCD 唱片", "indie", "台北市萬華區西寧南路（門牌不詳）", 2000, "b", 2000, "u", [57],
+      "2000 年《秘密基地》稱它是西寧南路上的「後起之秀」，有「紅白標」促銷，店內設 DJ 台，店員會上台介紹新貨。門牌與營業期間不詳，位置標在西門町一段的西寧南路上。",
+      geo="台北市萬華區西寧南路130號"),
+    S("guanghua", "光華唱片 總店", "chain", "台北市中正區八德路二段25號2樓", 1996, "b", 2000, "u", [117, 57],
+      "2000 年《秘密基地》說逛光華商場的樂迷，多半寧願到附近的「光華」和合友。地址取自 1996 年《音樂時代》名單（另列光華 A 店，八德路一段 51 號之 11 室）；2000 年時是否仍在同一地址、何時結束都不詳。",
+      geo="台北市中山區八德路二段25號"),
     S("lingnav", "領航者唱片", "indie", "台北市萬華區西寧南路141號", 1996, "b", 2000, "u", [117, 57],
       "2000 年《秘密基地》稱它和佳佳都是西門町的老牌唱片行；地址取自 1996 年《音樂時代》名單，2000 年時是否仍在同一地址不詳。"),
     S("daidi-baoqing", "大地唱片 遠東百貨寶慶店專櫃", "chain", "台北市中正區寶慶路32號6樓", 1996, "b", 2003, "u", [114, 117],
@@ -206,7 +213,7 @@ STORES = [
       "1999 年 7 月開幕，1000 坪的多媒體賣場，初期有大型音樂區；2006 年法國 Fnac 撤資，音樂區縮小，環亞店 2009 年 10 月 12 日結束。地址依環亞購物中心。", "FNAC",
       geo="台北市松山區南京東路三段337號"),
     S("rose-tongh", "玫瑰唱片 通化店", "chain", "台北市大安區通化街26之4號2樓", 2008, "e", 2013, "e", [17, 109],
-      "從文昌街搬來，2008 年 4 月起出現在玫瑰門市表；2013 年 4 月還在、10 月已無，此後玫瑰在台北市沒有以玫瑰為名的門市。"),
+      "由文昌街搬遷至此，2008 年 4 月起出現在玫瑰門市表；2013 年 4 月還在、10 月已無，此後玫瑰在台北市沒有以玫瑰為名的門市。"),
     S("rose-chongqing", "玫瑰大眾 古典館（重慶南路）", "chain", "台北市中正區重慶南路一段15號1樓", 2022, "e", 2026, "e", [105, 15, 16, 63, 10],
       "全台最後一家玫瑰大眾實體店，2026 年 11 月 30 日結束營業。"),
     S("rose-xuchang30", "玫瑰唱片 許昌店", "chain", "台北市中正區許昌街30號B1", 2001, "e", 2004, "a", [106, 107, 109, 114],
@@ -253,17 +260,17 @@ STORES = [
     S("chiachia-zx", "佳佳唱片 忠孝店", "chain", "台北市中正區忠孝西路一段49號B1", 2013, "b", 2014, "e", [17, 61],
       "台北車站地下街誠品捷運商場內；2014 年 6 月改名樂樂唱片。"),
     S("lele", "樂樂唱片", "indie", "台北市中正區忠孝西路一段49號B1", 2014, "e", 2015, "a", [61, 83, 66],
-      "佳佳忠孝店 2014 年 6 月改名而來，2015 年 7 月清倉特賣，之後應已結束。2014 年名單寫作 50 號 2 樓，可能與佳佳站前店混淆。"),
+      "佳佳忠孝店 2014 年 6 月改名而來，2015 年 7 月清倉特賣，之後應已歇業。2014 年名單寫作 50 號 2 樓，可能與佳佳站前店混淆。"),
     S("chiachia-station", "佳佳唱片 台北站前店", "chain", "台北市中正區忠孝西路一段50之1號B1", 2013, "b", 2014, "a", [17, 123],
       "原本開在新光三越前的站前地下街，後來搬到五鐵秋葉原樓上，不久就結束；搬遷年份與新店樓層不詳，地圖只標地下街的位置。"),
     S("eslite-ntu", "誠品音樂館 台大店", "chain", "台北市大安區新生南路三段98號（誠品台大店後方巷內）", 1999, "e", 2002, "a", [57, 36],
       "誠品第一家音樂館，1999 年底開幕，約 2002 年移到敦南。地址以誠品台大店標示。", "Eslite", geo="台北市大安區新生南路三段98號"),
     S("eslite-dunnan", "誠品音樂館 敦南店", "chain", "台北市大安區敦化南路一段245號B2", 2002, "a", 2020, "e", [17, 24, 36, 66, 90],
-      "約 2002 年由台大移來；敦南店 2020 年 5 月 31 日熄燈。", "Eslite"),
+      "約 2002 年由台大移來；敦南店 2020 年 5 月 31 日歇業。", "Eslite"),
     S("eslite-xinyi", "誠品音樂館 信義店", "chain", "台北市信義區松高路11號4樓", 2006, "e", 2023, "e", [17, 4, 37, 66, 90],
-      "誠品信義店 2006 年 1 月 1 日開幕，2023 年 12 月 24 日熄燈。", "Eslite"),
+      "誠品信義店 2006 年 1 月 1 日開幕，2023 年 12 月 24 日歇業。", "Eslite"),
     S("eslite-songyan", "誠品音樂 松菸黑膠館", "chain", "台北市信義區菸廠路88號3樓", 2014, "b", None, None, [66, 3, 11, 37, 90],
-      "2014 年名單已列出松菸黑膠館；誠品信義店收掉後，2024 年 1 月這裡改為 24 小時音樂館，賣黑膠、CD 與唱盤。", "Eslite"),
+      "2014 年名單已列出松菸黑膠館；誠品信義店歇業後，2024 年 1 月這裡改為 24 小時音樂館，賣黑膠、CD 與唱盤。", "Eslite"),
     S("knn-xuchang0", "光南大批發 許昌店（40號）", "chain", "台北市中正區許昌街40號", 2000, "b", 2024, "e", [57, 103, 13, 90, 11, 114],
       "2000 年《秘密基地》已列出車站前的光南；2003 年前的店家清單在許昌街 40 號 1 樓列出「光進唱片」，電話與地址看來是光南的誤植。2009 年門市清單在許昌街 40 號，是當時台北市唯一的光南。一樓有 CD／DVD 區，2024 年 10 月搬到隔壁 36 號。"),
     S("knn-gongguan", "光南大批發 公館店", "chain", "台北市文山區羅斯福路四段114號", 2014, "b", None, None, [104],
@@ -276,9 +283,11 @@ STORES = [
     S("shangyang", "上揚唱片", "indie", "台北市中山區中山北路二段77-4號", 1967, "e", None, None, [2, 7, 66, 90, 117],
       "1967 年創立，以古典音樂與本土歌謠聞名，兼營唱片發行。1996 年《音樂時代》名單登記在中山北路二段 77 巷 9 號 4 樓。"),
     S("95", "九五樂府", "indie", "台北市萬華區漢口街二段20巷11號", 1976, "e", None, None, [19, 13, 7, 66, 90, 57, 117],
-      "以日本進口唱片為主的老店。1996 年《音樂時代》名單登記的地址是武昌街二段 47 號。"),
+      "以日本進口唱片為主的老店，原本是漢口街巷弄裡的小店，也是重金屬迷代訂進口 CD 的去處。約 1997 年另開較大的分店，見「九五樂府（武昌街）」。"),
+    S("95-wuchang", "九五樂府（武昌街）", "indie", "台北市萬華區武昌街二段47號", 1996, "b", 2000, "u", [117, 57],
+      "2000 年《秘密基地》寫九五約 1997 年在西寧南路附近開了一家面積較大的分店，滿是日本 CD 與周邊，也保留一面重金屬架。1996 年《音樂時代》名單上九五登記在武昌街二段 47 號，就在西寧南路旁，推測是同一家店；歇業年不詳。"),
     S("rk", "駱克唱片行（南京東路）", "indie", "台北市松山區南京東路五段123巷1弄19號", 2007, "e", 2021, "e", [120, 119, 20, 17, 66, 90],
-      "2007 年 7 月從東區搬來（PTT 古典音樂板 2007 年 5 月的貼文預告）；2021 年 2 月 9 日在此營業到最後一天，3 月 2 日搬到光復北路。", "RK Record"),
+      "2007 年 7 月由東區搬遷至此（PTT 古典音樂板 2007 年 5 月的貼文預告）；2021 年 2 月 9 日在此營業到最後一天，3 月 2 日搬到光復北路。", "RK Record"),
     S("rk0", "駱克唱片行（東區）", "indie", "台北市大安區忠孝東路四段216巷11弄18號", 1994, "e", 2007, "e", [118, 117, 120, 20],
       "1994 年 7 月開在明曜百貨後面的巷子裡，店名從巴洛克、洛克演變成駱克；老闆原本想開的是音樂圖書館。開店三年後開始賣二手卡帶與 CD。1996 年《音樂時代》名單列在這個地址，2007 年 7 月搬到南京東路五段。", "RK Record"),
     S("rk2", "駱克唱片行（光復北路）", "indie", "台北市松山區光復北路85巷21號1樓", 2021, "e", None, None, [119, 20, 7],
@@ -308,6 +317,9 @@ STORES = [
     S("mollie", "茉莉二手書店 影音館（台大）", "indie", "台北市大安區羅斯福路四段24巷13號B1", 2013, "b", 2019, "u", [17, 14, 7, 66, 90], "二手 CD、卡帶與黑膠。"),
     S("regen-gg", "再生工場 公館店", "indie", "台北市中正區羅斯福路三段312號B1", 2000, "b", 2020, "u", [17, 14, 90, 57], "二手 CD、特價 CD 與影碟；2000 年《秘密基地》已列為公館唱片行之一。"),
     S("mondian", "蒙得你安二手唱片", "indie", "台北市大安區忠孝東路四段248巷13號", 2000, "b", 2013, "u", [17, 57]),
+    S("mondian2", "蒙得你安唱片 Mondrian Vinyls", "indie", "台北市松山區八德路三段74巷（門牌不詳）", 2026, "b", None, None, [125],
+      "Google 地圖上營業中的黑膠店，標示「個人深度黑膠聆聽體驗」，位在 Soil 咖啡樓下。店名與 2000 年代東區的蒙得你安二手唱片相同，是否為同一家、何時開業都不詳，因此分開列出；位置依 Google 地圖標示。",
+      geo="台北市松山區八德路三段74巷94號"),
     S("btb", "沒有新歌的唱片行", "indie", "台北市大安區和平東路一段12巷4號", 2014, "e", 2024, "e", [32, 20, 19, 66, 90],
       "以 2000 年前的音樂為主，CD、黑膠與卡帶；2024 年 4 月 30 日結束實體店。", "BTB Music Workshop"),
     S("species", "有種唱片 Species Records", "indie", "台北市萬華區昆明街96巷20號2樓", 2004, "a", 2020, "u", [17, 8, 66, 90],
@@ -332,7 +344,7 @@ STORES = [
       "第一家店開在泰順街公寓二樓，門牌不詳，地圖上標在泰順街中段。", geo="台北市大安區泰順街40號"),
     S("waiting", "Waiting Room（中山）", "indie", "台北市中山區長安西路40巷10弄1號", 2015, "e", None, None, [29, 4, 7], "2015 年搬到中山。新品黑膠、獨立音樂與爵士，兼賣服飾與藝術書。"),
     S("agoodday", "風和日麗唱片行", "indie", "台北市大安區和平東路三段212巷18號1樓", 2015, "e", 2019, "e", [30, 6, 23],
-      "風和日麗唱片的直營店，2019 年 12 月 1 日熄燈。", "A Good Day Records"),
+      "風和日麗唱片的直營店，2019 年 12 月 1 日歇業。", "A Good Day Records"),
     S("vinyldecision1", "Vinyl Decision 黑膠咖啡（崇德街）", "combo", "台北市信義區崇德街38巷6號", 2014, "e", 2022, "a", [49, 38, 4, 23, 90],
       "2014 年 3 月在六張犁附近開店的黑膠咖啡，後來搬到華山。"),
     S("vinyldecision2", "Vinyl Decision（華山）", "combo", "台北市中正區八德路一段1號（華山1914 紅磚區西7-4館）", 2022, "a", None, None, [38, 19, 7],
@@ -340,7 +352,7 @@ STORES = [
     S("2manyminds0", "貳樂號 2manyminds Records（瑞安街）", "indie", "台北市大安區瑞安街136號2樓", 2014, "e", 2015, "a", [77, 78, 66],
       "DJ Spykee 開的初代店，日本音樂、電影、雜誌與樂團 T 恤。2014 年 11 月仍在瑞安街。"),
     S("2manyminds", "貳樂號 2manyminds Records（羅斯福路）", "indie", "台北市文山區羅斯福路四段206巷8號", 2015, "a", 2018, "a", [33, 78, 4],
-      "The Wall 後方；2016 年 9 月已在此。店主 2018 年底轉任 The Wall 總監，之後收店。"),
+      "The Wall 後方；2016 年 9 月已在此。店主 2018 年底轉任 The Wall 總監，之後歇業。"),
     S("beansbeats", "BEANS & BEATS", "indie", "台北市松山區富錦街346號1樓", 2014, "e", 2021, "u", [34, 4, 66, 90], "2014 年 10 月開幕，美式街頭音樂黑膠。"),
     S("xiaosong1", "小宋唱片（西園路二段79號）", "indie", "台北市萬華區西園路二段79號", 1994, "a", 2018, "a", [39, 4, 66],
       "二手黑膠，爵士、古典與華語台語老歌。開業年有 1994 與 1997 兩種說法；2014 年還在 79 號，2020 年已在 225 巷，搬遷年不詳。"),
@@ -350,14 +362,14 @@ STORES = [
     S("blackglue", "Black Glue Records", "indie", "台北市大安區復興南路二段332號", 2026, "b", None, None, [7]),
     S("soulamazin", "Soul Amazin' Music", "indie", "台北市信義區永吉路523號2樓", 2020, "b", None, None, [7, 90]),
     S("datao", "大韜黑膠耳機專賣 北流店", "indie", "台北市南港區忠孝東路七段99號1樓", 2022, "e", None, None, [1, 5],
-      "2022 年 9 月開幕，平均維持三萬多張二手黑膠，號稱全台最大黑膠店。", "DaTao Vinyl"),
+      "2022 年 9 月開幕，庫存約三萬多張二手黑膠，號稱全台最大的黑膠店。", "DaTao Vinyl"),
     S("slipped", "摔碟唱片舍 Slipped Disk", "combo", "台北市大安區瑞安街276巷14號1樓", 2025, "e", None, None, [21, 35],
       "2025 年 8 月 6 日開幕的二手黑膠店，附試聽區與精釀啤酒吧台。"),
     S("avc", "AVC Coffee Roasters", "combo", "台北市中山區新生北路二段53-3號", 2026, "e", None, None, [26],
       "2026 年開幕的黑膠咖啡廳，販售黑膠與 CD。"),
     # ---- 第二輪補充 ----
-    S("diyi", "第一唱片行", "indie", "台北市大同區保安街88號", 1965, "e", 2020, "u", [52, 90],
-      "大稻埕的台語歌謠唱片老店，曾經也是唱片公司，2020 年由第三代經營。"),
+    S("diyi", "第一唱片行", "indie", "台北市大同區保安街88號", 1965, "e", None, None, [52, 90, 123],
+      "大稻埕的台語歌謠唱片老店，早年也是唱片公司，現由第三代經營，2026 年仍在營業。"),
     S("xintianxindi", "新天新地（錦西街）", "indie", "台北市大同區錦西街1-1號3樓", 2004, "e", 2013, "a", [50, 88],
       "前淘兒員工林主惟創辦，專賣歐陸、以法國為主的獨立廠牌 CD，後來兼營音響。更早曾在忠孝東路、善導寺一帶，年份不詳。"),
     S("xintianxindi2", "新天新地 2（復興南路）", "indie", "台北市大安區復興南路二段185-1號", 2014, "e", 2019, "e", [88, 66, 89],
@@ -435,7 +447,7 @@ STORES = [
       "中古與全新黑膠、唱盤與音響，以爵士、日本 City Pop、靈魂樂為主。先以網路商店營運，實體店預計 2026 年底開幕；店址為官網的聯絡地址。"),
     # ---- 2000 年普查、2020 清單與製作者提供的線索 ----
     S("play", "Play 唱片走廊", "indie", "台北市大安區忠孝東路四段97號（頂好名店城4樓）", 1998, "e", 2000, "u", [95, 57],
-      "黃子佼 1998 年 6 月開的唱片行，狹長如走廊，賣港、日、韓 CD、雜誌與周邊；2000 年仍營業，收店年不詳。門牌依頂好名店城位置。",
+      "黃子佼 1998 年 6 月開的唱片行，狹長如走廊，賣港、日、韓 CD、雜誌與周邊；2000 年仍營業，歇業年不詳。門牌依頂好名店城位置。",
       geo="台北市大安區忠孝東路四段97號"),
     S("twave-zx", "T-Wave 忠孝店", "chain", "台北市中正區忠孝東路一段54號", 2000, "e", 2004, "u", [93, 94],
       "T-ZONE 電腦賣場與日本 WAVE 合作的唱片部門，2000 年 5 月起陸續開設；2004 年 4 月的清單仍列出。"),
@@ -457,28 +469,28 @@ STORES = [
 ]
 
 EVENTS = [
-    dict(y=2000, t="羅悅全《秘密基地》把台北唱片行分成四區：東區頂好（東淘、Play 唱片走廊、M@M）、西門町與車站前（西淘、佳佳、大眾、玫瑰、光南）、公館（誠品音樂館、大眾、玫瑰、宇宙城、個體戶）、光華與中山北路（合友、FNAC、傑笙）。T-Wave 5 月開幕。"),
-    dict(y=2007, t="玫瑰站前（公園路）、民生、公館三家店在這年上半年先後收掉；玫瑰 1987 年就是從公館起家。"),
-    dict(y=2001, t="玫瑰唱片官網的門市表顯示，這年玫瑰在台北市有 10 家店：新開許昌、光復、民生、天母，收掉公館 142 號老店與汀州路的音樂 99。大眾唱片則有 6 家。"),
-    dict(y=2002, t="6 月，玫瑰唱片與大眾唱片合併為玫瑰大眾，7 月的官網寫著「全省大眾玫瑰 47 家門市」，全盛期達 52 家。誠品音樂館約在這年從台大移到敦南。"),
+    dict(y=2000, t="羅悅全《秘密基地》把台北唱片行分成四區：東區頂好（東淘、Play 唱片走廊、M@M）、西門町與車站前（西淘、佳佳、九五、ABCD、大眾、玫瑰、光南）、公館（誠品音樂館、大眾、玫瑰、宇宙城、個體戶）、光華與中山北路（光華、合友、FNAC、傑笙）。T-Wave 5 月開幕。"),
+    dict(y=2007, t="玫瑰站前（公園路）、民生、公館三家店在上半年先後歇業；玫瑰 1987 年正是從公館起家。"),
+    dict(y=2001, t="玫瑰唱片官網的門市表顯示，這年玫瑰在台北市有 10 家店：許昌、光復、民生三店新開幕，公館 142 號老店與汀州路的音樂 99 歇業。大眾唱片則有 6 家。"),
+    dict(y=2002, t="6 月，玫瑰唱片與大眾唱片合併為玫瑰大眾，7 月的官網寫著「全省大眾玫瑰 47 家門市」，合併後最多時全台有 52 家。誠品音樂館約在這年從台大移到敦南。"),
     dict(y=2004, t="五大唱片 7 月租下西寧南路 58 號，在西門町開店。"),
-    dict(y=2003, t="11 月，淘兒唱片退出台灣，頂好、西門、天母、信義四家店結束，曾五折清倉。玫瑰 2002 年 6 月到 2005 年 11 月之間的門市表沒有存檔，這段期間有幾家店的結束時間只能估計。"),
-    dict(y=2006, t="玫瑰峨嵋店、天母店與特易購三民店在上半年收掉。1 月 29 日光華橋與光華商場拆除，攤商移到臨時商場。"),
+    dict(y=2003, t="11 月，淘兒唱片退出台灣，頂好、西門、天母、信義四家店結束前曾五折清倉。玫瑰 2002 年 6 月到 2005 年 11 月之間的門市表沒有存檔，這段期間有幾家店的結束時間只能估計。"),
+    dict(y=2006, t="玫瑰峨嵋店、天母店與特易購三民店在上半年歇業。1 月 29 日光華橋與光華商場拆除，攤商移到臨時商場。"),
     dict(y=2008, t="7 月光華數位新天地開幕，原光華商場攤商進駐。"),
-    dict(y=2009, t="玫瑰忠孝（頂好）店春天收掉，年底在信義威秀與微風廣場開店。五大唱片接手頂好門市，同一地址先後是淘兒、玫瑰、五大；小白兔 7 月在師大浦城街開店。"),
-    dict(y=2013, t="玫瑰通化店下半年收掉，此後台北市沒有以玫瑰為名的門市。這年的網路唱片店名單補進一批開業年不詳的店（二手店、連鎖分店），曲線上升有一部分來自資料。"),
-    dict(y=2011, t="玫瑰威秀、微風與加州西門店在 7–10 月間收掉，玫瑰在台北市只剩通化店。"),
-    dict(y=2012, t="大眾唱片台大店年底結束（3 月已傳出消息）；小白兔 The Wall 店也在 1 月收掉。"),
-    dict(y=2014, t="獨立小店密集開張：沒有新歌的唱片行、2manyminds、BEANS & BEATS。"),
+    dict(y=2009, t="玫瑰忠孝（頂好）店春天歇業，年底在信義威秀與微風廣場開出新店。五大唱片接手頂好門市，同一地址先後是淘兒、玫瑰、五大；小白兔 7 月在師大浦城街開店。"),
+    dict(y=2013, t="玫瑰通化店下半年歇業，此後台北市沒有以玫瑰為名的門市。這年的網路唱片店名單補進一批開業年不詳的店（二手店、連鎖分店），曲線上升有一部分來自資料。"),
+    dict(y=2011, t="玫瑰威秀、微風與加州西門店在 7–10 月間歇業，台北市掛玫瑰招牌的只剩通化店。"),
+    dict(y=2012, t="1 月小白兔 The Wall 店歇業；大眾唱片台大店 3 月傳出將結束，年底歇業。"),
+    dict(y=2014, t="這年新開幕的店特別多：沒有新歌的唱片行、貳樂號 2manyminds、BEANS & BEATS、Vinyl Decision、先行一車、agnès b. music store、新天新地 2。"),
     dict(y=2015, t="Waiting Room 從泰順街搬到中山；風和日麗唱片行在和平東路開店。"),
-    dict(y=2019, t="風和日麗唱片行 12 月 1 日熄燈；M@M Records 在原址重新開幕。"),
-    dict(y=2016, t="玫瑰大眾台中新時代店收店，全台只剩台北的古典館。"),
-    dict(y=2020, t="5 月 31 日誠品敦南店熄燈，地下樓的音樂館一起結束。五大頂好店也在這年收掉。"),
-    dict(y=2023, t="12 月 24 日誠品信義店熄燈，音樂館隨之結束。K-MONSTAR 在赤峰街開出台灣第一家 K-pop 專輯實體店，之後赤峰街聚集多家韓國流行專輯店。"),
+    dict(y=2019, t="風和日麗唱片行 12 月 1 日歇業；M@M Records 在原址重新開幕。"),
+    dict(y=2016, t="玫瑰大眾台中新時代店歇業後，全台只剩台北的古典館。"),
+    dict(y=2020, t="5 月 31 日誠品敦南店歇業，地下樓的音樂館一起結束；五大頂好店也在這年歇業。"),
+    dict(y=2023, t="12 月 24 日誠品信義店歇業，店內的音樂館隨之結束。K-MONSTAR 在赤峰街開出在台第一家門市，之後赤峰街陸續聚集多家韓國流行專輯店。"),
     dict(y=2022, t="9 月大韜黑膠北流店在台北流行音樂中心對面開幕，號稱全台最大黑膠店。"),
-    dict(y=2024, t="誠品 24 小時音樂館移到松菸；THT 搬到松山擴大為黑膠音樂圖書館；五大搬到南陽街；沒有新歌的唱片行收掉實體店。"),
+    dict(y=2024, t="誠品 24 小時音樂館移到松菸；THT 搬到松山擴大為黑膠音樂圖書館；五大搬到南陽街；沒有新歌的唱片行結束實體店。"),
     dict(y=2025, t="8 月摔碟唱片舍在大安區巷弄開幕。"),
-    dict(y=2026, t="玫瑰大眾古典館 11 月 30 日結束營業，玫瑰大眾的實體門市全部收掉。這年的文化部與 Record Store Day 店家名單補進一批開業年不詳的現存店家（含多家韓國流行專輯店），曲線末端上揚有一部分來自資料。"),
+    dict(y=2026, t="玫瑰大眾古典館 11 月 30 日結束營業，玫瑰大眾從此不再有實體門市。這年的文化部與 Record Store Day 店家名單補進一批開業年不詳的現存店家（含多家韓國流行專輯店），曲線末端上揚有一部分來自資料。"),
 ]
 
 # Same shop at a new address (or renamed in place): (old id, new id).
@@ -535,6 +547,90 @@ PHOTOS = {
 }
 for k, v in PHOTOS.items():
     _by[k]["photo"] = v
+
+# Shop logos for the map's 招牌 mode. Logos belong to the shops; any shop that objects gets removed (see 資料來源).
+# key: (file, credit kind, url or "", store ids: exact id or "<id>-..." family, plate colour behind transparent logos)
+#   credit kind: "site" = the shop's or brand's own website, "commons" = Wikimedia Commons public domain,
+#                "maker" = supplied by Brien John, "web" = a public image of the shop found online (social pages)
+OFFICIAL, COMMONS, MAKER, WEB = "site", "commons", "maker", "web"
+LOGOS = {
+    "5music": ("logos/5music.png", OFFICIAL, "https://www.5music.com.tw/", ["5music"], "#fff"),
+    "acdc": ("logos/acdc.png", OFFICIAL, "https://www.acdc.com.tw/", ["acdc"], "#fff"),
+    "agnesb": ("logos/agnesb.svg", OFFICIAL, "https://www.agnesb.com/", ["agnesb"], "#fff"),
+    "cheery": ("logos/cheery.png", OFFICIAL, "https://www.cheerymusic.com/", ["cheery"], "#fff"),
+    "eslite": ("logos/eslite.png", OFFICIAL, "https://www.eslite.com/", ["eslite"], "#fff"),
+    "gmusic": ("logos/gmusic.png", OFFICIAL, "https://www.g-music.com.tw/", ["rose", "tachung"], "#fff"),
+    "kaeru": ("logos/kaeru.png", OFFICIAL, "https://www.kaerutw.com/", ["kaeru"], "#fff"),
+    "kmonstar": ("logos/kmonstar.png", OFFICIAL, "https://kmonstar.com/", ["kmonstar"], "#fff"),
+    "knn": ("logos/knn.png", OFFICIAL, "https://www.knn.com.tw/", ["knn"], "#fff"),
+    "mam": ("logos/mam.png", OFFICIAL, "https://www.mmrecords.com.tw/", ["mam", "mam2"], "#141414"),
+    "regen": ("logos/regen.png", OFFICIAL, "https://www.shshop.me/", ["regen"], "#fff"),
+    "wabbit": ("logos/wabbit.png", OFFICIAL, "https://wwr.com.tw/", ["wabbit"], "#fff"),
+    "wind": ("logos/wind.png", OFFICIAL, "https://www.windmusic.com.tw/", ["wind"], "#fff"),
+    "rk": ("logos/rk.png", OFFICIAL, "https://www.rkrecord.com.tw/", ["rk", "rk0", "rk2"], "#cacbcc"),
+    "soundsgood": ("logos/soundsgood.png", OFFICIAL, "https://soundsgoodtaipei.com.tw/", ["soundsgood"], "#231f20"),
+    "chaobar": ("logos/chaobar.png", OFFICIAL, "https://chaobar.com/", ["chaobar"], "#fff"),
+    "rotten": ("logos/rotten.png", OFFICIAL, "https://www.rottenblues.com/", ["rotten"], "#000"),
+    "willmusic": ("logos/willmusic.png", OFFICIAL, "https://www.willmusic.com.tw/", ["willmusic1", "willmusic2"], "#1d1d1f"),
+    "tower": ("logos/tower.svg", COMMONS, "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg", ["tower"], "#ffe000"),
+    "fnac": ("logos/fnac.svg", COMMONS, "https://commons.wikimedia.org/wiki/File:Fnac_Logo.svg", ["fnac"], "#fff"),
+    "joyaudio": ("logos/joyaudio.png", MAKER, "", ["joyaudio"], "#000"),
+    "qiyuan": ("logos/qiyuan.png", MAKER, "", ["qiyuan1", "qiyuan2"], "#7cc242"),
+    "hoyou": ("logos/hoyou.png", MAKER, "", ["hoyou", "hoyou0"], "#fff"),
+    "95": ("logos/95.png", MAKER, "", ["95"], "#fff"),
+    "38c": ("logos/38c.png", MAKER, "", ["38c"], "#6d1d2e"),
+    "shangyang": ("logos/shangyang.png", MAKER, "", ["shangyang"], "#fff"),
+    "chiachia": ("logos/chiachia.png", WEB, "", ["chiachia"], "#f7f7f7"),
+    "indimusic": ("logos/indimusic.png", WEB, "", ["indimusic"], "#000"),
+    "waiting": ("logos/waiting.png", WEB, "", ["waiting", "waiting0"], "#fff"),
+    "tht": ("logos/tht.png", WEB, "", ["tht1", "tht2", "tht-room25"], "#f7f7f7"),
+    "senko": ("logos/senko.png", WEB, "", ["senko1", "senko2"], "#000"),
+    "vinyldecision": ("logos/vinyldecision.png", WEB, "", ["vinyldecision1", "vinyldecision2"], "#f3eee2"),
+    "slipped": ("logos/slipped.png", WEB, "", ["slipped"], "#1c4e91"),
+    "mollie": ("logos/mollie.png", WEB, "", ["mollie", "mollie2"], "#000"),
+    "btb": ("logos/btb.png", WEB, "", ["btb"], "#f7f7f7"),
+    "agoodday": ("logos/agoodday.png", WEB, "", ["agoodday"], "#29a8e0"),
+    "syntrend": ("logos/syntrend.png", WEB, "", ["syntrend"], "#fff"),
+    "datao": ("logos/datao.png", WEB, "", ["datao"], "#f7f7f7"),
+    "windsong": ("logos/windsong.png", OFFICIAL, "http://www.windsong.com.tw/", ["windsong"], "#fff"),
+    "xiaosong": ("logos/xiaosong.png", MAKER, "", ["xiaosong", "xiaosong1"], "#1e6b1e"),
+    "soulamazin": ("logos/soulamazin.png", MAKER, "", ["soulamazin"], "#ffe000"),
+    "pubmetal": ("logos/pubmetal.png", MAKER, "", ["pubmetal"], "#fff"),
+    "sidoli": ("logos/sidoli.png", MAKER, "", ["sidoli"], "#fff"),
+    "aile": ("logos/aile.png", MAKER, "", ["aile1", "aile2"], "#f5f5f7"),
+    "seedtoss": ("logos/seedtoss.png", MAKER, "", ["seedtoss"], "#fff"),
+    "beansbeats": ("logos/beansbeats.png", MAKER, "", ["beansbeats"], "#6b3a2e"),
+    "2manyminds": ("logos/2manyminds.png", MAKER, "", ["2manyminds0", "2manyminds"], "#fff"),
+    "xiaomin": ("logos/xiaomin.png", MAKER, "", ["xiaomin"], "#2a2118"),
+    "candle": ("logos/candle.png", MAKER, "", ["candle"], "#fff"),
+    "parstore": ("logos/parstore.png", MAKER, "", ["parstore"], "#fff"),
+    "analogy": ("logos/analogy.png", MAKER, "", ["analogy"], "#e3cfb4"),
+    "blackglue": ("logos/blackglue.png", MAKER, "", ["blackglue"], "#fff"),
+    "avc": ("logos/avc.png", MAKER, "", ["avc"], "#fff"),
+    "allmyday": ("logos/allmyday.png", MAKER, "", ["allmyday1", "allmyday2"], "#fff"),
+    "koreepop": ("logos/koreepop.png", MAKER, "", ["koreepop"], "#fff"),
+    "fairytree": ("logos/fairytree.png", MAKER, "", ["fairytree1", "fairytree2"], "#fff"),
+    "hanju": ("logos/hanju.png", MAKER, "", ["hanju"], "#fff"),
+    "taiwane": ("logos/taiwane.png", MAKER, "", ["taiwane"], "#d8ecd0"),
+    "thokphai": ("logos/thokphai.png", MAKER, "", ["thokphai"], "#4a1c25"),
+    "dalangman": ("logos/dalangman.png", MAKER, "", ["dalangman"], "#fff"),
+    "ygm": ("logos/ygm.png", MAKER, "", ["ygm"], "#fff"),
+}
+import struct, re as _re
+def _dims(path):
+    full = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "docs", path)
+    if path.endswith(".svg"):
+        vb = _re.search(r'viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)', open(full, encoding="utf-8").read())
+        return float(vb.group(1)), float(vb.group(2))
+    with open(full, "rb") as fh:
+        head = fh.read(24)
+    return struct.unpack(">II", head[16:24])
+for key, (f, kind, u, fams, bg) in LOGOS.items():
+    w, h = _dims(f)
+    hit = [s for s in STORES if any(s["id"] == p or s["id"].startswith(p + "-") for p in fams)]
+    assert hit, key
+    for s in hit:
+        s["logo"] = dict(f=f, k=kind, u=u, bg=bg, a=round(w / h, 3))
 
 out = dict(sources=[dict(t=t, u=u) for t, u in SOURCES], zones=ZONES, stores=STORES, events=EVENTS)
 ids = [s["id"] for s in STORES]

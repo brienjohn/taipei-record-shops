@@ -493,12 +493,16 @@
    "u": ""
   },
   {
-   "t": "製作者 Brien John 提供（2026 年 11 月）：agnès b. music store 營業至 2017 年、三創黑膠 2026 年收店、KAERU 預計 2026 年底開店、佳佳站前店遷址經過、攝氏三十八度 1989 年設立",
+   "t": "製作者 Brien John 提供（2026 年 11 月）：agnès b. music store 營業至 2017 年、三創黑膠 2026 年歇業、KAERU 預計 2026 年底開店、佳佳站前店遷址經過、攝氏三十八度 1989 年設立、第一唱片行 2026 年仍營業",
    "u": ""
   },
   {
    "t": "KAERU 官方網站（網路商店，聯絡地址與門市自取）",
    "u": "https://www.kaerutw.com/"
+  },
+  {
+   "t": "Google 地圖：蒙得你安唱片 Mondrian Vinyls（2026 年 11 月查詢）",
+   "u": "https://maps.app.goo.gl/vVseBPLPSg77cg8Y7"
   }
  ],
  "zones": [
@@ -601,7 +605,14 @@
     117
    ],
    "note": "Tower Records 1992 年進入台灣；2003 年 11 月退出台灣市場。各分店確切開店年不詳。",
-   "en": "Tower Records"
+   "en": "Tower Records",
+   "logo": {
+    "f": "logos/tower.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg",
+    "bg": "#ffe000",
+    "a": 1.587
+   }
   },
   {
    "id": "tower-ximen",
@@ -621,7 +632,14 @@
    ],
    "note": "西門紅樓旁三層樓的金黃色店面，1992 年開幕，2003 年隨淘兒退出台灣結束。",
    "en": "Tower Records",
-   "geo": "台北市萬華區成都路10號"
+   "geo": "台北市萬華區成都路10號",
+   "logo": {
+    "f": "logos/tower.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg",
+    "bg": "#ffe000",
+    "a": 1.587
+   }
   },
   {
    "id": "tower-tianmu",
@@ -637,7 +655,14 @@
    ],
    "note": "設於大葉高島屋 4 樓，開店年不詳。",
    "en": "Tower Records",
-   "geo": "台北市士林區忠誠路二段55號"
+   "geo": "台北市士林區忠誠路二段55號",
+   "logo": {
+    "f": "logos/tower.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg",
+    "bg": "#ffe000",
+    "a": 1.587
+   }
   },
   {
    "id": "tower-xinyi",
@@ -653,7 +678,14 @@
    ],
    "note": "設於新光三越信義新天地 A8 館 6 樓，開店年不詳。",
    "en": "Tower Records",
-   "geo": "台北市信義區松高路12號"
+   "geo": "台北市信義區松高路12號",
+   "logo": {
+    "f": "logos/tower.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg",
+    "bg": "#ffe000",
+    "a": 1.587
+   }
   },
   {
    "id": "rose-gongguan",
@@ -674,7 +706,14 @@
     117
    ],
    "note": "玫瑰唱片 1987 年在公館開出全台第一家門市。玫瑰官網 2001 年 6 月還列出「公館店 1F」在 142 號，8 月起名單上已沒有這個地址。",
-   "geo": "台北市中正區羅斯福路四段142號"
+   "geo": "台北市中正區羅斯福路四段142號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-ntu",
@@ -693,7 +732,14 @@
     109,
     114
    ],
-   "note": "玫瑰官網 2001–2002 年稱台大店，2005 年起改稱公館店；推定 2000 年已營業。142 號老店收掉後這裡是玫瑰在公館唯一的店。門市表 2007 年 4 月還在、7 月已無，與報導所說 2007 年 3 月「玫瑰公館店」結束相符。"
+   "note": "玫瑰官網 2001–2002 年稱台大店，2005 年起改稱公館店；推定 2000 年已營業。142 號老店歇業後，這裡是玫瑰在公館唯一的店。門市表 2007 年 4 月還在、7 月已無，與報導所說 2007 年 3 月「玫瑰公館店」結束相符。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-music99",
@@ -708,7 +754,14 @@
     106
    ],
    "note": "宇宙城原址，玫瑰官網 2001 年 2 月與 4 月的門市表稱「音樂 99」（店號 202），6 月已不在名單上。",
-   "prev": "cosmos"
+   "prev": "cosmos",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-ufo",
@@ -725,9 +778,16 @@
     107,
     109
    ],
-   "note": "玫瑰併入飛碟集團後，民國 88 年開了「飛碟樂地」。2001 年初官網稱「忠孝 UFO」，後改稱忠孝店，2002 年 6 月仍在名單上；淘兒 2003 年底退出後，忠孝店搬到頂好的忠孝東路四段 71-1 號。",
+   "note": "玫瑰併入飛碟集團後，1999 年開了「飛碟樂地」。2001 年初官網稱「忠孝 UFO」，後改稱忠孝店，2002 年 6 月仍在名單上；淘兒 2003 年底退出後，忠孝店搬到頂好的忠孝東路四段 71-1 號。",
    "en": "UFO",
-   "next": "rose-dinghao"
+   "next": "rose-dinghao",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-station",
@@ -745,7 +805,14 @@
     109,
     114
    ],
-   "note": "2000 年《秘密基地》提到玫瑰站前店「有高手坐鎮，是古典、爵士迷尋寶的地方」；玫瑰門市表從 2001 年一路列到 2006 年 10 月（2005 年寫明二樓到四樓），2007 年 1 月起不在名單上。"
+   "note": "2000 年《秘密基地》提到玫瑰站前店「有高手坐鎮，是古典、爵士迷尋寶的地方」；玫瑰門市表從 2001 年一路列到 2006 年 10 月（2005 年寫明二樓到四樓），2007 年 1 月起不在名單上。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-tongh0",
@@ -763,7 +830,14 @@
     115
    ],
    "note": "玫瑰門市表 2001 年 2 月到 2008 年 1 月都列在文昌街，推定 2000 年已營業；2008 年 4 月起改列通化街 26 之 4 號。",
-   "next": "rose-tongh"
+   "next": "rose-tongh",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-emei",
@@ -780,7 +854,14 @@
     109,
     114
    ],
-   "note": "玫瑰門市表 2001 年 2 月到 2006 年 1 月都列出，推定 2000 年已營業；2006 年 7 月起不在名單上。隔壁 58 號 2004 年起是五大唱片。"
+   "note": "玫瑰門市表 2001 年 2 月到 2006 年 1 月都列出，推定 2000 年已營業；2006 年 7 月起不在名單上。隔壁 58 號 2004 年起是五大唱片。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-tianmu",
@@ -799,7 +880,14 @@
     115,
     117
    ],
-   "note": "1996 年《音樂時代》名單已列出「天母玫瑰」在同一地址；公司沿革也說天母店是公館店之後最早開的分店之一。2006 年 1 月還在、5 月已無。"
+   "note": "1996 年《音樂時代》名單已列出「天母玫瑰」在同一地址；公司沿革也說天母店是公館店之後最早開的分店之一。2006 年 1 月還在、5 月已無。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-guangfu",
@@ -813,7 +901,14 @@
    "src": [
     107
    ],
-   "note": "2001 年 8 月的門市表還沒有，11 月起列出，2002 年 6 月仍在。"
+   "note": "2001 年 8 月的門市表還沒有，11 月起列出，2002 年 6 月仍在。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-minsheng",
@@ -829,7 +924,14 @@
     109,
     115
    ],
-   "note": "2001 年 12 月起列出，一直到 2007 年 1 月；4 月起不在名單上。"
+   "note": "2001 年 12 月起列出，一直到 2007 年 1 月；4 月起不在名單上。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-tesco-sanmin",
@@ -844,7 +946,14 @@
     109,
     115
    ],
-   "note": "開在英國特易購（Tesco）量販店內，2005 年 11 月與 2006 年 1 月的玫瑰門市表列出，7 月已無；特易購 2006 年退出台灣。"
+   "note": "開在英國特易購（Tesco）量販店內，2005 年 11 月與 2006 年 1 月的玫瑰門市表列出，7 月已無；特易購 2006 年退出台灣。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-vieshow",
@@ -858,7 +967,14 @@
    "src": [
     109
    ],
-   "note": "信義威秀影城 1 樓（1F-02）。2009 年 7 月的門市表還沒有，11 月起列出；2011 年 7 月還在、10 月已無。"
+   "note": "信義威秀影城 1 樓（1F-02）。2009 年 7 月的門市表還沒有，11 月起列出；2011 年 7 月還在、10 月已無。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-breeze",
@@ -873,7 +989,14 @@
     109
    ],
    "note": "微風廣場 7 樓。2009 年 11 月起列出，2011 年 7 月還在、10 月已無。",
-   "geo": "台北市大安區復興南路一段39號"
+   "geo": "台北市大安區復興南路一段39號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-qsquare",
@@ -888,7 +1011,14 @@
     109
    ],
    "note": "京站時尚廣場 5 樓（2009 年底開幕）。2010 年 4 月與 7 月的門市表列出，2011 年 6 月已無。",
-   "geo": "台北市大同區市民大道一段209號"
+   "geo": "台北市大同區市民大道一段209號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "qianwei",
@@ -920,6 +1050,37 @@
    ],
    "note": "1996 年《音樂時代》名單上的地址；之後搬到開封街，搬遷年不詳。",
    "next": "qianwei"
+  },
+  {
+   "id": "abcd",
+   "n": "ABCD 唱片",
+   "t": "indie",
+   "a": "台北市萬華區西寧南路（門牌不詳）",
+   "y0": 2000,
+   "y0q": "b",
+   "y1": 2000,
+   "y1q": "u",
+   "src": [
+    57
+   ],
+   "note": "2000 年《秘密基地》稱它是西寧南路上的「後起之秀」，有「紅白標」促銷，店內設 DJ 台，店員會上台介紹新貨。門牌與營業期間不詳，位置標在西門町一段的西寧南路上。",
+   "geo": "台北市萬華區西寧南路130號"
+  },
+  {
+   "id": "guanghua",
+   "n": "光華唱片 總店",
+   "t": "chain",
+   "a": "台北市中正區八德路二段25號2樓",
+   "y0": 1996,
+   "y0q": "b",
+   "y1": 2000,
+   "y1q": "u",
+   "src": [
+    117,
+    57
+   ],
+   "note": "2000 年《秘密基地》說逛光華商場的樂迷，多半寧願到附近的「光華」和合友。地址取自 1996 年《音樂時代》名單（另列光華 A 店，八德路一段 51 號之 11 室）；2000 年時是否仍在同一地址、何時結束都不詳。",
+   "geo": "台北市中山區八德路二段25號"
   },
   {
    "id": "lingnav",
@@ -996,7 +1157,14 @@
    ],
    "note": "1999 年 7 月開幕，1000 坪的多媒體賣場，初期有大型音樂區；2006 年法國 Fnac 撤資，音樂區縮小，環亞店 2009 年 10 月 12 日結束。地址依環亞購物中心。",
    "en": "FNAC",
-   "geo": "台北市松山區南京東路三段337號"
+   "geo": "台北市松山區南京東路三段337號",
+   "logo": {
+    "f": "logos/fnac.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Fnac_Logo.svg",
+    "bg": "#fff",
+    "a": 0.969
+   }
   },
   {
    "id": "rose-tongh",
@@ -1011,8 +1179,15 @@
     17,
     109
    ],
-   "note": "從文昌街搬來，2008 年 4 月起出現在玫瑰門市表；2013 年 4 月還在、10 月已無，此後玫瑰在台北市沒有以玫瑰為名的門市。",
-   "prev": "rose-tongh0"
+   "note": "由文昌街搬遷至此，2008 年 4 月起出現在玫瑰門市表；2013 年 4 月還在、10 月已無，此後玫瑰在台北市沒有以玫瑰為名的門市。",
+   "prev": "rose-tongh0",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-chongqing",
@@ -1031,7 +1206,14 @@
     10
    ],
    "note": "全台最後一家玫瑰大眾實體店，2026 年 11 月 30 日結束營業。",
-   "prev": "tachung-xuchang"
+   "prev": "tachung-xuchang",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-xuchang30",
@@ -1048,7 +1230,14 @@
     109,
     114
    ],
-   "note": "玫瑰官網 2001 年 6 月的門市表還沒有，8 月起列出（B1–B2 兩層），與公園路的站前店同時營業；2005 年 11 月的門市表已無，結束時間在 2002–2005 年之間。"
+   "note": "玫瑰官網 2001 年 6 月的門市表還沒有，8 月起列出（B1–B2 兩層），與公園路的站前店同時營業；2005 年 11 月的門市表已無，結束時間在 2002–2005 年之間。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-ximen0",
@@ -1066,7 +1255,14 @@
     114
    ],
    "note": "2000 年《秘密基地》形容它「有陣勢驚人的試聽機，沿著窗邊一家排開」；玫瑰官網 2001–2002 年都列出，2003 年 4 月前的店家清單仍有，2005 年的門市表已無；那時西門町的玫瑰是漢中街的加州玫瑰。",
-   "geo": "台北市萬華區峨眉街37號"
+   "geo": "台北市萬華區峨眉街37號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-ximen",
@@ -1082,7 +1278,14 @@
     109,
     115
    ],
-   "note": "玫瑰門市表 2005 年 11 月已列出「加州」（漢中街 52 號 1 樓），2011 年改到地下樓，7 月還在、10 月已無。維基百科記載 2009 年 8 月 1 日重新開幕，可能是改裝。"
+   "note": "玫瑰門市表 2005 年 11 月已列出「加州」（漢中街 52 號 1 樓），2011 年改到地下樓，7 月還在、10 月已無。維基百科記載 2009 年 8 月 1 日重新開幕，可能是改裝。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "cosmos",
@@ -1119,7 +1322,14 @@
     110,
     114
    ],
-   "note": "三層樓的大眾唱片。G-Music 大眾門市表列到 2012 年 10 月，2013 年 1 月起不在名單上；2012 年 3 月就傳出即將結束。"
+   "note": "三層樓的大眾唱片。G-Music 大眾門市表列到 2012 年 10 月，2013 年 1 月起不在名單上；2012 年 3 月就傳出即將結束。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-xuchang",
@@ -1142,7 +1352,14 @@
    ],
    "note": "大眾官網 2001–2005 年列為站前一店（許昌街 20-24 號），之後稱許昌店（2010 年起寫作 24-2 號 2 樓），一直列到 2014 年。2016 年的玫瑰大眾購物網稱它「大眾唱片許昌古典館」，也就是後來的玫瑰大眾古典館（24-1 號 2 樓），2016 年起是全台唯一的玫瑰大眾門市，2022 年遷往重慶南路。",
    "geo": "台北市中正區許昌街24號",
-   "next": "rose-chongqing"
+   "next": "rose-chongqing",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-st2",
@@ -1156,7 +1373,14 @@
    "src": [
     91
    ],
-   "note": "2001 年 6 月的大眾官網列出，同年 12 月已不在名單上。"
+   "note": "2001 年 6 月的大眾官網列出，同年 12 月已不在名單上。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-st2b",
@@ -1171,7 +1395,14 @@
     91
    ],
    "note": "2001 年底從大眾官網消失後，2004 年 12 月的門市表又列出站前二店，之後的狀況不詳。",
-   "geo": "台北市中正區許昌街28號"
+   "geo": "台北市中正區許昌街28號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-gg",
@@ -1189,7 +1420,14 @@
     110
    ],
    "note": "2000 年《秘密基地》與 2001–2004 年大眾官網都有列；2005 年 10 月的大眾門市表在台北市只剩台大與許昌，公館店應在這之前結束。這個地址後來是光南大批發公館店。",
-   "geo": "台北市中正區羅斯福路四段114號"
+   "geo": "台北市中正區羅斯福路四段114號",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-sl",
@@ -1204,7 +1442,14 @@
     91,
     110
    ],
-   "note": "士林夜市旁，營業到凌晨一點；2004 年 12 月的大眾官網仍列出，2005 年 10 月已不在名單上。"
+   "note": "士林夜市旁，營業到凌晨一點；2004 年 12 月的大眾官網仍列出，2005 年 10 月已不在名單上。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "tachung-xm",
@@ -1218,7 +1463,14 @@
    "src": [
     91
    ],
-   "note": "2002 年 10 月與 2003 年初的大眾官網列出，2004 年已不在名單上。"
+   "note": "2002 年 10 月與 2003 年初的大眾官網列出，2004 年已不在名單上。",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "rose-dinghao",
@@ -1235,7 +1487,14 @@
     115
    ],
    "note": "淘兒 2003 年底退出後，玫瑰的忠孝店從忠孝東路四段 209 號搬到頂好這個地址，2005 年 11 月的門市表已在此；2009 年 1 月還在、4 月已無，之後由五大接手。",
-   "prev": "rose-ufo"
+   "prev": "rose-ufo",
+   "logo": {
+    "f": "logos/gmusic.png",
+    "k": "site",
+    "u": "https://www.g-music.com.tw/",
+    "bg": "#fff",
+    "a": 1.168
+   }
   },
   {
    "id": "5music-dinghao",
@@ -1252,7 +1511,14 @@
     66,
     90
    ],
-   "note": "與當年東淘、後來的玫瑰同一地址；五大在 2009–2020 年經營這家門市。"
+   "note": "與當年東淘、後來的玫瑰同一地址；五大在 2009–2020 年經營這家門市。",
+   "logo": {
+    "f": "logos/5music.png",
+    "k": "site",
+    "u": "https://www.5music.com.tw/",
+    "bg": "#fff",
+    "a": 3.814
+   }
   },
   {
    "id": "5music-ximen1",
@@ -1277,6 +1543,13 @@
     "lic": "CC BY 3.0",
     "page": "https://commons.wikimedia.org/wiki/File:Five_Music_Ximen_Store_20080805.jpg",
     "date": "2008"
+   },
+   "logo": {
+    "f": "logos/5music.png",
+    "k": "site",
+    "u": "https://www.5music.com.tw/",
+    "bg": "#fff",
+    "a": 3.814
    }
   },
   {
@@ -1294,7 +1567,14 @@
     90
    ],
    "note": "遷入年依西寧南路店遷出推估；2019 年已在此，2022 年 1 月店面已在招租。",
-   "prev": "5music-ximen1"
+   "prev": "5music-ximen1",
+   "logo": {
+    "f": "logos/5music.png",
+    "k": "site",
+    "u": "https://www.5music.com.tw/",
+    "bg": "#fff",
+    "a": 3.814
+   }
   },
   {
    "id": "5music-xuchang",
@@ -1313,7 +1593,14 @@
     90
    ],
    "note": "2009 年 2 月登記的許昌分公司，2014 年名單稱許昌店；2019 年從兩層縮成一層。2024 年搬到對面南陽街 1 號 2 樓。",
-   "next": "5music-station"
+   "next": "5music-station",
+   "logo": {
+    "f": "logos/5music.png",
+    "k": "site",
+    "u": "https://www.5music.com.tw/",
+    "bg": "#fff",
+    "a": 3.814
+   }
   },
   {
    "id": "5music-station",
@@ -1330,7 +1617,14 @@
     87
    ],
    "note": "2024 年 5 月搬到原址對面的二樓，站前新光三越旁；官網仍以 Xuchang 稱之。目前台北唯一一家五大。",
-   "prev": "5music-xuchang"
+   "prev": "5music-xuchang",
+   "logo": {
+    "f": "logos/5music.png",
+    "k": "site",
+    "u": "https://www.5music.com.tw/",
+    "bg": "#fff",
+    "a": 3.814
+   }
   },
   {
    "id": "chiachia-zhonghua",
@@ -1364,6 +1658,13 @@
     "lic": "CC BY-SA 4.0",
     "page": "https://commons.wikimedia.org/wiki/File:2F_entrance,_Chia_Chia_Record_Zhonghua_Store_20200718.jpg",
     "date": "2020"
+   },
+   "logo": {
+    "f": "logos/chiachia.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 0.854
    }
   },
   {
@@ -1382,7 +1683,14 @@
    ],
    "note": "1998 年開設，2001 年 PTT 商店情報已列出漢口街一段 3 號；2015 年 4 月 1 日搬到同址的地下樓。",
    "en": "Chia Chia Records",
-   "next": "chiachia-hankou"
+   "next": "chiachia-hankou",
+   "logo": {
+    "f": "logos/chiachia.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 0.854
+   }
   },
   {
    "id": "chiachia-hankou",
@@ -1405,7 +1713,14 @@
    ],
    "note": "2015 年 4 月 1 日從一樓搬到同址的地下樓，入口在隔壁樓梯。",
    "en": "Chia Chia Records",
-   "prev": "chiachia-hankou0"
+   "prev": "chiachia-hankou0",
+   "logo": {
+    "f": "logos/chiachia.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 0.854
+   }
   },
   {
    "id": "chiachia-zx",
@@ -1421,7 +1736,14 @@
     61
    ],
    "note": "台北車站地下街誠品捷運商場內；2014 年 6 月改名樂樂唱片。",
-   "next": "lele"
+   "next": "lele",
+   "logo": {
+    "f": "logos/chiachia.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 0.854
+   }
   },
   {
    "id": "lele",
@@ -1437,7 +1759,7 @@
     83,
     66
    ],
-   "note": "佳佳忠孝店 2014 年 6 月改名而來，2015 年 7 月清倉特賣，之後應已結束。2014 年名單寫作 50 號 2 樓，可能與佳佳站前店混淆。",
+   "note": "佳佳忠孝店 2014 年 6 月改名而來，2015 年 7 月清倉特賣，之後應已歇業。2014 年名單寫作 50 號 2 樓，可能與佳佳站前店混淆。",
    "prev": "chiachia-zx"
   },
   {
@@ -1453,7 +1775,14 @@
     17,
     123
    ],
-   "note": "原本開在新光三越前的站前地下街，後來搬到五鐵秋葉原樓上，不久就結束；搬遷年份與新店樓層不詳，地圖只標地下街的位置。"
+   "note": "原本開在新光三越前的站前地下街，後來搬到五鐵秋葉原樓上，不久就結束；搬遷年份與新店樓層不詳，地圖只標地下街的位置。",
+   "logo": {
+    "f": "logos/chiachia.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 0.854
+   }
   },
   {
    "id": "eslite-ntu",
@@ -1471,7 +1800,14 @@
    "note": "誠品第一家音樂館，1999 年底開幕，約 2002 年移到敦南。地址以誠品台大店標示。",
    "en": "Eslite",
    "geo": "台北市大安區新生南路三段98號",
-   "next": "eslite-dunnan"
+   "next": "eslite-dunnan",
+   "logo": {
+    "f": "logos/eslite.png",
+    "k": "site",
+    "u": "https://www.eslite.com/",
+    "bg": "#fff",
+    "a": 1.357
+   }
   },
   {
    "id": "eslite-dunnan",
@@ -1489,9 +1825,16 @@
     66,
     90
    ],
-   "note": "約 2002 年由台大移來；敦南店 2020 年 5 月 31 日熄燈。",
+   "note": "約 2002 年由台大移來；敦南店 2020 年 5 月 31 日歇業。",
    "en": "Eslite",
-   "prev": "eslite-ntu"
+   "prev": "eslite-ntu",
+   "logo": {
+    "f": "logos/eslite.png",
+    "k": "site",
+    "u": "https://www.eslite.com/",
+    "bg": "#fff",
+    "a": 1.357
+   }
   },
   {
    "id": "eslite-xinyi",
@@ -1509,8 +1852,15 @@
     66,
     90
    ],
-   "note": "誠品信義店 2006 年 1 月 1 日開幕，2023 年 12 月 24 日熄燈。",
-   "en": "Eslite"
+   "note": "誠品信義店 2006 年 1 月 1 日開幕，2023 年 12 月 24 日歇業。",
+   "en": "Eslite",
+   "logo": {
+    "f": "logos/eslite.png",
+    "k": "site",
+    "u": "https://www.eslite.com/",
+    "bg": "#fff",
+    "a": 1.357
+   }
   },
   {
    "id": "eslite-songyan",
@@ -1528,8 +1878,15 @@
     37,
     90
    ],
-   "note": "2014 年名單已列出松菸黑膠館；誠品信義店收掉後，2024 年 1 月這裡改為 24 小時音樂館，賣黑膠、CD 與唱盤。",
-   "en": "Eslite"
+   "note": "2014 年名單已列出松菸黑膠館；誠品信義店歇業後，2024 年 1 月這裡改為 24 小時音樂館，賣黑膠、CD 與唱盤。",
+   "en": "Eslite",
+   "logo": {
+    "f": "logos/eslite.png",
+    "k": "site",
+    "u": "https://www.eslite.com/",
+    "bg": "#fff",
+    "a": 1.357
+   }
   },
   {
    "id": "knn-xuchang0",
@@ -1556,6 +1913,13 @@
     "lic": "CC BY-SA 4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Kuang_Nan_Fashion_Shop_Taipei_Xuchang_Store_20210906.jpg",
     "date": "2021"
+   },
+   "logo": {
+    "f": "logos/knn.png",
+    "k": "site",
+    "u": "https://www.knn.com.tw/",
+    "bg": "#fff",
+    "a": 1.127
    }
   },
   {
@@ -1571,7 +1935,14 @@
     104
    ],
    "note": "與當年大眾唱片公館店同一個地址；2014 年的門市清單已列出。",
-   "geo": "台北市中正區羅斯福路四段114號"
+   "geo": "台北市中正區羅斯福路四段114號",
+   "logo": {
+    "f": "logos/knn.png",
+    "k": "site",
+    "u": "https://www.knn.com.tw/",
+    "bg": "#fff",
+    "a": 1.127
+   }
   },
   {
    "id": "knn-xuchang",
@@ -1592,6 +1963,13 @@
     "lic": "CC BY-SA 4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Kuang_Nan_Fashion_Shop_Taipei_Xuchang_Store_20241208.jpg",
     "date": "2024"
+   },
+   "logo": {
+    "f": "logos/knn.png",
+    "k": "site",
+    "u": "https://www.knn.com.tw/",
+    "bg": "#fff",
+    "a": 1.127
    }
   },
   {
@@ -1610,7 +1988,14 @@
     123
    ],
    "note": "三創生活園區 5 樓的黑膠區，2026 年結束營業。",
-   "geo": "台北市中正區市民大道三段2號"
+   "geo": "台北市中正區市民大道三段2號",
+   "logo": {
+    "f": "logos/syntrend.png",
+    "k": "web",
+    "u": "",
+    "bg": "#fff",
+    "a": 2.404
+   }
   },
   {
    "id": "shangyang",
@@ -1635,6 +2020,13 @@
     "lic": "CC BY-SA 4.0",
     "page": "https://commons.wikimedia.org/wiki/File:Sunrise_Records_HQ_20150815.jpg",
     "date": "2015"
+   },
+   "logo": {
+    "f": "logos/shangyang.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.808
    }
   },
   {
@@ -1655,13 +2047,42 @@
     57,
     117
    ],
-   "note": "以日本進口唱片為主的老店。1996 年《音樂時代》名單登記的地址是武昌街二段 47 號。",
+   "note": "以日本進口唱片為主的老店，原本是漢口街巷弄裡的小店，也是重金屬迷代訂進口 CD 的去處。約 1997 年另開較大的分店，見「九五樂府（武昌街）」。",
    "photo": {
     "f": "photos/95.jpg",
     "by": "Solomon203",
     "lic": "CC BY-SA 4.0",
     "page": "https://commons.wikimedia.org/wiki/File:95Music_Zone_HQ_open_20220918.jpg",
     "date": "2022"
+   },
+   "logo": {
+    "f": "logos/95.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 2.462
+   }
+  },
+  {
+   "id": "95-wuchang",
+   "n": "九五樂府（武昌街）",
+   "t": "indie",
+   "a": "台北市萬華區武昌街二段47號",
+   "y0": 1996,
+   "y0q": "b",
+   "y1": 2000,
+   "y1q": "u",
+   "src": [
+    117,
+    57
+   ],
+   "note": "2000 年《秘密基地》寫九五約 1997 年在西寧南路附近開了一家面積較大的分店，滿是日本 CD 與周邊，也保留一面重金屬架。1996 年《音樂時代》名單上九五登記在武昌街二段 47 號，就在西寧南路旁，推測是同一家店；歇業年不詳。",
+   "logo": {
+    "f": "logos/95.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 2.462
    }
   },
   {
@@ -1681,10 +2102,17 @@
     66,
     90
    ],
-   "note": "2007 年 7 月從東區搬來（PTT 古典音樂板 2007 年 5 月的貼文預告）；2021 年 2 月 9 日在此營業到最後一天，3 月 2 日搬到光復北路。",
+   "note": "2007 年 7 月由東區搬遷至此（PTT 古典音樂板 2007 年 5 月的貼文預告）；2021 年 2 月 9 日在此營業到最後一天，3 月 2 日搬到光復北路。",
    "en": "RK Record",
    "prev": "rk0",
-   "next": "rk2"
+   "next": "rk2",
+   "logo": {
+    "f": "logos/rk.png",
+    "k": "site",
+    "u": "https://www.rkrecord.com.tw/",
+    "bg": "#cacbcc",
+    "a": 3.8
+   }
   },
   {
    "id": "rk0",
@@ -1703,7 +2131,14 @@
    ],
    "note": "1994 年 7 月開在明曜百貨後面的巷子裡，店名從巴洛克、洛克演變成駱克；老闆原本想開的是音樂圖書館。開店三年後開始賣二手卡帶與 CD。1996 年《音樂時代》名單列在這個地址，2007 年 7 月搬到南京東路五段。",
    "en": "RK Record",
-   "next": "rk"
+   "next": "rk",
+   "logo": {
+    "f": "logos/rk.png",
+    "k": "site",
+    "u": "https://www.rkrecord.com.tw/",
+    "bg": "#cacbcc",
+    "a": 3.8
+   }
   },
   {
    "id": "rk2",
@@ -1722,7 +2157,14 @@
    "note": "2021 年 3 月 2 日在新址開幕。",
    "en": "RK Record",
    "geo": "台北市松山區光復北路85巷21號",
-   "prev": "rk"
+   "prev": "rk",
+   "logo": {
+    "f": "logos/rk.png",
+    "k": "site",
+    "u": "https://www.rkrecord.com.tw/",
+    "bg": "#cacbcc",
+    "a": 3.8
+   }
   },
   {
    "id": "indimusic",
@@ -1743,7 +2185,14 @@
     57
    ],
    "note": "二手黑膠與 CD，偏重金屬與硬式搖滾。約 1996 年起家，前幾年在新生南路，約 2001 年起在現址；各報導年資說法不一。",
-   "en": "Indimusic Records"
+   "en": "Indimusic Records",
+   "logo": {
+    "f": "logos/indimusic.png",
+    "k": "web",
+    "u": "",
+    "bg": "#000",
+    "a": 1.594
+   }
   },
   {
    "id": "hoyou",
@@ -1764,7 +2213,14 @@
     117
    ],
    "note": "光華商圈的老唱片店，公司 1994 年登記。1996 年《音樂時代》名單上合友在民生東路五段，這個地址當時列的是「學友 B」；2000 年《秘密基地》已把合友列在光華商圈。CD、DVD 與不少黑膠。",
-   "prev": "hoyou0"
+   "prev": "hoyou0",
+   "logo": {
+    "f": "logos/hoyou.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.412
+   }
   },
   {
    "id": "hoyou0",
@@ -1779,7 +2235,14 @@
     117
    ],
    "note": "1996 年《音樂時代》名單上的地址；2000 年已在光華商圈。",
-   "next": "hoyou"
+   "next": "hoyou",
+   "logo": {
+    "f": "logos/hoyou.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.412
+   }
   },
   {
    "id": "aile1",
@@ -1796,7 +2259,14 @@
     66,
     90
    ],
-   "note": "二手唱片，CD 庫存多。"
+   "note": "二手唱片，CD 庫存多。",
+   "logo": {
+    "f": "logos/aile.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#f5f5f7",
+    "a": 1.017
+   }
   },
   {
    "id": "aile2",
@@ -1809,7 +2279,14 @@
    "y1q": null,
    "src": [
     7
-   ]
+   ],
+   "logo": {
+    "f": "logos/aile.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#f5f5f7",
+    "a": 1.017
+   }
   },
   {
    "id": "qiyuan1",
@@ -1825,7 +2302,14 @@
     57,
     94
    ],
-   "note": "二手 CD 兼黑膠與音響器材；2004 年仍在重慶南路，2014 年名單已在林森北路。"
+   "note": "二手 CD 兼黑膠與音響器材；2004 年仍在重慶南路，2014 年名單已在林森北路。",
+   "logo": {
+    "f": "logos/qiyuan.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#7cc242",
+    "a": 1.644
+   }
   },
   {
    "id": "qiyuan2",
@@ -1841,7 +2325,14 @@
     12,
     66,
     90
-   ]
+   ],
+   "logo": {
+    "f": "logos/qiyuan.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#7cc242",
+    "a": 1.644
+   }
   },
   {
    "id": "zelong0",
@@ -1987,7 +2478,14 @@
     90
    ],
    "note": "二手 CD、卡帶與黑膠。",
-   "next": "mollie2"
+   "next": "mollie2",
+   "logo": {
+    "f": "logos/mollie.png",
+    "k": "web",
+    "u": "",
+    "bg": "#000",
+    "a": 1.005
+   }
   },
   {
    "id": "regen-gg",
@@ -2004,7 +2502,14 @@
     90,
     57
    ],
-   "note": "二手 CD、特價 CD 與影碟；2000 年《秘密基地》已列為公館唱片行之一。"
+   "note": "二手 CD、特價 CD 與影碟；2000 年《秘密基地》已列為公館唱片行之一。",
+   "logo": {
+    "f": "logos/regen.png",
+    "k": "site",
+    "u": "https://www.shshop.me/",
+    "bg": "#fff",
+    "a": 2.333
+   }
   },
   {
    "id": "mondian",
@@ -2019,6 +2524,21 @@
     17,
     57
    ]
+  },
+  {
+   "id": "mondian2",
+   "n": "蒙得你安唱片 Mondrian Vinyls",
+   "t": "indie",
+   "a": "台北市松山區八德路三段74巷（門牌不詳）",
+   "y0": 2026,
+   "y0q": "b",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    125
+   ],
+   "note": "Google 地圖上營業中的黑膠店，標示「個人深度黑膠聆聽體驗」，位在 Soil 咖啡樓下。店名與 2000 年代東區的蒙得你安二手唱片相同，是否為同一家、何時開業都不詳，因此分開列出；位置依 Google 地圖標示。",
+   "geo": "台北市松山區八德路三段74巷94號"
   },
   {
    "id": "btb",
@@ -2037,7 +2557,14 @@
     90
    ],
    "note": "以 2000 年前的音樂為主，CD、黑膠與卡帶；2024 年 4 月 30 日結束實體店。",
-   "en": "BTB Music Workshop"
+   "en": "BTB Music Workshop",
+   "logo": {
+    "f": "logos/btb.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 1.021
+   }
   },
   {
    "id": "species",
@@ -2085,7 +2612,14 @@
     7,
     90
    ],
-   "note": "金屬樂周邊與唱片。"
+   "note": "金屬樂周邊與唱片。",
+   "logo": {
+    "f": "logos/pubmetal.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 2.202
+   }
   },
   {
    "id": "wabbit-wall",
@@ -2101,7 +2635,14 @@
     28
    ],
    "note": "1999 年在光華商場的「聖界」起家，約 2003 年起設在 The Wall 展演空間內，2012 年 1 月結束。",
-   "en": "White Wabbit Records"
+   "en": "White Wabbit Records",
+   "logo": {
+    "f": "logos/wabbit.png",
+    "k": "site",
+    "u": "https://wwr.com.tw/",
+    "bg": "#fff",
+    "a": 0.681
+   }
   },
   {
    "id": "wabbit",
@@ -2123,7 +2664,14 @@
     90
    ],
    "note": "2009 年 7 月開的師大店，現在是小白兔唯一的門市，兼營獨立音樂廠牌與代理。",
-   "en": "White Wabbit Records"
+   "en": "White Wabbit Records",
+   "logo": {
+    "f": "logos/wabbit.png",
+    "k": "site",
+    "u": "https://wwr.com.tw/",
+    "bg": "#fff",
+    "a": 0.681
+   }
   },
   {
    "id": "mam",
@@ -2140,7 +2688,14 @@
     66,
     57
    ],
-   "note": "1999 年開業，辦公大樓四樓的電子樂黑膠店；曾停業兩年多。"
+   "note": "1999 年開業，辦公大樓四樓的電子樂黑膠店；曾停業兩年多。",
+   "logo": {
+    "f": "logos/mam.png",
+    "k": "site",
+    "u": "https://www.mmrecords.com.tw/",
+    "bg": "#141414",
+    "a": 1.308
+   }
   },
   {
    "id": "mam2",
@@ -2156,7 +2711,14 @@
     0,
     90
    ],
-   "note": "停業兩年多後 2019 年在原址重新開幕，賣電子、搖滾與 Hip Hop 黑膠。"
+   "note": "停業兩年多後 2019 年在原址重新開幕，賣電子、搖滾與 Hip Hop 黑膠。",
+   "logo": {
+    "f": "logos/mam.png",
+    "k": "site",
+    "u": "https://www.mmrecords.com.tw/",
+    "bg": "#141414",
+    "a": 1.308
+   }
   },
   {
    "id": "tht1",
@@ -2176,7 +2738,14 @@
    ],
    "note": "黑膠唱片行兼咖啡與酒吧；2024 年 6 月搬到松山。",
    "en": "THT Records",
-   "next": "tht2"
+   "next": "tht2",
+   "logo": {
+    "f": "logos/tht.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 1.0
+   }
   },
   {
    "id": "tht-room25",
@@ -2190,7 +2759,14 @@
    "src": [
     22
    ],
-   "en": "THT Records"
+   "en": "THT Records",
+   "logo": {
+    "f": "logos/tht.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 1.0
+   }
   },
   {
    "id": "tht2",
@@ -2206,7 +2782,14 @@
    ],
    "note": "2024 年 6 月底開幕。",
    "en": "THT Records",
-   "prev": "tht1"
+   "prev": "tht1",
+   "logo": {
+    "f": "logos/tht.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 1.0
+   }
   },
   {
    "id": "waiting0",
@@ -2222,7 +2805,14 @@
    ],
    "note": "第一家店開在泰順街公寓二樓，門牌不詳，地圖上標在泰順街中段。",
    "geo": "台北市大安區泰順街40號",
-   "next": "waiting"
+   "next": "waiting",
+   "logo": {
+    "f": "logos/waiting.png",
+    "k": "web",
+    "u": "",
+    "bg": "#fff",
+    "a": 3.41
+   }
   },
   {
    "id": "waiting",
@@ -2239,7 +2829,14 @@
     7
    ],
    "note": "2015 年搬到中山。新品黑膠、獨立音樂與爵士，兼賣服飾與藝術書。",
-   "prev": "waiting0"
+   "prev": "waiting0",
+   "logo": {
+    "f": "logos/waiting.png",
+    "k": "web",
+    "u": "",
+    "bg": "#fff",
+    "a": 3.41
+   }
   },
   {
    "id": "agoodday",
@@ -2255,8 +2852,15 @@
     6,
     23
    ],
-   "note": "風和日麗唱片的直營店，2019 年 12 月 1 日熄燈。",
-   "en": "A Good Day Records"
+   "note": "風和日麗唱片的直營店，2019 年 12 月 1 日歇業。",
+   "en": "A Good Day Records",
+   "logo": {
+    "f": "logos/agoodday.png",
+    "k": "web",
+    "u": "",
+    "bg": "#29a8e0",
+    "a": 0.629
+   }
   },
   {
    "id": "vinyldecision1",
@@ -2275,7 +2879,14 @@
     90
    ],
    "note": "2014 年 3 月在六張犁附近開店的黑膠咖啡，後來搬到華山。",
-   "next": "vinyldecision2"
+   "next": "vinyldecision2",
+   "logo": {
+    "f": "logos/vinyldecision.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f3eee2",
+    "a": 1.004
+   }
   },
   {
    "id": "vinyldecision2",
@@ -2293,7 +2904,14 @@
    ],
    "note": "2021 年底在華山快閃，之後進駐紅磚區。",
    "geo": "台北市中正區八德路一段1號",
-   "prev": "vinyldecision1"
+   "prev": "vinyldecision1",
+   "logo": {
+    "f": "logos/vinyldecision.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f3eee2",
+    "a": 1.004
+   }
   },
   {
    "id": "2manyminds0",
@@ -2310,7 +2928,14 @@
     66
    ],
    "note": "DJ Spykee 開的初代店，日本音樂、電影、雜誌與樂團 T 恤。2014 年 11 月仍在瑞安街。",
-   "next": "2manyminds"
+   "next": "2manyminds",
+   "logo": {
+    "f": "logos/2manyminds.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.044
+   }
   },
   {
    "id": "2manyminds",
@@ -2326,8 +2951,15 @@
     78,
     4
    ],
-   "note": "The Wall 後方；2016 年 9 月已在此。店主 2018 年底轉任 The Wall 總監，之後收店。",
-   "prev": "2manyminds0"
+   "note": "The Wall 後方；2016 年 9 月已在此。店主 2018 年底轉任 The Wall 總監，之後歇業。",
+   "prev": "2manyminds0",
+   "logo": {
+    "f": "logos/2manyminds.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.044
+   }
   },
   {
    "id": "beansbeats",
@@ -2344,7 +2976,14 @@
     66,
     90
    ],
-   "note": "2014 年 10 月開幕，美式街頭音樂黑膠。"
+   "note": "2014 年 10 月開幕，美式街頭音樂黑膠。",
+   "logo": {
+    "f": "logos/beansbeats.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#6b3a2e",
+    "a": 0.621
+   }
   },
   {
    "id": "xiaosong1",
@@ -2361,7 +3000,14 @@
     66
    ],
    "note": "二手黑膠，爵士、古典與華語台語老歌。開業年有 1994 與 1997 兩種說法；2014 年還在 79 號，2020 年已在 225 巷，搬遷年不詳。",
-   "next": "xiaosong"
+   "next": "xiaosong",
+   "logo": {
+    "f": "logos/xiaosong.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#1e6b1e",
+    "a": 0.838
+   }
   },
   {
    "id": "xiaosong",
@@ -2379,7 +3025,14 @@
     90
    ],
    "note": "近期營業狀態未證實。",
-   "prev": "xiaosong1"
+   "prev": "xiaosong1",
+   "logo": {
+    "f": "logos/xiaosong.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#1e6b1e",
+    "a": 0.838
+   }
   },
   {
    "id": "analogy",
@@ -2396,7 +3049,14 @@
     90
    ],
    "note": "古典黑膠與音樂沙龍，需預約。",
-   "en": "Classical Palace Society"
+   "en": "Classical Palace Society",
+   "logo": {
+    "f": "logos/analogy.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#e3cfb4",
+    "a": 0.846
+   }
   },
   {
    "id": "blackglue",
@@ -2409,7 +3069,14 @@
    "y1q": null,
    "src": [
     7
-   ]
+   ],
+   "logo": {
+    "f": "logos/blackglue.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.771
+   }
   },
   {
    "id": "soulamazin",
@@ -2423,7 +3090,14 @@
    "src": [
     7,
     90
-   ]
+   ],
+   "logo": {
+    "f": "logos/soulamazin.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#ffe000",
+    "a": 1.571
+   }
   },
   {
    "id": "datao",
@@ -2438,8 +3112,15 @@
     1,
     5
    ],
-   "note": "2022 年 9 月開幕，平均維持三萬多張二手黑膠，號稱全台最大黑膠店。",
-   "en": "DaTao Vinyl"
+   "note": "2022 年 9 月開幕，庫存約三萬多張二手黑膠，號稱全台最大的黑膠店。",
+   "en": "DaTao Vinyl",
+   "logo": {
+    "f": "logos/datao.png",
+    "k": "web",
+    "u": "",
+    "bg": "#f7f7f7",
+    "a": 1.013
+   }
   },
   {
    "id": "slipped",
@@ -2454,7 +3135,14 @@
     21,
     35
    ],
-   "note": "2025 年 8 月 6 日開幕的二手黑膠店，附試聽區與精釀啤酒吧台。"
+   "note": "2025 年 8 月 6 日開幕的二手黑膠店，附試聽區與精釀啤酒吧台。",
+   "logo": {
+    "f": "logos/slipped.png",
+    "k": "web",
+    "u": "",
+    "bg": "#1c4e91",
+    "a": 1.004
+   }
   },
   {
    "id": "avc",
@@ -2468,7 +3156,14 @@
    "src": [
     26
    ],
-   "note": "2026 年開幕的黑膠咖啡廳，販售黑膠與 CD。"
+   "note": "2026 年開幕的黑膠咖啡廳，販售黑膠與 CD。",
+   "logo": {
+    "f": "logos/avc.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 2.077
+   }
   },
   {
    "id": "diyi",
@@ -2477,13 +3172,14 @@
    "a": "台北市大同區保安街88號",
    "y0": 1965,
    "y0q": "e",
-   "y1": 2020,
-   "y1q": "u",
+   "y1": null,
+   "y1q": null,
    "src": [
     52,
-    90
+    90,
+    123
    ],
-   "note": "大稻埕的台語歌謠唱片老店，曾經也是唱片公司，2020 年由第三代經營。"
+   "note": "大稻埕的台語歌謠唱片老店，早年也是唱片公司，現由第三代經營，2026 年仍在營業。"
   },
   {
    "id": "xintianxindi",
@@ -2616,7 +3312,14 @@
     57,
     123
    ],
-   "note": "音響器材兼賣唱片。攝氏三十八度音響唱片有限公司 1989 年設立；當時是否就在這個地址不詳，地圖從最早有紀錄的 2000 年畫起。"
+   "note": "音響器材兼賣唱片。攝氏三十八度音響唱片有限公司 1989 年設立；當時是否就在這個地址不詳，地圖從最早有紀錄的 2000 年畫起。",
+   "logo": {
+    "f": "logos/38c.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#6d1d2e",
+    "a": 1.935
+   }
   },
   {
    "id": "longfeng",
@@ -2651,7 +3354,14 @@
    ],
    "note": "二手黑膠與實驗音樂，也是唱片廠牌。",
    "en": "Senko Issha Records",
-   "next": "senko2"
+   "next": "senko2",
+   "logo": {
+    "f": "logos/senko.png",
+    "k": "web",
+    "u": "",
+    "bg": "#000",
+    "a": 1.905
+   }
   },
   {
    "id": "senko2",
@@ -2668,7 +3378,14 @@
    ],
    "note": "約 2022 年搬到泰順街。",
    "en": "Senko Issha Records",
-   "prev": "senko1"
+   "prev": "senko1",
+   "logo": {
+    "f": "logos/senko.png",
+    "k": "web",
+    "u": "",
+    "bg": "#000",
+    "a": 1.905
+   }
   },
   {
    "id": "sidoli",
@@ -2683,7 +3400,14 @@
     47,
     43
    ],
-   "note": "舊防空洞改成的店，卡帶為主，也有黑膠。"
+   "note": "舊防空洞改成的店，卡帶為主，也有黑膠。",
+   "logo": {
+    "f": "logos/sidoli.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.235
+   }
   },
   {
    "id": "soundsgood",
@@ -2698,7 +3422,14 @@
     46,
     47
    ],
-   "note": "2021 年 11 月開的黑膠與卡帶咖啡，店內可刻錄黑膠。"
+   "note": "2021 年 11 月開的黑膠與卡帶咖啡，店內可刻錄黑膠。",
+   "logo": {
+    "f": "logos/soundsgood.png",
+    "k": "site",
+    "u": "https://soundsgoodtaipei.com.tw/",
+    "bg": "#231f20",
+    "a": 2.272
+   }
   },
   {
    "id": "dalangman",
@@ -2714,7 +3445,14 @@
     43
    ],
    "note": "東京廠牌商店的台北據點，賣黑膠、卡帶與 T 恤。地址來自第三方店家資訊。",
-   "geo": "台北市大安區潮州街102號"
+   "geo": "台北市大安區潮州街102號",
+   "logo": {
+    "f": "logos/dalangman.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.0
+   }
   },
   {
    "id": "chaobar",
@@ -2729,7 +3467,14 @@
     48,
     42
    ],
-   "note": "2024 年 11 月試營運，舊台電建築裡的電子音樂聆聽酒吧兼唱片行。"
+   "note": "2024 年 11 月試營運，舊台電建築裡的電子音樂聆聽酒吧兼唱片行。",
+   "logo": {
+    "f": "logos/chaobar.png",
+    "k": "site",
+    "u": "https://chaobar.com/",
+    "bg": "#fff",
+    "a": 2.581
+   }
   },
   {
    "id": "rotten",
@@ -2744,7 +3489,14 @@
     42,
     41
    ],
-   "note": "日版黑膠與 CD、二手黑膠。"
+   "note": "日版黑膠與 CD、二手黑膠。",
+   "logo": {
+    "f": "logos/rotten.png",
+    "k": "site",
+    "u": "https://www.rottenblues.com/",
+    "bg": "#000",
+    "a": 1.171
+   }
   },
   {
    "id": "candle",
@@ -2759,7 +3511,14 @@
     42,
     41
    ],
-   "note": "東門市場旁，黑膠兼音響，主辦放碟祭。文化部名單另列汀州路二段219號，兩址先後不詳。"
+   "note": "東門市場旁，黑膠兼音響，主辦放碟祭。文化部名單另列汀州路二段219號，兩址先後不詳。",
+   "logo": {
+    "f": "logos/candle.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.821
+   }
   },
   {
    "id": "parstore",
@@ -2774,7 +3533,14 @@
     41,
     90
    ],
-   "note": "選品店，有黑膠、卡帶與 zine。"
+   "note": "選品店，有黑膠、卡帶與 zine。",
+   "logo": {
+    "f": "logos/parstore.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.933
+   }
   },
   {
    "id": "kmonstar-zs",
@@ -2790,7 +3556,14 @@
     64,
     41
    ],
-   "note": "K-MONSTAR 2023 年在赤峰街開出台灣第一家實體店。"
+   "note": "K-MONSTAR 2023 年在赤峰街開出台灣第一家實體店。",
+   "logo": {
+    "f": "logos/kmonstar.png",
+    "k": "site",
+    "u": "https://kmonstar.com/",
+    "bg": "#fff",
+    "a": 1.0
+   }
   },
   {
    "id": "kmonstar-ns",
@@ -2807,7 +3580,14 @@
     41
    ],
    "note": "2024 年 5 月開幕。",
-   "geo": "台北市信義區松智路17號"
+   "geo": "台北市信義區松智路17號",
+   "logo": {
+    "f": "logos/kmonstar.png",
+    "k": "site",
+    "u": "https://kmonstar.com/",
+    "bg": "#fff",
+    "a": 1.0
+   }
   },
   {
    "id": "kmonstar-bf",
@@ -2821,7 +3601,14 @@
    "src": [
     41
    ],
-   "geo": "台北市松山區復興南路一段39號"
+   "geo": "台北市松山區復興南路一段39號",
+   "logo": {
+    "f": "logos/kmonstar.png",
+    "k": "site",
+    "u": "https://kmonstar.com/",
+    "bg": "#fff",
+    "a": 1.0
+   }
   },
   {
    "id": "willmusic1",
@@ -2837,7 +3624,14 @@
     64,
     41
    ],
-   "note": "2017 年起在網路販售進口音樂商品，2024 年 3 月在赤峰街開出第一家實體門市試營運，也有黑膠區。"
+   "note": "2017 年起在網路販售進口音樂商品，2024 年 3 月在赤峰街開出第一家實體門市試營運，也有黑膠區。",
+   "logo": {
+    "f": "logos/willmusic.png",
+    "k": "site",
+    "u": "https://www.willmusic.com.tw/",
+    "bg": "#1d1d1f",
+    "a": 3.429
+   }
   },
   {
    "id": "willmusic2",
@@ -2850,7 +3644,14 @@
    "y1q": null,
    "src": [
     41
-   ]
+   ],
+   "logo": {
+    "f": "logos/willmusic.png",
+    "k": "site",
+    "u": "https://www.willmusic.com.tw/",
+    "bg": "#1d1d1f",
+    "a": 3.429
+   }
   },
   {
    "id": "fairytree1",
@@ -2865,7 +3666,14 @@
     64
    ],
    "note": "之後搬到中山北路，搬遷年不詳。",
-   "next": "fairytree2"
+   "next": "fairytree2",
+   "logo": {
+    "f": "logos/fairytree.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.824
+   }
   },
   {
    "id": "fairytree2",
@@ -2879,7 +3687,14 @@
    "src": [
     41
    ],
-   "prev": "fairytree1"
+   "prev": "fairytree1",
+   "logo": {
+    "f": "logos/fairytree.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.824
+   }
   },
   {
    "id": "ygm",
@@ -2892,7 +3707,14 @@
    "y1q": "u",
    "src": [
     64
-   ]
+   ],
+   "logo": {
+    "f": "logos/ygm.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.458
+   }
   },
   {
    "id": "hanju",
@@ -2905,7 +3727,14 @@
    "y1q": null,
    "src": [
     41
-   ]
+   ],
+   "logo": {
+    "f": "logos/hanju.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.004
+   }
   },
   {
    "id": "koreepop",
@@ -2918,7 +3747,14 @@
    "y1q": null,
    "src": [
     41
-   ]
+   ],
+   "logo": {
+    "f": "logos/koreepop.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.0
+   }
   },
   {
    "id": "allmyday1",
@@ -2931,7 +3767,14 @@
    "y1q": null,
    "src": [
     41
-   ]
+   ],
+   "logo": {
+    "f": "logos/allmyday.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.182
+   }
   },
   {
    "id": "allmyday2",
@@ -2944,7 +3787,14 @@
    "y1q": null,
    "src": [
     41
-   ]
+   ],
+   "logo": {
+    "f": "logos/allmyday.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 1.182
+   }
   },
   {
    "id": "xiaomin",
@@ -2961,7 +3811,14 @@
     66
    ],
    "note": "國家音樂廳一樓的古典 CD／DVD 專賣店，2005 年 3 月開幕，2014 年底結束，之後改在網路與音樂會現場販售。",
-   "geo": "台北市中正區中山南路21-1號"
+   "geo": "台北市中正區中山南路21-1號",
+   "logo": {
+    "f": "logos/xiaomin.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#2a2118",
+    "a": 0.529
+   }
   },
   {
    "id": "cheery",
@@ -2977,7 +3834,14 @@
     66
    ],
    "note": "1986 年起經營的音響代理商，兼賣歐美發燒唱片。",
-   "en": "Cheery Music"
+   "en": "Cheery Music",
+   "logo": {
+    "f": "logos/cheery.png",
+    "k": "site",
+    "u": "https://www.cheerymusic.com/",
+    "bg": "#fff",
+    "a": 2.18
+   }
   },
   {
    "id": "joyaudio",
@@ -2994,7 +3858,14 @@
     67,
     90
    ],
-   "note": "發燒片專門店，LP、CD、SACD、XRCD 與二手 CD；公司 2000 年登記。"
+   "note": "發燒片專門店，LP、CD、SACD、XRCD 與二手 CD；公司 2000 年登記。",
+   "logo": {
+    "f": "logos/joyaudio.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#000",
+    "a": 2.892
+   }
   },
   {
    "id": "windsong",
@@ -3012,7 +3883,14 @@
     90
    ],
    "note": "1989 年創立的古典、世界音樂與歷史錄音進口商，附門市。2014 年名單另列民生西路 16 號 6 樓之 3，關係不詳。",
-   "en": "Windsong"
+   "en": "Windsong",
+   "logo": {
+    "f": "logos/windsong.png",
+    "k": "site",
+    "u": "http://www.windsong.com.tw/",
+    "bg": "#fff",
+    "a": 1.404
+   }
   },
   {
    "id": "republic",
@@ -3095,7 +3973,14 @@
     84,
     90
    ],
-   "note": "二手 CD 起家的連鎖二手店；2023 年仍在許昌街，後來搬到新北永和。"
+   "note": "二手 CD 起家的連鎖二手店；2023 年仍在許昌街，後來搬到新北永和。",
+   "logo": {
+    "f": "logos/regen.png",
+    "k": "site",
+    "u": "https://www.shshop.me/",
+    "bg": "#fff",
+    "a": 2.333
+   }
   },
   {
    "id": "taiwane",
@@ -3111,7 +3996,14 @@
     66,
     90
    ],
-   "note": "以台灣研究書籍為主，兼賣台語與原住民音樂 CD；2022 年初租約到期遷出。"
+   "note": "以台灣研究書籍為主，兼賣台語與原住民音樂 CD；2022 年初租約到期遷出。",
+   "logo": {
+    "f": "logos/taiwane.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#d8ecd0",
+    "a": 0.979
+   }
   },
   {
    "id": "thokphai",
@@ -3125,7 +4017,14 @@
    "src": [
     81
    ],
-   "note": "2022 年 5 月 14 日開幕，2024 年 1 月底結束。"
+   "note": "2022 年 5 月 14 日開幕，2024 年 1 月底結束。",
+   "logo": {
+    "f": "logos/thokphai.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#4a1c25",
+    "a": 1.519
+   }
   },
   {
    "id": "seedtoss",
@@ -3140,7 +4039,14 @@
     82,
     66
    ],
-   "note": "與漫畫店 Mangasick 同一個地下室的獨立唱片行，2015 年 6 月宣布結束實體營業。"
+   "note": "與漫畫店 Mangasick 同一個地下室的獨立唱片行，2015 年 6 月宣布結束實體營業。",
+   "logo": {
+    "f": "logos/seedtoss.png",
+    "k": "maker",
+    "u": "",
+    "bg": "#fff",
+    "a": 0.629
+   }
   },
   {
    "id": "agnesb",
@@ -3159,7 +4065,14 @@
     123
    ],
    "note": "agnès b. 全球第二家唱片行，2014 年冬天開幕，營業到 2017 年。",
-   "geo": "台北市信義區松高路16號"
+   "geo": "台北市信義區松高路16號",
+   "logo": {
+    "f": "logos/agnesb.svg",
+    "k": "site",
+    "u": "https://www.agnesb.com/",
+    "bg": "#fff",
+    "a": 3.366
+   }
   },
   {
    "id": "kaeru",
@@ -3174,7 +4087,14 @@
     124,
     123
    ],
-   "note": "中古與全新黑膠、唱盤與音響，以爵士、日本 City Pop、靈魂樂為主。先以網路商店營運，實體店預計 2026 年底開幕；店址為官網的聯絡地址。"
+   "note": "中古與全新黑膠、唱盤與音響，以爵士、日本 City Pop、靈魂樂為主。先以網路商店營運，實體店預計 2026 年底開幕；店址為官網的聯絡地址。",
+   "logo": {
+    "f": "logos/kaeru.png",
+    "k": "site",
+    "u": "https://www.kaerutw.com/",
+    "bg": "#fff",
+    "a": 3.429
+   }
   },
   {
    "id": "play",
@@ -3189,7 +4109,7 @@
     95,
     57
    ],
-   "note": "黃子佼 1998 年 6 月開的唱片行，狹長如走廊，賣港、日、韓 CD、雜誌與周邊；2000 年仍營業，收店年不詳。門牌依頂好名店城位置。",
+   "note": "黃子佼 1998 年 6 月開的唱片行，狹長如走廊，賣港、日、韓 CD、雜誌與周邊；2000 年仍營業，歇業年不詳。門牌依頂好名店城位置。",
    "geo": "台北市大安區忠孝東路四段97號"
   },
   {
@@ -3237,7 +4157,14 @@
    ],
    "note": "2017 年 8 月開幕，有 80 年代主題的黑膠唱片區；2020 年清單仍列出，近況未證實。",
    "en": "Eslite",
-   "geo": "台北市大同區南京西路16號"
+   "geo": "台北市大同區南京西路16號",
+   "logo": {
+    "f": "logos/eslite.png",
+    "k": "site",
+    "u": "https://www.eslite.com/",
+    "bg": "#fff",
+    "a": 1.357
+   }
   },
   {
    "id": "wind-huashan",
@@ -3254,7 +4181,14 @@
    ],
    "note": "風潮唱片 2013 年在華山開的約 65 坪旗艦店；2020 年清單仍列出。",
    "en": "Wind Music",
-   "geo": "台北市中正區八德路一段1號"
+   "geo": "台北市中正區八德路一段1號",
+   "logo": {
+    "f": "logos/wind.png",
+    "k": "site",
+    "u": "https://www.windmusic.com.tw/",
+    "bg": "#fff",
+    "a": 1.106
+   }
   },
   {
    "id": "wind-ntch",
@@ -3270,7 +4204,14 @@
    ],
    "note": "國家音樂廳的駐店；開店年不詳，推測在小閔的古典音樂世界 2014 年底結束之後。",
    "en": "Wind Music",
-   "geo": "台北市中正區中山南路21-1號"
+   "geo": "台北市中正區中山南路21-1號",
+   "logo": {
+    "f": "logos/wind.png",
+    "k": "site",
+    "u": "https://www.windmusic.com.tw/",
+    "bg": "#fff",
+    "a": 1.106
+   }
   },
   {
    "id": "fnac-a9",
@@ -3287,7 +4228,14 @@
    ],
    "note": "2003 年新光三越與 Fnac 合資開設；2020 年清單仍列為唱片行，現在的法雅客已不賣音樂。",
    "en": "FNAC",
-   "geo": "台北市信義區松壽路9號"
+   "geo": "台北市信義區松壽路9號",
+   "logo": {
+    "f": "logos/fnac.svg",
+    "k": "commons",
+    "u": "https://commons.wikimedia.org/wiki/File:Fnac_Logo.svg",
+    "bg": "#fff",
+    "a": 0.969
+   }
   },
   {
    "id": "acdc",
@@ -3308,6 +4256,13 @@
     "y": 1978,
     "q": "e",
     "at": "和平東路"
+   },
+   "logo": {
+    "f": "logos/acdc.png",
+    "k": "site",
+    "u": "https://www.acdc.com.tw/",
+    "bg": "#fff",
+    "a": 1.041
    }
   },
   {
@@ -3337,25 +4292,32 @@
     90
    ],
    "note": "茉莉影音館在 2020 年清單上的地址，搬遷年不詳。",
-   "prev": "mollie"
+   "prev": "mollie",
+   "logo": {
+    "f": "logos/mollie.png",
+    "k": "web",
+    "u": "",
+    "bg": "#000",
+    "a": 1.005
+   }
   }
  ],
  "events": [
   {
    "y": 2000,
-   "t": "羅悅全《秘密基地》把台北唱片行分成四區：東區頂好（東淘、Play 唱片走廊、M@M）、西門町與車站前（西淘、佳佳、大眾、玫瑰、光南）、公館（誠品音樂館、大眾、玫瑰、宇宙城、個體戶）、光華與中山北路（合友、FNAC、傑笙）。T-Wave 5 月開幕。"
+   "t": "羅悅全《秘密基地》把台北唱片行分成四區：東區頂好（東淘、Play 唱片走廊、M@M）、西門町與車站前（西淘、佳佳、九五、ABCD、大眾、玫瑰、光南）、公館（誠品音樂館、大眾、玫瑰、宇宙城、個體戶）、光華與中山北路（光華、合友、FNAC、傑笙）。T-Wave 5 月開幕。"
   },
   {
    "y": 2007,
-   "t": "玫瑰站前（公園路）、民生、公館三家店在這年上半年先後收掉；玫瑰 1987 年就是從公館起家。"
+   "t": "玫瑰站前（公園路）、民生、公館三家店在上半年先後歇業；玫瑰 1987 年正是從公館起家。"
   },
   {
    "y": 2001,
-   "t": "玫瑰唱片官網的門市表顯示，這年玫瑰在台北市有 10 家店：新開許昌、光復、民生、天母，收掉公館 142 號老店與汀州路的音樂 99。大眾唱片則有 6 家。"
+   "t": "玫瑰唱片官網的門市表顯示，這年玫瑰在台北市有 10 家店：許昌、光復、民生三店新開幕，公館 142 號老店與汀州路的音樂 99 歇業。大眾唱片則有 6 家。"
   },
   {
    "y": 2002,
-   "t": "6 月，玫瑰唱片與大眾唱片合併為玫瑰大眾，7 月的官網寫著「全省大眾玫瑰 47 家門市」，全盛期達 52 家。誠品音樂館約在這年從台大移到敦南。"
+   "t": "6 月，玫瑰唱片與大眾唱片合併為玫瑰大眾，7 月的官網寫著「全省大眾玫瑰 47 家門市」，合併後最多時全台有 52 家。誠品音樂館約在這年從台大移到敦南。"
   },
   {
    "y": 2004,
@@ -3363,11 +4325,11 @@
   },
   {
    "y": 2003,
-   "t": "11 月，淘兒唱片退出台灣，頂好、西門、天母、信義四家店結束，曾五折清倉。玫瑰 2002 年 6 月到 2005 年 11 月之間的門市表沒有存檔，這段期間有幾家店的結束時間只能估計。"
+   "t": "11 月，淘兒唱片退出台灣，頂好、西門、天母、信義四家店結束前曾五折清倉。玫瑰 2002 年 6 月到 2005 年 11 月之間的門市表沒有存檔，這段期間有幾家店的結束時間只能估計。"
   },
   {
    "y": 2006,
-   "t": "玫瑰峨嵋店、天母店與特易購三民店在上半年收掉。1 月 29 日光華橋與光華商場拆除，攤商移到臨時商場。"
+   "t": "玫瑰峨嵋店、天母店與特易購三民店在上半年歇業。1 月 29 日光華橋與光華商場拆除，攤商移到臨時商場。"
   },
   {
    "y": 2008,
@@ -3375,23 +4337,23 @@
   },
   {
    "y": 2009,
-   "t": "玫瑰忠孝（頂好）店春天收掉，年底在信義威秀與微風廣場開店。五大唱片接手頂好門市，同一地址先後是淘兒、玫瑰、五大；小白兔 7 月在師大浦城街開店。"
+   "t": "玫瑰忠孝（頂好）店春天歇業，年底在信義威秀與微風廣場開出新店。五大唱片接手頂好門市，同一地址先後是淘兒、玫瑰、五大；小白兔 7 月在師大浦城街開店。"
   },
   {
    "y": 2013,
-   "t": "玫瑰通化店下半年收掉，此後台北市沒有以玫瑰為名的門市。這年的網路唱片店名單補進一批開業年不詳的店（二手店、連鎖分店），曲線上升有一部分來自資料。"
+   "t": "玫瑰通化店下半年歇業，此後台北市沒有以玫瑰為名的門市。這年的網路唱片店名單補進一批開業年不詳的店（二手店、連鎖分店），曲線上升有一部分來自資料。"
   },
   {
    "y": 2011,
-   "t": "玫瑰威秀、微風與加州西門店在 7–10 月間收掉，玫瑰在台北市只剩通化店。"
+   "t": "玫瑰威秀、微風與加州西門店在 7–10 月間歇業，台北市掛玫瑰招牌的只剩通化店。"
   },
   {
    "y": 2012,
-   "t": "大眾唱片台大店年底結束（3 月已傳出消息）；小白兔 The Wall 店也在 1 月收掉。"
+   "t": "1 月小白兔 The Wall 店歇業；大眾唱片台大店 3 月傳出將結束，年底歇業。"
   },
   {
    "y": 2014,
-   "t": "獨立小店密集開張：沒有新歌的唱片行、2manyminds、BEANS & BEATS。"
+   "t": "這年新開幕的店特別多：沒有新歌的唱片行、貳樂號 2manyminds、BEANS & BEATS、Vinyl Decision、先行一車、agnès b. music store、新天新地 2。"
   },
   {
    "y": 2015,
@@ -3399,19 +4361,19 @@
   },
   {
    "y": 2019,
-   "t": "風和日麗唱片行 12 月 1 日熄燈；M@M Records 在原址重新開幕。"
+   "t": "風和日麗唱片行 12 月 1 日歇業；M@M Records 在原址重新開幕。"
   },
   {
    "y": 2016,
-   "t": "玫瑰大眾台中新時代店收店，全台只剩台北的古典館。"
+   "t": "玫瑰大眾台中新時代店歇業後，全台只剩台北的古典館。"
   },
   {
    "y": 2020,
-   "t": "5 月 31 日誠品敦南店熄燈，地下樓的音樂館一起結束。五大頂好店也在這年收掉。"
+   "t": "5 月 31 日誠品敦南店歇業，地下樓的音樂館一起結束；五大頂好店也在這年歇業。"
   },
   {
    "y": 2023,
-   "t": "12 月 24 日誠品信義店熄燈，音樂館隨之結束。K-MONSTAR 在赤峰街開出台灣第一家 K-pop 專輯實體店，之後赤峰街聚集多家韓國流行專輯店。"
+   "t": "12 月 24 日誠品信義店歇業，店內的音樂館隨之結束。K-MONSTAR 在赤峰街開出在台第一家門市，之後赤峰街陸續聚集多家韓國流行專輯店。"
   },
   {
    "y": 2022,
@@ -3419,7 +4381,7 @@
   },
   {
    "y": 2024,
-   "t": "誠品 24 小時音樂館移到松菸；THT 搬到松山擴大為黑膠音樂圖書館；五大搬到南陽街；沒有新歌的唱片行收掉實體店。"
+   "t": "誠品 24 小時音樂館移到松菸；THT 搬到松山擴大為黑膠音樂圖書館；五大搬到南陽街；沒有新歌的唱片行結束實體店。"
   },
   {
    "y": 2025,
@@ -3427,7 +4389,7 @@
   },
   {
    "y": 2026,
-   "t": "玫瑰大眾古典館 11 月 30 日結束營業，玫瑰大眾的實體門市全部收掉。這年的文化部與 Record Store Day 店家名單補進一批開業年不詳的現存店家（含多家韓國流行專輯店），曲線末端上揚有一部分來自資料。"
+   "t": "玫瑰大眾古典館 11 月 30 日結束營業，玫瑰大眾從此不再有實體門市。這年的文化部與 Record Store Day 店家名單補進一批開業年不詳的現存店家（含多家韓國流行專輯店），曲線末端上揚有一部分來自資料。"
   }
  ]
 }

@@ -19,7 +19,7 @@ for bad in ("鄭志鵬", "高雄流行", "高流", "策展"):
 page = re.sub(r"<title>.*?</title>\s*", "", page, count=1)
 page = page.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', "")
 domain = open(os.path.join(DOCS, "CNAME")).read().strip() if os.path.exists(os.path.join(DOCS, "CNAME")) else ""
-desc = "2000 年至今台北市實體唱片行的開店、搬遷與收店：拖曳時間軸，看地圖、店家清單與各商圈聚落跟著變化。"
+desc = "2000 年至今台北市實體唱片行的開店、搬遷與歇業：拖曳時間軸，看地圖、店家清單與各商圈聚落跟著變化。"
 icon = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
         "%3Ccircle cx='16' cy='16' r='15' fill='%23141414'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff5a3c'/%3E"
         "%3Ccircle cx='16' cy='16' r='1.6' fill='%23141414'/%3E%3C/svg%3E")

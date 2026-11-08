@@ -193,6 +193,47 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .shop { cursor: pointer; stroke: var(--ink); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
 .shop.faint { opacity: .45; }
 .shop:focus { outline: none; }
+/* 標誌 mode: shops with a known logo show it in a white badge ringed in the shop-type colour */
+/* 招牌 mode: every shop becomes a small signboard on a pin: its logo, or its name on a plate in the type colour */
+.s .sg { display: none; cursor: pointer; }
+.signs-on .s .sg { display: inline; }
+.signs-on .s path.shop { display: none; }
+.sg:focus { outline: none; }
+.sg .sh { fill: var(--ink); }
+.sg .edge { fill: none; stroke: var(--ink); stroke-width: 1.4px; vector-effect: non-scaling-stroke; }
+/* leader lines: shop-type colour on a light casing so they read against dark logos; pins sit on top */
+.g-stem line { vector-effect: non-scaling-stroke; stroke-linecap: round; transition: opacity .25s; }
+.g-stem line.case { stroke: var(--paper); stroke-width: 5px; }
+.g-stem line.line { stroke-width: 2px; }
+.g-stem g.hot line.case { stroke-width: 8px; }
+.g-stem g.hot line.line { stroke-width: 3.5px; }
+.g-stem.has-hot g:not(.hot) line { opacity: .3; }
+.g-pin circle { stroke: var(--ink); stroke-width: 1.4px; vector-effect: non-scaling-stroke; transition: opacity .25s; }
+.g-pin circle.hot { stroke-width: 2.6px; }
+.g-pin.has-hot circle:not(.hot) { opacity: .45; }
+.g-pin line { vector-effect: non-scaling-stroke; stroke-linecap: round; pointer-events: none; }
+.g-pin line.top-case { stroke: var(--paper); stroke-width: 8px; }
+.g-pin line.top-line { stroke-width: 3.5px; }
+.g-shop.has-hot g.s:not(.hot) .sg { opacity: .3; filter: grayscale(1); transition: opacity .2s, filter .2s; }
+body:not(.signs-on) .g-stem, body:not(.signs-on) .g-pin { display: none; }
+.sg text { font-family: var(--f-round); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.sg.single .edge { stroke-dasharray: 3 2; }
+.sg.on .edge, .sg:focus-visible .edge, .sg:hover .edge { stroke-width: 3px; }
+.sg.faint { opacity: .5; }
+/* the hidden track (after three idle minutes) */
+.fadeg { transition: opacity .9s ease; }
+.ghosting .fadeg { opacity: 0; }
+.ghost path { transition: fill .5s ease, opacity .5s ease; stroke: var(--ink); stroke-width: 1.3px; vector-effect: non-scaling-stroke; }
+.ghost path.gone { fill: #9d968b; opacity: .45; stroke: none; }
+.ghost .glow { fill: #ffd23f; stroke: var(--ink); stroke-width: 1.4px; vector-effect: non-scaling-stroke; transition: opacity .5s ease; }
+.ghostcap { left: 50%; bottom: 14px; transform: translateX(-50%); width: min(560px, calc(100% - 28px)); padding: 10px 16px 11px; display: grid; gap: 3px; text-align: center; pointer-events: none; }
+.ghostcap b { font: 400 18px var(--f-round); }
+.ghostcap .gl { font-size: 14px; color: var(--ink-2); }
+.ghostcap .gnow { font: 600 14px var(--f-mono); min-height: 1.5em; }
+.ghostcap small { font-size: 11.5px; color: var(--muted); }
+.ghosting .mapyear { opacity: 0; }
+.drawer .ph.logo { display: grid; place-items: center; aspect-ratio: 4 / 3; }
+.drawer .ph.logo img { width: 78%; height: 78%; aspect-ratio: auto; object-fit: contain; }
 .shop:focus-visible, .shop.on { stroke-width: 3.2; }
 .ring { fill: #ffd23f; stroke: var(--ink); stroke-width: 1.4; vector-effect: non-scaling-stroke; pointer-events: none; }
 .xmark { stroke: var(--ink); stroke-width: 1.8; vector-effect: non-scaling-stroke; pointer-events: none; }
@@ -474,7 +515,7 @@ td a { color: var(--ink-2); }
       <a class="by22" href="https://www.22cs.xyz/" target="_blank" rel="noopener" aria-label="22 世紀衛星（開啟主站）"><span>by</span><img src="img/22cs.png" alt="22CS" width="105" height="32"></a>
     </div>
     <div class="intro-top">
-      <p class="lede">2000 年至今，台北市實體唱片行的開店、搬遷與收店。拖曳下方時間軸，看連鎖通路退場、獨立唱片行成為主角。</p>
+      <p class="lede">2000 年至今，台北市實體唱片行的開店、搬遷與歇業。拖曳下方時間軸，看連鎖通路陸續退場、獨立唱片行逐漸成為多數。</p>
       <nav class="nav" aria-label="補充資料">
         <a href="#about" data-panel="about">關於這張地圖</a>
         <a href="#sources" data-panel="sources">資料來源</a>
@@ -523,6 +564,7 @@ td a { color: var(--ink-2); }
         <button type="button" id="zCity" aria-pressed="false">全市</button>
         <button type="button" class="zb" id="zIn" aria-label="放大地圖">+</button>
         <button type="button" class="zb" id="zOut" aria-label="縮小地圖">−</button>
+        <button type="button" id="zLogo" aria-pressed="false" title="以店家招牌顯示：有標誌的用標誌，其他寫店名">招牌</button>
         <button type="button" class="legbtn" id="legBtn" aria-expanded="false" aria-controls="key">圖例</button>
       </div>
       <div class="float key" id="key"></div>
@@ -531,6 +573,7 @@ td a { color: var(--ink-2); }
       <div class="float zoomhint sticker" id="zoomHint" aria-hidden="true">按住 Ctrl 或 ⌘ 再捲動，即可縮放地圖</div>
       <aside class="float drawer sticker" id="drawer" aria-label="店家資料" hidden></aside>
       <div class="float mapyear sticker" aria-hidden="true"><span class="ychip" data-yr>2000</span> 年的地圖</div>
+      <div class="float ghostcap sticker" id="ghostCap" aria-live="polite" hidden><b>隱藏曲目</b><span class="gl" id="ghostLead"></span><span class="gnow" id="ghostNow"></span><small>動一下滑鼠或按任意鍵，就回到原本的地圖</small></div>
     </div>
     <aside class="side" aria-label="這一年">
       <section class="listcard sticker" aria-labelledby="listTitle">
@@ -565,21 +608,21 @@ td a { color: var(--ink-2); }
       <button type="button" role="tab" id="t-contribute" data-tab="contribute" aria-controls="p-contribute" aria-selected="false" tabindex="-1" class="hot">提供資料・回報錯誤</button>
     </div>
     <div class="panel notes" id="p-about" role="tabpanel" aria-labelledby="t-about">
-      <p class="intro">這張地圖整理 2000 年至今台北市實體唱片行的店址與營業期間。2003 年淘兒撤出台灣後，連鎖門市一路收縮，2004 年起獨立唱片行成為多數；近年也出現兼營咖啡、酒吧的複合店與韓國流行專輯店，聚落從西門町、台北車站一帶擴散到師大、中山與東區。</p>
+      <p class="intro">這張地圖整理 2000 年至今台北市實體唱片行的店址與營業期間。2003 年淘兒撤出台灣後，連鎖門市一路收縮，2004 年起獨立唱片行成為多數；近年也出現兼營咖啡、酒吧的複合店與韓國流行專輯店。店家原本集中在西門町、台北車站與公館，近年有更多店散布到中山、師大與東區的巷弄。</p>
       <dl class="facts" id="facts"></dl>
       <div class="cols2">
       <section>
         <h3>收錄範圍</h3>
-        <p>台北市十二個行政區內，以販售實體音樂（CD、黑膠、卡帶）為主要業務的店面，涵蓋 2000 年 1 月至 2026 年 11 月；2000 年以前的舊址只寫進該店的沿革，不畫在地圖上。連鎖通路與量販店內的唱片專櫃以門市為單位收錄；單純販售樂譜、音響器材或二手書而兼賣少量唱片的店，原則上不收。資料整理於 2026 年 11 月。</p>
+        <p>台北市十二個行政區內，以販售實體音樂（CD、黑膠、卡帶）為主要業務的店面，涵蓋 2000 年 1 月至 2026 年 11 月；2000 年以前的舊址只寫進該店的沿革，不畫在地圖上。連鎖通路與量販店內的唱片專櫃以門市為單位收錄；以樂譜、音響器材或二手書為主、只兼賣少量唱片的店原則上不收；音響店若長期設有唱片區、在樂迷間以賣唱片知名（如攝氏三十八度、越點），則收錄。資料整理於 2026 年 11 月。</p>
       </section>
 
       <section>
         <h3>店型</h3>
         <dl class="defs">
           <dt>連鎖通路</dt><dd>多家分店共用同一品牌的唱片連鎖與量販通路，如淘兒、玫瑰、大眾、五大、佳佳、誠品音樂館、光南。以消費者看到的品牌為準：佳佳這類各店分開經營、但共用招牌的情形也算連鎖，因為各品牌的經營權歸屬很難逐一查證。</dd>
-          <dt>獨立唱片行</dt><dd>單店或小規模經營的唱片行。賣 CD 或黑膠、新品或二手都歸在這類：多數獨立店本來就兩者都賣，以媒材區分沒有意義。</dd>
+          <dt>獨立唱片行</dt><dd>單店或小規模經營的唱片行。賣 CD 或黑膠、新品或二手都歸在這類：多數獨立店本來就兩者都賣，以媒材區分並不準確。</dd>
           <dt>複合店</dt><dd>唱片行同時經營咖啡、酒吧，或附設展演、聆聽空間，且這是店的主要特色，例如黑膠咖啡、聆聽酒吧。只在資料能證實時才歸入這類。</dd>
-          <dt>韓國流行專輯店</dt><dd>以 K-pop 專輯與周邊為主，多集中在赤峰街一帶；可在圖例中隱藏。</dd>
+          <dt>韓國流行專輯店</dt><dd>以 K-pop 專輯與周邊為主，多集中在赤峰街一帶；點上方的店型標籤可以隱藏。</dd>
         </dl>
       </section>
 
@@ -588,14 +631,14 @@ td a { color: var(--ink-2); }
         <p>時間軸與頁面底色以連鎖與獨立店家數的消長分成兩段：</p>
         <dl class="defs">
           <dt><code>2000–2003</code></dt><dd><b>連鎖通路為主</b>：連鎖門市是家數最多的店型，2001 年達 29 家，獨立唱片行約 21 家。</dd>
-          <dt><code>2004–</code></dt><dd><b>獨立唱片行為主</b>：淘兒 2003 年 11 月撤出台灣，連鎖門市接連收店。2004 年獨立唱片行 25 家、連鎖 21 家，此後每年獨立店都多於連鎖；連鎖在 2026 年剩 9 家。</dd>
+          <dt><code>2004–</code></dt><dd><b>獨立唱片行為主</b>：淘兒 2003 年 11 月撤出台灣，連鎖門市接連歇業。2004 年獨立唱片行 25 家、連鎖 21 家，此後每年獨立店都多於連鎖；連鎖在 2026 年剩 9 家。</dd>
         </dl>
         <p>2004 年以後沒有同樣明確的轉折：複合店 2014 年才出現第一家，到 2026 年有 7 家；韓國流行專輯店 2023 年才出現，家數都還少，因此不另分時期。分界年份依目前的資料劃定，資料補充後可能調整。</p>
       </section>
       <section>
         <h3>年份標記</h3>
         <dl class="defs">
-          <dt><code>2015</code></dt><dd>有明確資料佐證的開店或收店年。</dd>
+          <dt><code>2015</code></dt><dd>有明確資料佐證的開店或歇業年。</dd>
           <dt><code>約2015</code></dt><dd>依前後資料推估的年份，例如 2001 年 2 月門市表上已有的店，推定 2000 年已營業。</dd>
           <dt><code>≤2015</code></dt><dd>最早見於該年的資料，實際開店可能更早。</dd>
           <dt><code>2015後不明</code></dt><dd>最後一次見於該年的資料，之後的狀況不詳；地圖只畫到該年為止。</dd>
@@ -610,16 +653,16 @@ td a { color: var(--ink-2); }
 
       <section>
         <h3>定位與聚落</h3>
-        <p>地址以 ArcGIS 地理編碼服務轉為座標，比對不到門牌時以街道或地標位置代替。「聚落」依各商圈中心點的固定半徑歸類，未落在任何範圍內的店家列為「其他」。底圖為台北市與周邊行政區界。</p>
+        <p>地址以 ArcGIS 地理編碼服務轉為座標，比對不到門牌時以街道或地標位置代替。「聚落」依各商圈中心點的固定半徑歸類，未落在任何範圍內的店家列為「其他」。底圖的行政區界取自政府開放資料，河川、道路與捷運路線取自 OpenStreetMap。</p>
       </section>
 
       <section>
         <h3>已知限制</h3>
         <ul>
-          <li>2002 年 6 月至 2005 年 11 月之間沒有連鎖門市表的封存，這段期間有幾家分店的收店時間只能估計。光南大批發早年的門市清單未能取得。</li>
+          <li>2002 年 6 月至 2005 年 11 月之間沒有連鎖門市表的封存，這段期間有幾家分店的歇業時間只能估計。光南大批發早年的門市清單未能取得。</li>
           <li>2013、2014、2019、2020、2026 年的店家名單一次補進多家開業年不詳的店，店數曲線在這幾年的上升有一部分來自資料本身。</li>
           <li>韓國流行專輯店大多只查得到 2024 年以後的資料。</li>
-          <li>查證後未收錄：HMV 從未在台北開設門市（2013 年僅取得台灣品牌授權）；交叉線、派地、學院、昌彥等 1990 年代名店在 2000 年前已結束；當代樂集、Avant Garden、九五樂府西寧南路店、ABCD、FNAC 站前店、Lounge Lounge 在 2000 年前後確實存在，但查無門牌；光華唱片（1996 年總店在八德路二段 25 號 2 樓）與搖滾萬歲（士林文林路 468 號 2 樓）有地址，但查不到 2000 年後仍營業的紀錄。1996 年《音樂時代》名單上的台北市 48 家中，有 34 家（包括上述的交叉線、派地、光華、搖滾萬歲，以及書店與百貨公司的唱片專櫃）查不到 2000 年後仍營業的紀錄，未收錄。</li>
+          <li>查證後未收錄：HMV 從未在台北開設門市（2013 年僅取得台灣品牌授權）；交叉線、派地、學院、昌彥等 1990 年代名店在 2000 年前已結束；當代樂集、Avant Garden、FNAC 站前店、Lounge Lounge 在 2000 年前後確實存在，但查無門牌（ABCD 同樣查無門牌，因為 2000 年《秘密基地》寫明在西寧南路上，以空心記號標在該路段）；搖滾萬歲（士林文林路 468 號 2 樓）有地址，但查不到 2000 年後仍營業的紀錄。1996 年《音樂時代》名單上的台北市 48 家中，有 33 家（包括上述的交叉線、派地、搖滾萬歲、光華 A 店，以及書店與百貨公司的唱片專櫃）查不到 2000 年後仍營業的紀錄，未收錄。</li>
         </ul>
       </section>
       </div>
@@ -629,11 +672,12 @@ td a { color: var(--ink-2); }
         <h3>主要資料來源</h3>
         <div class="tablewrap" style="margin-top:0"><table class="src"><tbody>
           <tr><td>1996</td><td>《音樂時代》月刊〈全省各大暢銷名店索引〉（宗山提供）：用來確認哪些店在 2000 年以前就已營業，以及它們當時的地址。</td></tr>
-          <tr><td>2000</td><td>羅悅全〈唱片行東西南北中〉，《秘密基地》2000 年 5 月：當年台北唱片行的分區實地普查。</td></tr>
+          <tr><td>2000</td><td>羅悅全〈唱片行東西南北中〉，《秘密基地》2000 年 5 月：分東區、西區、公館與北中區介紹當年的台北唱片行。</td></tr>
           <tr><td>2001–2005</td><td>玫瑰唱片官網門市表（2001-02 至 2002-06，8 個版本）、大眾唱片官網〈各店位址〉（2001–2005），取自網際網路檔案館（Wayback Machine）。</td></tr>
-          <tr><td>2005–2021</td><td>G-Music〈關於玫瑰〉〈關於大眾〉門市表，每季抽取一個封存版本逐一比對（共 68 個版本），連鎖分店的收店時間多可精確到季。</td></tr>
+          <tr><td>2005–2021</td><td>G-Music〈關於玫瑰〉〈關於大眾〉門市表，每季抽取一個封存版本逐一比對（共 68 個版本），連鎖分店的歇業時間多可精確到季。</td></tr>
           <tr><td>2013–2026</td><td>Bitetone 論壇唱片店列表（2013）、「無限期支持實體唱片」粉絲專頁製作的台北唱片行名單（2014）、蔡政忠提供之台灣實體唱片行清單（2020-05）、文化部與 Record Store Day 參與店家名單（2026）。</td></tr>
-          <tr><td>照片</td><td>Wikimedia Commons 上以 CC 授權釋出的店面照片，經縮圖後使用；作者、授權與拍攝年標在各店的資料卡。其餘店家顯示示意插畫。</td></tr>
+          <tr><td>標誌</td><td>地圖「招牌」模式與資料卡上的店家標誌，取自各店或品牌的官方網站、店家公開的社群頁面與網路圖片，部分由製作者提供；淘兒與 FNAC 取自 Wikimedia Commons 的公有領域檔案。標誌是目前找得到的版本，不一定是當年的樣子；沒有標誌的店以店名代替。標誌的權利屬各店家，只用來辨識店家；若店家不希望在此使用，請透過「提供資料・回報錯誤」告訴我們，我們會移除。</td></tr>
+          <tr><td>照片</td><td>Wikimedia Commons 上以 CC 授權釋出的店面照片，經縮圖後使用；作者、授權與拍攝年標在各店的資料卡。沒有照片的店顯示標誌或示意插畫。</td></tr>
           <tr><td>其他</td><td>新聞報導、維基百科、部落格、論壇與店家官網、社群頁面，逐筆列於下方完整來源清單與店家列表。</td></tr>
         </tbody></table></div>
       </section>
@@ -652,7 +696,7 @@ td a { color: var(--ink-2); }
             <option value="zone">聚落</option>
             <option value="type">店型</option>
             <option value="open">開店年份</option>
-            <option value="close">收店年份（營業中在後）</option>
+            <option value="close">歇業年份（營業中在後）</option>
           </select>
         </label>
         <span class="label" id="tcount"></span>
@@ -666,7 +710,7 @@ td a { color: var(--ink-2); }
         <ol>
           <li><div><b>2002–2005 年的玫瑰大眾門市</b><span>玫瑰與大眾合併前後這幾年沒有門市表存檔，許昌店、光復店、西門店等分店的結束時間只能估計。</span></div></li>
           <li><div><b>百貨公司與書店裡的唱片專櫃</b><span>海山、大地之音、新學友、金石堂等的專櫃位置與營業期間，目前多半只出現在單一名單上。</span></div></li>
-          <li><div><b>店家的開店、搬遷與收店年份</b><span>例如士林的搖滾萬歲、元元唱片、光華唱片，以及地圖上標著「≤」或「後不明」的店。</span></div></li>
+          <li><div><b>店家的開店、搬遷與歇業年份</b><span>例如士林的搖滾萬歲、元元唱片、光華唱片，以及地圖上標著「≤」或「後不明」的店。</span></div></li>
           <li><div><b>你自己拍的店面照片</b><span>新的、舊的都好。照片會標註拍攝者，請一併說明是否同意以 CC BY 授權公開。</span></div></li>
         </ol>
       </section>
@@ -689,7 +733,7 @@ td a { color: var(--ink-2); }
               </label>
             </div>
             <label>你認為正確的資訊 <small>必填</small>
-              <textarea id="rfInfo" required placeholder="例如：天母店 1993 年就開了，2006 年春天收掉"></textarea>
+              <textarea id="rfInfo" required placeholder="例如：天母店 1993 年就開了，2006 年春天歇業"></textarea>
             </label>
             <label>資料來源 <small>必填：網址、書刊名稱與頁碼，或「親身經歷」</small>
               <textarea id="rfSrc" required placeholder="例如：《音樂時代》1996 年 5 月號第 586 頁"></textarea>
@@ -820,18 +864,19 @@ const ico = inner => `<svg class="ico" viewBox="-8 -8 16 16" aria-hidden="true">
 keyEl.innerHTML = `<b>圖例</b>` +
   TYPES.map(t => `<span>${ico(`<path d="${shapePath(t.shape, 5)}" style="fill:${color(t.k)}" stroke="#141414" stroke-width="1.4"/>`)}${t.n}</span>`).join("") +
   `<hr>` +
-  `<span>${ico(`<circle r="7" fill="#ffd23f" stroke="#141414" stroke-width="1.3"/><circle r="3.6" fill="#141414"/>`)}黃色底圈：這一年新開</span>` +
-  `<span>${ico(`<path d="M-4.5,-4.5L4.5,4.5M4.5,-4.5L-4.5,4.5" stroke="#141414" stroke-width="2"/>`)}叉號：這一年收店</span>` +
-  `<span>${ico(`<path d="M-6,5L6,-5" stroke="#141414" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="-6" cy="5" r="2" fill="none" stroke="#141414" stroke-width="1.2"/>`)}虛線：這一年搬家，小圈是舊址</span>` +
+  `<span>${ico(`<circle r="7" fill="#ffd23f" stroke="#141414" stroke-width="1.3"/><circle r="3.6" fill="#141414"/>`)}黃色底圈：這一年新開幕</span>` +
+  `<span>${ico(`<path d="M-4.5,-4.5L4.5,4.5M4.5,-4.5L-4.5,4.5" stroke="#141414" stroke-width="2"/>`)}叉號：這一年歇業</span>` +
+  `<span>${ico(`<path d="M-6,5L6,-5" stroke="#141414" stroke-width="1.6" stroke-dasharray="3 2"/><circle cx="-6" cy="5" r="2" fill="none" stroke="#141414" stroke-width="1.2"/>`)}虛線：這一年搬遷，小圈是舊址</span>` +
   `<span>${ico(`<circle r="4.6" fill="#fff7ee" stroke="#141414" stroke-width="1.8"/>`)}空心：只見於當年名單</span>` +
-  `<span>${ico(`<circle r="7" fill="#141414" opacity=".14"/><circle r="4" fill="#141414" opacity=".14"/>`)}灰色暈染：店家密集處</span>`;
+  `<span>${ico(`<circle r="7" fill="#141414" opacity=".14"/><circle r="4" fill="#141414" opacity=".14"/>`)}灰色暈染：店家密集處</span>` +
+  `<span>${ico(`<rect x="-7" y="-5" width="14" height="8" rx="1.5" fill="#ff6a3d" stroke="#141414" stroke-width="1.3"/><circle cx="0" cy="6" r="1.6" fill="#141414"/>`)}招牌模式：有標誌顯示標誌，其餘寫店名，底色是店型</span>`;
 const legBtn = document.getElementById("legBtn");
 legBtn.addEventListener("click", () => { const o = keyEl.classList.toggle("open"); legBtn.setAttribute("aria-expanded", o); });
 
 // two periods, split where independents overtake the chains (see 關於這張地圖 → 兩個時期); each paints the page
 const PHASES = [
   { y0: 2000, y1: 2003, n: "連鎖通路為主", c: "#ff5a3c", d: "連鎖門市是家數最多的店型，2001 年達 29 家" },
-  { y0: 2004, y1: 2026, n: "獨立唱片行為主", c: "#f4b63f", d: "淘兒撤出後連鎖接連收店，2004 年起獨立唱片行多於連鎖" }
+  { y0: 2004, y1: 2026, n: "獨立唱片行為主", c: "#f4b63f", d: "淘兒撤出後連鎖接連歇業，2004 年起獨立唱片行多於連鎖" }
 ];
 const phaseOf = y => PHASES.find(p => y >= p.y0 && y <= p.y1) || PHASES[PHASES.length - 1];
 const ERA = y => phaseOf(y).c;
@@ -846,11 +891,13 @@ const gWater = gRoot.append("g");
 const gRoad = gRoot.append("g");
 const gRail = gRoot.append("g");
 const gEdge = gRoot.append("g");
-const gHeat = gRoot.append("g");
+const gHeat = gRoot.append("g").attr("class", "fadeg");
 const gLabel = gRoot.append("g");
 const gZone = gRoot.append("g");
-const gMove = gRoot.append("g");
-const gShop = gRoot.append("g");
+const gMove = gRoot.append("g").attr("class", "fadeg");
+const gStem = gRoot.append("g").attr("class", "fadeg g-stem");  // 招牌 leader lines, under all boards
+const gShop = gRoot.append("g").attr("class", "fadeg g-shop");
+const gPin = gRoot.append("g").attr("class", "fadeg g-pin");    // exact locations, above all boards
 const tp = { type: "FeatureCollection", features: GEO.features.filter(f => f.properties.tp) };
 let W = 0, H = 0, proj, path, zoom, curK = 1, pxPerKm = 100, selected = null;
 
@@ -894,7 +941,8 @@ function layout() {
   zoom = d3.zoom().scaleExtent([1, 16]).translateExtent([[-W, -H], [2 * W, 2 * H]])
     // the wheel scrolls the page; Ctrl/⌘ + wheel (and trackpad pinch) zooms the map
     .filter(ev => ev.type === "wheel" ? (ev.ctrlKey || ev.metaKey) : (!ev.ctrlKey || ev.type === "touchstart") && !ev.button)
-    .on("zoom", e => { gRoot.attr("transform", e.transform); curK = e.transform.k; sizeMarks(); hideTip(); });
+    .on("zoom", e => { gRoot.attr("transform", e.transform); curK = e.transform.k; sizeMarks(); hideTip(); })
+    .on("end", () => layoutSigns());
   svg.call(zoom).on("dblclick.zoom", null);
 }
 function centerTransform() {
@@ -916,14 +964,105 @@ document.getElementById("zCenter").onclick = () => setView("center");
 document.getElementById("zCity").onclick = () => setView("city");
 document.getElementById("zIn").onclick = () => svg.transition().duration(reduceMotion() ? 0 : 250).call(zoom.scaleBy, 1.6);
 document.getElementById("zOut").onclick = () => svg.transition().duration(reduceMotion() ? 0 : 250).call(zoom.scaleBy, 1 / 1.6);
+// 標誌 toggle: remembered per viewer
+// 招牌 toggle: remembered per viewer
+const signBtn = document.getElementById("zLogo");
+let signsOn = false;
+try { signsOn = localStorage.getItem("rsm-signs") === "1"; } catch (e) { /* per-viewer convenience only */ }
+function syncLogos() { document.body.classList.toggle("signs-on", signsOn); signBtn.setAttribute("aria-pressed", signsOn); if (gShop) { sizeMarks(); layoutSigns(); } }
+signBtn.onclick = () => { signsOn = !signsOn; try { localStorage.setItem("rsm-signs", signsOn ? "1" : "0"); } catch (e) { /* ignore */ } syncLogos(); };
+// a sign's text: the shop name without branch notes in brackets or a trailing branch word
+const SIGN = { chain: ["#2a6fd6", "#fff"], indie: ["#ff6a3d", "#141414"], combo: ["#14a874", "#141414"], kpop: ["#5d6876", "#fff"] };
+function signName(d) {
+  let n = d.n.replace(/（.*?）|\(.*?\)/g, "").split("／")[0].trim();
+  let parts = n.split(/\s+/);
+  // 「陰府門 Pub Metal」→「陰府門」: a Chinese name followed by its English name keeps the Chinese part
+  if (parts.length > 1 && /[\u4e00-\u9fff]/.test(parts[0]) && parts.slice(1).every(w => !/[\u4e00-\u9fff]/.test(w))) { n = parts[0]; parts = [n]; }
+  if (parts.length > 1 && /([店館櫃市]|^\d+)$/.test(parts[parts.length - 1])) n = parts.slice(0, -1).join(" ");
+  return n;
+}
+const ems = s => [...s].reduce((a, c) => a + (/[\u2e80-\u9fff\uff00-\uffef]/.test(c) ? 1 : 0.6), 0);
+syncLogos();
 const zoomHint = document.getElementById("zoomHint");
 let zht;
 svg.on("wheel.hint", ev => { if (ev.ctrlKey || ev.metaKey) return; zoomHint.classList.add("show"); clearTimeout(zht); zht = setTimeout(() => zoomHint.classList.remove("show"), 1400); });
 
+// signboards grow with zoom: small in the city view, ~30px logos / 22px name plates when zoomed into a street
+function signZ(k) { return Math.max(0.6, Math.min(1.25, 0.5 * Math.pow(k, 0.38))); }
+function sizeSigns(k) {
+  const z = signZ(k), u = 1 / k;
+  gShop.selectAll("g.sg").each(function (d) {
+    const g = d3.select(this), H = (d.logo ? 30 : 22) * z, fs = 12.5 * z;
+    const W = d.logo ? H * Math.max(0.62, Math.min(3.4, d.logo.a)) : (ems(d._sign) * fs + 12 * z);
+    d._sw = W; d._sh = H;
+    if (d._ox == null) { d._ox = 0; d._oy = -8 * z; }
+    const x = -W / 2, y = -H, r = 3 * z, ox = d._ox, oy = d._oy;
+    g.select("g.so").attr("transform", `translate(${ox * u},${oy * u})`);
+    g.selectAll("rect.sh").attr("x", (x + 2.2) * u).attr("y", (y + 2.2) * u).attr("width", W * u).attr("height", H * u).attr("rx", r * u);
+    g.selectAll("rect.face, rect.edge").attr("x", x * u).attr("y", y * u).attr("width", W * u).attr("height", H * u).attr("rx", r * u);
+    g.selectAll("image").attr("x", x * u).attr("y", y * u).attr("width", W * u).attr("height", H * u);
+    g.selectAll("text").attr("x", 0).attr("y", (y + H / 2 + 0.5) * u).style("font-size", fs * u + "px");
+    // leader line runs from the pin to the nearest point of the board
+    d._ex = Math.max(ox - W / 2, Math.min(ox + W / 2, 0)); d._ey = Math.max(oy - H, Math.min(oy, 0));
+  });
+  const ds = signsOn ? gShop.selectAll("g.s:not(.out)").data().filter(d => d._sw != null) : [];
+  const st = gStem.selectAll("g").data(ds, d => d.id).join(e => { const g = e.append("g"); g.append("line").attr("class", "case"); g.append("line").attr("class", "line"); return g; });
+  st.select("line.line").style("stroke", d => color(d.t));
+  st.selectAll("line").attr("x1", function () { return this.parentNode.__data__.px; }).attr("y1", function () { return this.parentNode.__data__.py; })
+    .attr("x2", function () { const d = this.parentNode.__data__; return d.px + d._ex * u; }).attr("y2", function () { const d = this.parentNode.__data__; return d.py + d._ey * u; });
+  gPin.selectAll("circle").data(ds, d => d.id).join("circle").attr("cx", d => d.px).attr("cy", d => d.py).attr("r", 3.2 * z * u).style("fill", d => color(d.t));
+  markHot();
+}
+// the shop under the pointer (or the open one) gets a bold line and pin; the other lines step back
+var hotShop = null;  // var: syncLogos() can run before this line on load
+// hovering a sign greys out every other sign and draws its leader line on top, so the whole line shows;
+// an open shop card keeps its line on top too, without greying the rest
+function markHot() {
+  const h = d => d === hotShop || d === selected, any = !!(hotShop || selected);
+  gStem.classed("has-hot", any).selectAll("g").classed("hot", h);
+  gPin.classed("has-hot", any).selectAll("circle").classed("hot", h);
+  gShop.classed("has-hot", !!hotShop && signsOn).selectAll("g.s").classed("hot", d => d === hotShop);
+  const top = signsOn ? (hotShop || selected) : null, u = 1 / curK;
+  const hl = gPin.selectAll("line").data(top && top._ex != null ? [["case", top], ["line", top]] : []).join(e => e.insert("line", "circle"))
+    .attr("class", d => "top-" + d[0]);
+  hl.attr("x1", d => d[1].px).attr("y1", d => d[1].py).attr("x2", d => d[1].px + d[1]._ex * u).attr("y2", d => d[1].py + d[1]._ey * u)
+    .style("stroke", d => d[0] === "line" ? color(d[1].t) : null);
+}
+// declutter: boards that overlap on screen push each other apart (pins stay where the shops are)
+function layoutSigns() {
+  if (!signsOn || !gShop) return;
+  const t = d3.zoomTransform(svg.node()), k = t.k, z = signZ(k), lift = 8 * z, gap = 3;
+  sizeSigns(k);
+  const nodes = [];
+  gShop.selectAll("g.s:not(.out)").each(function (d) {
+    if (d._sw == null) return;
+    const ax = t.applyX(d.px), ay = t.applyY(d.py);
+    d._ox = 0; d._oy = -lift;
+    if (ax < -150 || ax > W + 150 || ay < -150 || ay > H + 150) return;
+    nodes.push({ d, ax, ay, w: d._sw + gap, h: d._sh + gap, x: ax, y: ay - lift - d._sh / 2 });
+  });
+  const N = nodes.length;
+  for (let it = 0; it < 260; it++) {
+    const pull = it < 130 ? 0.05 : 0.012;  // pull back toward the pin, gentler once the boards have spread
+    for (const n of nodes) { n.x += (n.ax - n.x) * pull; n.y += (n.ay - lift - n.h / 2 - n.y) * pull; }
+    for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+      const p = nodes[i], q = nodes[j];
+      let dx = q.x - p.x, dy = q.y - p.y;
+      const ox = (p.w + q.w) / 2 - Math.abs(dx), oy = (p.h + q.h) / 2 - Math.abs(dy);
+      if (ox <= 0 || oy <= 0) continue;
+      if (dx === 0 && dy === 0) dx = (j % 2 ? 1 : -1) * 0.01;  // same address: split sideways
+      if (ox < oy * 1.6) { const s = (dx >= 0 ? 1 : -1) * ox / 2; p.x -= s; q.x += s; }
+      else { const s = (dy >= 0 ? 1 : -1) * oy / 2; p.y -= s; q.y += s; }
+    }
+  }
+  for (const n of nodes) { n.d._ox = n.x - n.ax; n.d._oy = n.y + n.h / 2 - gap / 2 - n.ay; }
+  sizeSigns(k);
+}
 function sizeMarks() {
   const k = curK, m = Math.min(1.6, Math.pow(k, 0.35));
   gShop.selectAll("path.shop").attr("d", d => shapePath(TYPE[d.t].shape, 5.4 / k * m));
-  gShop.selectAll("circle.ring").attr("r", 10 / k * m);
+  gShop.selectAll("circle.ring").attr("r", (signsOn ? 7 : 10) / k * m);
+  if (signsOn) sizeSigns(k);
   gShop.selectAll("path.xmark").attr("d", () => { const a = 4.6 / k * m; return `M${-a},${-a}L${a},${a}M${a},${-a}L${-a},${a}`; });
   gMove.selectAll("line").style("stroke-width", 1.5 / k * m + "px").style("stroke-dasharray", `${4 / k * m},${3 / k * m}`);
   gMove.selectAll("circle").attr("r", 3 / k * m).style("stroke-width", 1.3 / k * m + "px");
@@ -971,13 +1110,14 @@ function openDrawer(s) {
   const h = historyOf(s);
   drawer.innerHTML =
     `<button type="button" class="close" id="dClose" aria-label="關閉店家資料"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5,1.5L10.5,10.5M10.5,1.5L1.5,10.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>` +
-    `<div class="head">${s.photo ? `<button type="button" class="ph" id="dPh" aria-label="放大照片"><img src="${s.photo.f}" alt="${esc(s.n)} 店面照片，${s.photo.date} 年攝"></button>` : `<div class="ph" title="示意插畫">${storefront(s)}</div>`}<span class="chip">${icon(s.t)}${TYPE[s.t].n}</span>` +
+    `<div class="head">${s.photo ? `<button type="button" class="ph" id="dPh" aria-label="放大照片"><img src="${s.photo.f}" alt="${esc(s.n)} 店面照片，${s.photo.date} 年攝"></button>` : s.logo ? `<div class="ph logo" style="background:${s.logo.bg}"><img src="${s.logo.f}" alt="${esc(s.n)} 的標誌"></div>` : `<div class="ph" title="示意插畫">${storefront(s)}</div>`}<span class="chip">${icon(s.t)}${TYPE[s.t].n}</span>` +
     `<h3>${esc(s.n)}</h3>${s.en ? `<div class="en">${esc(s.en)}</div>` : ""}</div>` +
     `<div class="body">` +
     `<dl><dt>地址</dt><dd>${esc(s.a)}</dd>` +
     `<dt>${s.prevS || s.est ? "此址期間" : "營業期間"}</dt><dd class="mono">${yrs(s)}</dd>` +
     (h ? `<dt>沿革</dt><dd>${esc(h)}</dd>` : "") +
     `<dt>聚落</dt><dd>${esc(s.zone)}</dd></dl>` +
+    (!s.photo && s.logo ? `<p class="credit">${logoCredit(s.logo)}，權利屬各店家。</p>` : "") +
     (s.photo ? `<p class="credit">照片：<a href="${s.photo.page}" target="_blank" rel="noopener">${esc(s.photo.by)}</a>，${esc(s.photo.lic)}，${s.photo.date} 年攝，經縮圖（Wikimedia Commons）</p>` : "") +
     (s.note ? `<p class="note">${esc(s.note)}</p>` : "") +
     `<button type="button" class="report" id="dReport">這家店的資料有誤？回報</button>` +
@@ -990,11 +1130,19 @@ function openDrawer(s) {
   const ph = document.getElementById("dPh");
   if (ph) ph.onclick = () => { const b = drawer.classList.toggle("big"); ph.setAttribute("aria-label", b ? "縮小照片" : "放大照片"); };
   writeHash();
-  gShop.selectAll("path.shop").classed("on", d => d === selected);
+  gShop.selectAll("path.shop, g.sg").classed("on", d => d === selected);
+  markHot();
+}
+function logoCredit(l) {
+  if (l.k === "site") return `標誌取自<a href="${l.u}" target="_blank" rel="noopener">官方網站</a>`;
+  if (l.k === "commons") return `標誌取自<a href="${l.u}" target="_blank" rel="noopener">Wikimedia Commons</a>（公有領域）`;
+  if (l.k === "maker") return "標誌由製作者 Brien John 提供";
+  return "標誌取自店家公開的網路圖片";
 }
 function closeDrawer() {
   drawer.hidden = true; selected = null;
-  gShop.selectAll("path.shop").classed("on", false);
+  gShop.selectAll("path.shop, g.sg").classed("on", false);
+  markHot();
   writeHash();
 }
 addEventListener("keydown", e => { if (e.key === "Escape" && !drawer.hidden && document.activeElement !== qEl) closeDrawer(); });
@@ -1019,6 +1167,13 @@ function setChips(y) {
 }
 function showEvent(y) { eventEl.scrollTop = 0; eventEl.innerHTML = EV[y] ? EV[y] : `<span style="color:var(--muted)">這一年沒有記事。</span>`; }
 
+// hover, click and keyboard behave the same on the shape and on the logo badge
+function shopEvents(sel) {
+  sel.on("mouseenter", (ev, d) => { showTip(d, ev); const s = ev.currentTarget.closest("g.s"); if (s && s.parentNode.lastChild !== s) s.parentNode.appendChild(s); hotShop = d; markHot(); }).on("mousemove", (ev, d) => showTip(d, ev))
+    .on("mouseleave", () => { hideTip(); hotShop = null; markHot(); }).on("focus", (ev, d) => showTip(d)).on("blur", hideTip)
+    .on("click", (ev, d) => { ev.stopPropagation(); hideTip(); d === selected ? closeDrawer() : openDrawer(d); })
+    .on("keydown", (ev, d) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openDrawer(d); } });
+}
 // departing map marks get class "out" (CSS fades them) and are removed once the fade is done
 function fadeRemove() { const el = this; clearTimeout(el._rm); el._rm = setTimeout(() => el.remove(), reduceMotion() ? 0 : 760); }
 // the fade-in runs once; dropping the class keeps it from replaying if the node is ever re-inserted
@@ -1068,11 +1223,15 @@ function render() {
       const e = enter.append("g").attr("class", "s enter").call(settle)
         .style("transform", d => d.prevS && d.y0 === year && !booting ? at(d.prevS.px, d.prevS.py) : at(d.px, d.py));
       e.append("circle").attr("class", "ring");
-      e.append("path").attr("class", "shop").attr("tabindex", 0).attr("role", "button")
-        .on("mouseenter", (ev, d) => showTip(d, ev)).on("mousemove", (ev, d) => showTip(d, ev))
-        .on("mouseleave", hideTip).on("focus", (ev, d) => showTip(d)).on("blur", hideTip)
-        .on("click", (ev, d) => { ev.stopPropagation(); hideTip(); d === selected ? closeDrawer() : openDrawer(d); })
-        .on("keydown", (ev, d) => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); openDrawer(d); } });
+      e.append("path").attr("class", "shop").attr("tabindex", 0).attr("role", "button").call(shopEvents);
+      const sg = e.append("g").attr("class", d => "sg" + (d.single ? " single" : "")).attr("tabindex", 0).attr("role", "button").call(shopEvents);
+      sg.each(d => { d._sign = signName(d); });
+      const so = sg.append("g").attr("class", "so");  // the board; the declutter pass moves it, the pin stays put
+      so.append("rect").attr("class", "sh");
+      so.append("rect").attr("class", "face").style("fill", d => d.logo ? d.logo.bg : d.single ? "var(--paper)" : SIGN[d.t][0]);
+      so.filter(d => d.logo).append("image").attr("href", d => d.logo.f).attr("preserveAspectRatio", "xMidYMid meet");
+      so.filter(d => !d.logo).append("text").text(d => d._sign).style("fill", d => d.single ? color(d.t) : SIGN[d.t][1]);
+      so.append("rect").attr("class", "edge");
       e.append("path").attr("class", "xmark");
       return e;
     }, update => update, exit => exit.classed("out", true).each(fadeRemove));
@@ -1081,9 +1240,12 @@ function render() {
   g.style("transform", d => at(d.px, d.py));
   g.select("path.shop").style("fill", d => d.single ? "var(--land)" : color(d.t)).style("stroke", d => d.single ? color(d.t) : null).style("stroke-width", d => d.single ? "2px" : null).attr("aria-label", d => `${d.n}，${d.a}，${yrs(d)}`)
     .classed("faint", d => d.y1 === year && d.y1q !== "u" && !d.nextS).classed("on", d => d === selected);
+  g.select("g.sg").attr("aria-label", d => `${d.n}，${d.a}，${yrs(d)}`)
+    .classed("faint", d => d.y1 === year && d.y1q !== "u" && !d.nextS).classed("on", d => d === selected);
   g.select("circle.ring").style("opacity", d => openedIn(d, year) ? 1 : 0);
   g.select("path.xmark").style("opacity", d => d.y1 === year && d.y1q !== "u" && !d.nextS ? 1 : 0);
   sizeMarks();
+  layoutSigns();
 
   renderChartCursor();
   renderZones();
@@ -1260,13 +1422,13 @@ function renderList(live) {
   const closed = live.filter(s => s.y1 === year && s.y1q !== "u" && !s.nextS).length;
   const moved = live.filter(s => s.prevS && s.y0 === year).length;
   const single = live.filter(s => s.single).length;
-  document.getElementById("listMeta").textContent = `開 ${opened} · 收 ${closed}` + (moved ? ` · 搬 ${moved}` : "") + (single ? ` · 另 ${single} 家只見於這年名單（空心）` : "");
+  document.getElementById("listMeta").textContent = `新開幕 ${opened} · 歇業 ${closed}` + (moved ? ` · 搬遷 ${moved}` : "") + (single ? ` · 另 ${single} 家只見於這年名單（空心）` : "");
   let groups;
   if (groupBy === "type") groups = TYPES.filter(t => visible.has(t.k)).map(t => ({ h: `${icon(t.k)} ${t.n}`, list: live.filter(s => s.t === t.k) })).filter(g => g.list.length);
   else { const gz = d3.group(live, s => s.zone); groups = ZONES.map(z => z.n).concat(["其他"]).filter(z => gz.has(z)).map(z => ({ h: z, list: gz.get(z) })); }
   listEl.innerHTML = groups.map(g => `<div class="grp"><h3>${g.h}　${g.list.length}</h3>` +
     g.list.sort((a, b) => a.y0 - b.y0 || a.n.localeCompare(b.n, "zh-Hant")).map(s => {
-      const pill = s.prevS && s.y0 === year ? `<span class="pill new">搬來</span>` : openedIn(s, year) ? `<span class="pill new">開店</span>` : (s.y1 === year && s.y1q !== "u" && !s.nextS ? `<span class="pill gone">收店</span>` : "");
+      const pill = s.prevS && s.y0 === year ? `<span class="pill new">搬遷</span>` : openedIn(s, year) ? `<span class="pill new">新開幕</span>` : (s.y1 === year && s.y1q !== "u" && !s.nextS ? `<span class="pill gone">歇業</span>` : "");
       return `<button type="button" class="item" data-id="${s.id}">${icon(s.t)}<span class="nm">${esc(s.n)}${pill}</span><span class="yy">${yrs(s)}</span></button>`;
     }).join("") + `</div>`).join("") || `<p class="label">這一年沒有符合篩選的店。</p>`;
 }
@@ -1276,7 +1438,7 @@ listEl.addEventListener("click", e => {
 });
 listEl.addEventListener("mouseover", e => {
   const b = e.target.closest(".item");
-  gShop.selectAll("path.shop").classed("on", d => d === selected || (b && d.id === b.dataset.id));
+  gShop.selectAll("path.shop, g.sg").classed("on", d => d === selected || (b && d.id === b.dataset.id));
 });
 // last year a shop is drawn at this address (a moved shop hands over to its new address)
 const lastYear = s => { let e = s.y1 == null ? Y1 : s.y1; if (s.nextS) e = Math.min(e, s.nextS.y0 - 1); return Math.min(Y1, e); };
@@ -1490,6 +1652,52 @@ tablist.addEventListener("keydown", e => {
   selectTab(n.dataset.tab, true); setHash("#" + n.dataset.tab);
 });
 document.addEventListener("click", e => { const a = e.target.closest("[data-panel]"); if (a) { e.preventDefault(); openPanel(a.dataset.panel); } });
+
+/* ---------- hidden track: after three idle minutes the map shows every address since 2000;
+   the ones that are gone light up one by one, in the order they closed. Any input brings the map back. ---------- */
+const IDLE_MS = 180000;
+let idleT = null, ghost = null;
+const ghostCap = document.getElementById("ghostCap");
+function armIdle() { clearTimeout(idleT); idleT = setTimeout(startGhost, IDLE_MS); }
+function wake() { if (ghost) endGhost(); armIdle(); }
+["pointermove", "pointerdown", "keydown", "wheel", "touchstart", "scroll"].forEach(ev => addEventListener(ev, wake, { passive: true, capture: true }));
+document.addEventListener("visibilitychange", wake);
+function startGhost() {
+  const r = wrap.getBoundingClientRect();
+  if (document.visibilityState !== "visible" || r.bottom < 120 || r.top > innerHeight - 120) return armIdle();
+  stop(); hideTip();
+  const all = S.filter(s => lastYear(s) >= Y0);  // every address drawn at least once, hollow ones included
+  const openNow = s => s.y1 == null && active(s, Y1);
+  const gone = all.filter(s => !openNow(s)).sort((a, b) => lastYear(a) - lastYear(b) || a.y0 - b.y0);
+  const k = curK, m = Math.min(1.6, Math.pow(k, 0.35));
+  const layer = gRoot.append("g").attr("class", "ghost");
+  const g = layer.selectAll("g").data(all.sort((a, b) => a.py - b.py)).join("g").attr("transform", d => `translate(${d.px},${d.py})`);
+  g.append("circle").attr("class", "glow").attr("r", 10 / k * m).style("opacity", 0);
+  g.append("path").attr("d", d => shapePath(TYPE[d.t].shape, 5 / k * m)).attr("class", d => openNow(d) ? "open" : "gone")
+    .style("fill", d => openNow(d) ? color(d.t) : null);
+  document.body.classList.add("ghosting");
+  document.getElementById("ghostLead").textContent = `2000 年以來，這張地圖上出現過 ${all.length} 個店址，其中 ${gone.length} 個已經不在了。`;
+  document.getElementById("ghostNow").textContent = "";
+  ghostCap.hidden = false;
+  ghost = { layer, i: 0, timer: null };
+  if (reduceMotion()) return;
+  let last = null;
+  ghost.timer = setInterval(() => {
+    if (last) { last.select("path").style("fill", null).style("opacity", null); last.select(".glow").style("opacity", 0); }
+    if (ghost.i >= gone.length) { ghost.i = 0; last = null; document.getElementById("ghostNow").textContent = ""; return; }
+    const s = gone[ghost.i++];
+    last = g.filter(d => d === s);
+    last.raise().select("path").style("fill", color(s.t)).style("opacity", 1);
+    last.select(".glow").style("opacity", 1);
+    document.getElementById("ghostNow").textContent = `${s.n}　${yrs(s)}`;
+  }, 650);
+}
+function endGhost() {
+  clearInterval(ghost.timer); ghost.layer.remove(); ghost = null;
+  ghostCap.hidden = true;
+  document.body.classList.remove("ghosting");
+}
+armIdle();
 
 /* ---------- boot ---------- */
 function boot() {

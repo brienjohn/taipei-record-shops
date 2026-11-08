@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>台北唱片行變遷地圖：宣傳圖</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=IBM+Plex+Mono:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@900&display=swap">
+<style>
+/* Social promo images for 台北唱片行變遷地圖. Rendered with headless Chrome by render.sh:
+   ?f=portrait (1080×1350), ?f=story (1080×1920), ?f=wide (1200×630).
+   Same visual language as the site: the two periods' colours split the background, sticker cards. */
+:root {
+  --ink: #141414; --ink-2: #2f2b26; --muted: #645d53;
+  --paper: #fff7ee; --paper-2: #f5eadb; --line: #e2d4bd;
+  --land: #fff7ee; --out: #efe3cf; --water: #bfdfe9; --water-edge: #9ccad9;
+  --road: #ecdfc9; --road-major: #dccdb2; --rail: #b6aa93;
+  --red: #ff5a3c; --mustard: #f4b63f;
+  --s-chain: #2a6fd6; --s-indie: #ff6a3d; --s-combo: #14a874; --s-kpop: #5d6876;
+  --f-display: "Noto Serif TC", serif; --f-round: "Huninn", "Noto Sans TC", sans-serif;
+  --f-body: "Noto Sans TC", sans-serif; --f-mono: "IBM Plex Mono", monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { width: var(--W); height: var(--H); overflow: hidden; font-family: var(--f-body); color: var(--ink);
+  background: linear-gradient(90deg, var(--red) 0 50%, var(--mustard) 50% 100%); }
+.poster { position: relative; width: 100%; height: 100%; display: grid; }
+.sticker { background: var(--paper); border: 4px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); }
+.head { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 18px; }
+.logo { margin: 0; font: 400 var(--logo, 64px)/1 var(--f-round); padding: .16em .28em .13em; transform: rotate(-1.5deg); white-space: nowrap; }
+.by { display: inline-flex; align-items: center; gap: 10px; font: 600 var(--by, 22px) var(--f-mono); transform: rotate(2deg); }
+.by img { height: var(--byh, 50px); border: 3.5px solid var(--ink); border-radius: 11px; box-shadow: 4px 4px 0 var(--ink); display: block; }
+.sub { margin: 0; font: 500 var(--sub, 30px)/1.4 var(--f-body); color: var(--ink); }
+.sub b { font-weight: 700; }
+.maps { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap, 28px); min-height: 0; }
+.map { margin: 0; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border-radius: 22px; min-height: 0; }
+.map figcaption { display: flex; align-items: baseline; gap: 14px; padding: 10px 18px 8px; border-bottom: 3px solid var(--ink); background: var(--paper); }
+.yr { font: 900 var(--yr, 64px)/1 var(--f-display); -webkit-text-stroke: 2.5px var(--ink); paint-order: stroke fill; text-shadow: 3px 3px 0 var(--ink); letter-spacing: -.02em; }
+.ct { font: 400 var(--ct, 26px) var(--f-round); }
+.ct b { font: 600 1.45em var(--f-mono); }
+.map svg { display: block; width: 100%; height: 100%; background: var(--out); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.stat { padding: 12px 14px 12px; display: grid; gap: 2px; border-radius: 16px; border-width: 3px; box-shadow: 4px 4px 0 var(--ink); }
+.stat .nm { display: flex; align-items: center; gap: 8px; font: 400 var(--nm, 21px)/1.25 var(--f-round); }
+.stat .nm svg { width: 20px; height: 20px; flex: none; }
+.stat .nv { font: 600 var(--nv, 34px)/1.15 var(--f-mono); letter-spacing: -.02em; white-space: nowrap; }
+.stat .nv i { font-style: normal; font-weight: 500; color: var(--muted); margin: 0 .12em; }
+.chartcard { padding: 14px 18px 10px; display: grid; grid-template-rows: auto 1fr; gap: 6px; min-height: 0; }
+.chartcard .t { font: 400 22px var(--f-round); display: flex; justify-content: space-between; align-items: baseline; }
+.chartcard .t span { font: 500 16px var(--f-body); color: var(--ink-2); }
+.chartcard svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.url { font: 600 var(--url, 40px) var(--f-mono); background: var(--ink); color: var(--paper); padding: .18em .55em .22em; border-radius: 999px; box-shadow: 5px 5px 0 rgba(20,20,20,.35); letter-spacing: -.01em; }
+.tag { font: 400 var(--tag, 26px)/1.35 var(--f-round); text-align: right; }
+.zl { font: 400 15px var(--f-round); fill: var(--ink); paint-order: stroke; stroke: var(--land); stroke-width: 4px; text-anchor: middle; }
+.axis text { font: 500 15px var(--f-mono); fill: var(--ink-2); }
+.ph text { font: 600 14px var(--f-body); fill: var(--ink); opacity: .8; }
+
+/* ---------- formats ---------- */
+body.portrait { --W: 1080px; --H: 1350px; }
+.portrait .poster { padding: 56px 56px 50px; grid-template-rows: auto auto 1fr auto 200px auto; gap: 26px; }
+body.story { --W: 1080px; --H: 1920px; --logo: 68px; --sub: 32px; --yr: 70px; }
+.story .poster { padding: 230px 56px 250px; grid-template-rows: auto auto 1fr auto 230px auto; gap: 30px; }
+.story .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+body.wide { --W: 1200px; --H: 630px; --logo: 46px; --by: 18px; --byh: 38px; --sub: 22px; --yr: 46px; --ct: 20px; --url: 26px; --gap: 22px; }
+.wide .poster { padding: 30px 36px 30px; grid-template-rows: auto auto 1fr auto; gap: 16px; }
+.wide .head { justify-content: space-between; }
+.wide .stats { gap: 10px; }
+.wide .stat { padding: 7px 12px; grid-template-columns: auto auto; justify-content: space-between; align-items: center; --nm: 17px; --nv: 22px; }
+.wide .stat .nm svg { width: 16px; height: 16px; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="head">
+    <div class="brand"><h1 class="logo sticker">台北唱片行變遷地圖</h1>
+    <span class="by">by <img src="../docs/img/22cs.png" alt="22CS"></span></div>
+    <span class="url wide-url" hidden>records.22cs.xyz</span>
+  </div>
+  <p class="sub" id="sub"></p>
+  <div class="maps">
+    <figure class="map sticker" data-y="2000"><figcaption><span class="yr" style="color:var(--red)">2000</span><span class="ct"><b></b> 家營業中</span></figcaption><svg></svg></figure>
+    <figure class="map sticker" data-y="2026"><figcaption><span class="yr" style="color:var(--mustard)">2026</span><span class="ct"><b></b> 家營業中</span></figcaption><svg></svg></figure>
+  </div>
+  <div class="stats" id="stats"></div>
+  <div class="chartcard sticker" id="chartcard"><div class="t">每年店數<span>依店型堆疊・2000–2026</span></div><svg id="chart"></svg></div>
+  <div class="foot" id="foot"><span class="url">records.22cs.xyz</span><span class="tag">拖曳時間軸，<br>看每一年的唱片行地圖</span></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const DATA = /*DATA*/null;
+const GEO = /*GEO*/null;
+const BASE = /*BASE*/null;
+const F = new URLSearchParams(location.search).get("f") || "portrait";
+document.body.className = F;
+if (F === "wide") {
+  document.getElementById("chartcard").remove();
+  document.getElementById("foot").remove();
+  document.querySelector(".wide-url").hidden = false;
+}
+const Y0 = 2000, Y1 = 2026;
+const TYPES = [
+  { k: "chain", n: "連鎖通路", shape: "square" }, { k: "indie", n: "獨立唱片行", shape: "circle" },
+  { k: "combo", n: "複合店", shape: "diamond" }, { k: "kpop", n: "韓國流行專輯店", shape: "triangle" }
+];
+const S = DATA.stores, BY = Object.fromEntries(S.map(s => [s.id, s]));
+S.forEach(s => { if (s.prev && BY[s.prev]) { s.prevS = BY[s.prev]; BY[s.prev].nextS = s; } });
+S.forEach(s => { s.single = s.y0q === "b" && s.y1q === "u" && s.y0 === s.y1; });
+const active = (s, y) => y >= s.y0 && (s.y1 == null || y <= s.y1) && !(s.nextS && y >= s.nextS.y0);
+const live = y => S.filter(s => !s.single && active(s, y));
+const n = (y, k) => live(y).filter(s => !k || s.t === k).length;
+function shapePath(shape, r) {
+  if (shape === "square") { const a = r * 0.9; return `M${-a},${-a}H${a}V${a}H${-a}Z`; }
+  if (shape === "diamond") { const a = r * 1.25; return `M0,${-a}L${a},0L0,${a}L${-a},0Z`; }
+  if (shape === "triangle") { const a = r * 1.3; return `M0,${-a}L${a * 0.95},${a * 0.7}L${-a * 0.95},${a * 0.7}Z`; }
+  return `M${r},0A${r},${r} 0 1,1 ${-r},0A${r},${r} 0 1,1 ${r},0Z`;
+}
+const TY = Object.fromEntries(TYPES.map(t => [t.k, t]));
+const icon = k => `<svg viewBox="-8 -8 16 16" aria-hidden="true"><path d="${shapePath(TY[k].shape, 5.6)}" fill="var(--s-${k})" stroke="#141414" stroke-width="1.6"/></svg>`;
+
+const addrs = S.filter(s => { let e = s.y1 == null ? Y1 : s.y1; if (s.nextS) e = Math.min(e, s.nextS.y0 - 1); return e >= Y0; }).length;
+document.getElementById("sub").innerHTML = F === "wide"
+  ? `2000 → 2026，台北實體唱片行 <b>${addrs}</b> 個店址的開店、搬遷與歇業`
+  : `2000 → 2026，台北實體唱片行<br><b>${addrs}</b> 個店址的開店、搬遷與歇業`;
+document.getElementById("stats").innerHTML = TYPES.map(t =>
+  `<div class="stat sticker"><span class="nm">${icon(t.k)}${t.n}</span><span class="nv">${n(Y0, t.k)}<i>→</i>${n(Y1, t.k)}</span></div>`).join("");
+
+/* ---------- maps: same projection for both years so they compare ---------- */
+const tp = { type: "FeatureCollection", features: GEO.features.filter(f => f.properties.tp) };
+const core = S.filter(s => s.zone !== "其他" && (active(s, Y0) || active(s, Y1)) && !s.single).map(s => [s.lng, s.lat]);
+document.querySelectorAll(".map").forEach(fig => {
+  const y = +fig.dataset.y, svgEl = fig.querySelector("svg");
+  fig.querySelector(".ct b").textContent = n(y);
+  const W = svgEl.clientWidth, H = svgEl.clientHeight, px = W * 0.11, py = H * 0.09;
+  const proj = d3.geoMercator().fitExtent([[px, py], [W - px, H - py]], { type: "MultiPoint", coordinates: core });
+  const path = d3.geoPath(proj);
+  const line = pts => pts.map((p, i) => (i ? "L" : "M") + proj(p).map(v => v.toFixed(1)).join(",")).join("");
+  const svg = d3.select(svgEl).attr("viewBox", `0 0 ${W} ${H}`);
+  svg.append("g").selectAll("path").data(GEO.features).join("path").attr("d", path)
+    .attr("fill", d => d.properties.tp ? "var(--land)" : "var(--out)").attr("stroke", "var(--line)").attr("stroke-width", 1);
+  svg.append("g").selectAll("path").data(BASE.water).join("path").attr("d", poly => poly.map(r => line(r) + "Z").join(""))
+    .attr("fill", "var(--water)").attr("stroke", "var(--water-edge)").attr("fill-rule", "evenodd");
+  svg.append("path").attr("d", BASE.rivers.map(r => line(r.c)).join("")).attr("fill", "none").attr("stroke", "var(--water-edge)").attr("stroke-width", 2);
+  svg.append("path").attr("d", BASE.roads.primary.map(line).join("")).attr("fill", "none").attr("stroke", "var(--road)").attr("stroke-width", 1.4);
+  svg.append("path").attr("d", BASE.roads.trunk.concat(BASE.roads.motorway).map(line).join("")).attr("fill", "none").attr("stroke", "var(--road-major)").attr("stroke-width", 2.4);
+  svg.append("path").attr("d", BASE.mrt.map(m => m.c.map(line).join("")).join("")).attr("fill", "none").attr("stroke", "var(--rail)").attr("stroke-width", 1.8).attr("stroke-dasharray", "6 4");
+  svg.append("g").selectAll("path").data(tp.features).join("path").attr("d", path).attr("fill", "none").attr("stroke", "var(--line)").attr("stroke-width", 1.5);
+  const L = live(y).map(s => { const [px, py] = proj([s.lng, s.lat]); return { ...s, px, py }; }).filter(d => d.px > -20 && d.px < W + 20 && d.py > -20 && d.py < H + 20);
+  // density haze, like the site
+  const km = Math.abs(proj([121.5, 25.04])[0] - proj([121.51, 25.04])[0]) / 1.009;
+  const dens = d3.contourDensity().x(d => d.px).y(d => d.py).size([W, H]).cellSize(2).bandwidth(Math.max(3, 0.32 * km)).thresholds(6)(L);
+  const maxV = d3.max(dens, d => d.value) || 1;
+  svg.append("g").selectAll("path").data(dens).join("path").attr("d", d3.geoPath()).attr("fill", d => `rgba(20,20,20,${0.04 + 0.1 * d.value / maxV})`);
+  const r = F === "wide" ? 5 : 7;
+  svg.append("g").selectAll("path").data(L.sort((a, b) => a.py - b.py)).join("path")
+    .attr("transform", d => `translate(${d.px},${d.py})`).attr("d", d => shapePath(TY[d.t].shape, r))
+    .attr("fill", d => `var(--s-${d.t})`).attr("stroke", "var(--ink)").attr("stroke-width", 1.8);
+  svg.append("g").selectAll("text").data(DATA.zones.filter(z => z.label)).join("text").attr("class", "zl")
+    .attr("x", z => proj([z.lng, z.lat])[0] + (z.dx || 0)).attr("y", z => proj([z.lng, z.lat])[1] + (z.dy || 0)).text(z => z.n)
+    .style("font-size", F === "wide" ? "12px" : "15px");
+});
+
+/* ---------- stacked count chart with the two periods behind it ---------- */
+const chartEl = document.getElementById("chart");
+if (chartEl) {
+  const W = chartEl.clientWidth, H = chartEl.clientHeight, m = { t: 22, b: 22, l: 2, r: 2 };
+  const years = d3.range(Y0, Y1 + 1);
+  const rows = years.map(y => { const o = { y }; TYPES.forEach(t => o[t.k] = n(y, t.k)); return o; });
+  const x = d3.scaleBand(years, [m.l, W - m.r]).paddingInner(.22);
+  const yS = d3.scaleLinear([0, d3.max(rows, r => d3.sum(TYPES, t => r[t.k]))], [H - m.b, m.t]);
+  const svg = d3.select(chartEl).attr("viewBox", `0 0 ${W} ${H}`);
+  const half = (x.step() - x.bandwidth()) / 2, ph = svg.append("g").attr("class", "ph");
+  [[2000, 2003, "var(--red)", "連鎖通路為主"], [2004, 2026, "var(--mustard)", "獨立唱片行為主"]].forEach(([a, b, c, label]) => {
+    const x0 = x(a) - half, x1 = x(b) + x.bandwidth() + half;
+    ph.append("rect").attr("x", x0).attr("width", x1 - x0).attr("y", 0).attr("height", H - m.b).attr("fill", c).attr("opacity", .28);
+    ph.append("text").attr("x", x0 + 6).attr("y", 15).text(label);
+  });
+  d3.stack().keys(TYPES.map(t => t.k))(rows).forEach(layer => svg.append("g").selectAll("rect").data(layer).join("rect")
+    .attr("x", d => x(d.data.y)).attr("width", x.bandwidth()).attr("y", d => yS(d[1])).attr("height", d => Math.max(0, yS(d[0]) - yS(d[1])))
+    .attr("fill", `var(--s-${layer.key})`));
+  svg.append("g").selectAll("rect").data(rows).join("rect").attr("x", r => x(r.y)).attr("width", x.bandwidth())
+    .attr("y", r => yS(d3.sum(TYPES, t => r[t.k]))).attr("height", r => yS(0) - yS(d3.sum(TYPES, t => r[t.k]))).attr("rx", 2.5)
+    .attr("fill", "none").attr("stroke", "var(--ink)").attr("stroke-width", 1.6);
+  svg.append("g").attr("class", "axis").selectAll("text").data([2000, 2005, 2010, 2015, 2020, 2026]).join("text")
+    .attr("x", y => x(y) + x.bandwidth() / 2).attr("y", H - 3).attr("text-anchor", "middle").text(y => y);
+}
+document.fonts.ready.then(() => { document.title = "ready"; });
+</script>
+</body>
+</html>
