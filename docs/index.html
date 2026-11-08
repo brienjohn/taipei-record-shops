@@ -411,7 +411,9 @@ td a { color: var(--ink-2); }
   .listcard { height: 560px; }
   .event p { height: auto; max-height: 24em; }
 }
-@media (max-width: 1080px) { .trends { grid-template-columns: minmax(0, 1fr); } .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1080px) { .legend { grid-template-columns: repeat(2, minmax(0, 1fr)); } .trend, .zonecard { padding: 14px 14px 16px; } .phases .pd { display: none; } }
+/* the chart and clusters stay side by side (half each) until the window is phone-narrow */
+@media (max-width: 720px) { .trends { grid-template-columns: minmax(0, 1fr); } }
 /* the full shop table becomes one card per shop on narrow screens: no sideways scrolling */
 @media (max-width: 820px) {
   #table, #table tbody, #table tr, #table td { display: block; }
@@ -1144,8 +1146,12 @@ const ctip = document.getElementById("chartTip");
 // the pinned slider's track: decade-coloured segments and a tick per year, centred under the thumb positions
 // period key under the chart title: what each colour means; click jumps to the period's first year
 const phaseKey = document.getElementById("phaseKey");
-phaseKey.innerHTML = PHASES.map(p => `<li><button type="button" data-y="${p.y0}"><span class="sw" style="background:${p.c}"></span><span class="py">${pyr(p)}</span><span><b>${p.n}</b>${p.d}</span></button></li>`).join("");
+phaseKey.innerHTML = PHASES.map(p => `<li><button type="button" data-y="${p.y0}"><span class="sw" style="background:${p.c}"></span><span class="py">${pyr(p)}</span><span><b>${p.n}</b><span class="pd">${p.d}</span></span></button></li>`).join("");
 phaseKey.addEventListener("click", e => { const b = e.target.closest("button[data-y]"); if (b) { stop(); setYear(+b.dataset.y); } });
+// the chart box can change size without a window resize (the cluster card next to it sets the row height)
+const chartStale = () => bx && (chart.node().clientWidth !== cW || chart.node().clientHeight !== cH);
+let chartRT;
+if (window.ResizeObserver) new ResizeObserver(() => { clearTimeout(chartRT); chartRT = setTimeout(() => { if (chartStale()) renderChart(); }, 120); }).observe(chart.node().parentElement);
 function renderSlider() {
   const pc = y => (y - Y0) / (Y1 - Y0) * 100;
   document.getElementById("track").innerHTML = PHASES.map(p => { const a = Math.max(Y0, p.y0 - .5), b = Math.min(Y1, p.y1 + .5); return `<i class="era" title="${p.n}（${pyr(p)}）" style="left:${pc(a)}%;width:${pc(b) - pc(a)}%;background:${p.c}"></i>`; }).join("") +
@@ -1494,6 +1500,7 @@ function boot() {
   renderTable();
   renderFacts();
   render();
+  if (chartStale()) renderChart(); // the row height is only final once the clusters are drawn
   sortMarks();
   readHash();
   booting = false;
@@ -1588,7 +1595,7 @@ function reportShop(s) {
 let rt;
 addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
   const sz = [wrap.clientWidth, wrap.clientHeight, chart.node().clientWidth, chart.node().clientHeight, zoneEl.clientWidth].join(",");
-  if (sz === lastSize) return; lastSize = sz; const v = document.getElementById("zCity").getAttribute("aria-pressed") === "true" ? "city" : "center"; layout(); svg.call(zoom.transform, v === "city" ? d3.zoomIdentity : centerTransform()); renderChart(); render(); sortMarks(); }, 150); });
+  if (sz === lastSize) return; lastSize = sz; const v = document.getElementById("zCity").getAttribute("aria-pressed") === "true" ? "city" : "center"; layout(); svg.call(zoom.transform, v === "city" ? d3.zoomIdentity : centerTransform()); renderChart(); render(); if (chartStale()) renderChart(); sortMarks(); }, 150); });
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => render());
 </script>
 
