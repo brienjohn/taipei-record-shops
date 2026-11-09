@@ -300,6 +300,9 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 .drawer dl { margin: 0; display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 5px 10px; font-size: 13.5px; }
 .drawer dt { color: var(--muted); }
 .drawer dd { margin: 0; }
+.drawer dd a.gmap { color: inherit; text-decoration: underline; text-decoration-color: var(--muted); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.drawer dd a.gmap:hover { text-decoration-color: currentColor; }
+.drawer dd a.gmap .ext { color: var(--muted); font-size: .9em; }
 .drawer dd.mono { font: 13px var(--f-mono); }
 .drawer .note { margin: 0; font-size: 13.5px; color: var(--ink-2); }
 .drawer .sh { font: 600 11px var(--f-mono); letter-spacing: .12em; color: var(--muted); }
@@ -1192,6 +1195,15 @@ function storefront(s) {
     <circle cx="252" cy="134" r="3.5" fill="var(--ink)"/>
   </svg>`;
 }
+// Google Maps: open shops search by name + address (lands on the shop's own listing);
+// closed or moved-away shops search the address only, so Google shows the spot, not another branch
+const gmapQ = a => a.replace(/（[^）]*）/g, "").replace(/(\d+(?:[、，,~～-]\d+)*樓|B\d+|GF|\d+F)$/i, "").trim();
+function addrLink(s) {
+  if (/門牌不詳/.test(s.a)) return esc(s.a);
+  const open = s.y1 == null && active(s, Y1);
+  const q = (open ? s.n.replace(/（[^）]*）/g, "").trim() + " " : "") + gmapQ(s.a);
+  return `<a class="gmap" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}" target="_blank" rel="noopener" aria-label="${esc(s.a)}，在 Google 地圖開啟">${esc(s.a)}<span class="ext" aria-hidden="true"> ↗</span></a>`;
+}
 function openDrawer(s, keepView) {
   selected = s;
   const h = historyOf(s);
@@ -1200,7 +1212,7 @@ function openDrawer(s, keepView) {
     `<div class="head">${s.photo ? `<button type="button" class="ph" id="dPh" aria-label="放大照片"><img src="${s.photo.f}" alt="${esc(s.n)} 店面照片，${s.photo.date} 年攝"></button>` : s.logo ? `<div class="ph logo" style="background:${s.logo.bg}"><img src="${s.logo.f}" alt="${esc(s.n)} 的標誌"></div>` : `<div class="ph" title="示意插畫">${storefront(s)}</div>`}<span class="chip">${icon(s.t)}${TYPE[s.t].n}</span>` +
     `<h3>${esc(s.n)}</h3>${s.en ? `<div class="en">${esc(s.en)}</div>` : ""}</div>` +
     `<div class="body">` +
-    `<dl><dt>地址</dt><dd>${esc(s.a)}</dd>` +
+    `<dl><dt>地址</dt><dd>${addrLink(s)}</dd>` +
     `<dt>${s.prevS || s.est ? "此址期間" : "營業期間"}</dt><dd class="mono">${yrs(s)}</dd>` +
     (h ? `<dt>沿革</dt><dd>${esc(h)}</dd>` : "") +
     `<dt>聚落</dt><dd>${esc(s.zone)}</dd></dl>` +
