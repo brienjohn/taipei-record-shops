@@ -587,6 +587,18 @@
   {
    "t": "蕭玲玲（前玫瑰唱片副總經理、Tower Records 總經理）提供：〈玫瑰唱片各門市開幕日期一覽表〉，資料更新於 2000-10-17",
    "u": ""
+  },
+  {
+   "t": "失戀排行榜 Heartbreak Fidelity Records Facebook 粉絲專頁（2026 年 11 月仍有貼文，參觀需預約）",
+   "u": "https://www.facebook.com/HeartbreakFidelityRecords/"
+  },
+  {
+   "t": "PeoPo 公民新聞（輔大生命力新聞）：永樂座×失戀排行榜 拉近「社交距離」, 2022-05-10",
+   "u": "https://www.peopo.org/news/584243"
+  },
+  {
+   "t": "中央社：獨立書店永楽座頻頻虧損 7/30熄燈, 2024-05-11",
+   "u": "https://www.cna.com.tw/news/acul/202405110119.aspx"
   }
  ],
  "zones": [
@@ -3679,6 +3691,22 @@
     "bg": "#fff",
     "a": 0.821
    }
+  },
+  {
+   "id": "heartbreak",
+   "n": "失戀排行榜 Heartbreak Fidelity Records",
+   "t": "indie",
+   "a": "台北市中山區興安街6-1號",
+   "y0": 2026,
+   "y0q": "b",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    147,
+    148,
+    149
+   ],
+   "note": "2021 年 6 月起與石芳瑜的獨立書店永樂座在師大附近合開「永樂座×失戀排行榜」，約一年後拆夥，之後搬遷，舊址門牌不詳。參觀需事先預約。"
   },
   {
    "id": "parstore",

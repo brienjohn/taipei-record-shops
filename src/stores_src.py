@@ -151,6 +151,9 @@ SOURCES = [
     ("國家兩廳院〈風格店鋪〉，2022-12 封存與 2026-11 現況（已無風潮音樂）", "https://npac-ntch.org/visits/stores"),  # 144
     ("Google 地圖：小宋唱片（2026 年 11 月仍列營業時間，店家回覆近期評論）", "https://maps.app.goo.gl/wsA4KnR5B8EpbrhE7"),  # 145
     ("蕭玲玲（前玫瑰唱片副總經理、Tower Records 總經理）提供：〈玫瑰唱片各門市開幕日期一覽表〉，資料更新於 2000-10-17", ""),  # 146
+    ("失戀排行榜 Heartbreak Fidelity Records Facebook 粉絲專頁（2026 年 11 月仍有貼文，參觀需預約）", "https://www.facebook.com/HeartbreakFidelityRecords/"),  # 147
+    ("PeoPo 公民新聞（輔大生命力新聞）：永樂座×失戀排行榜 拉近「社交距離」, 2022-05-10", "https://www.peopo.org/news/584243"),  # 148
+    ("中央社：獨立書店永楽座頻頻虧損 7/30熄燈, 2024-05-11", "https://www.cna.com.tw/news/acul/202405110119.aspx"),  # 149
 ]
 
 ZONES = [
@@ -424,6 +427,8 @@ STORES = [
       "東門市場旁，2024 年 5 月起在此；2026 年 4 月又因都市更新搬遷。"),
     S("candle", "燭光唱片", "indie", "台北市中正區汀州路二段219號1樓", 2026, "e", None, None, [141, 41],
       "黑膠兼音響，主辦放碟祭；2026 年 5 月搬到汀州路。"),
+    S("heartbreak", "失戀排行榜 Heartbreak Fidelity Records", "indie", "台北市中山區興安街6-1號", 2026, "b", None, None, [147, 148, 149],
+      "2021 年 6 月起與石芳瑜的獨立書店永樂座在師大附近合開「永樂座×失戀排行榜」，約一年後拆夥，之後搬遷，舊址門牌不詳。參觀需事先預約。"),
     S("parstore", "PAR Store", "indie", "台北市大同區赤峰街3巷1號B1", 2020, "b", None, None, [41, 90], "選品店，有黑膠、卡帶與 zine。"),
     # ---- 韓國流行專輯店 ----
     S("kmonstar-zs", "K-MONSTAR 中山門市", "kpop", "台北市大同區赤峰街49巷7號1樓", 2023, "e", None, None, [65, 132, 64, 41],
