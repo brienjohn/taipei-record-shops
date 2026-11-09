@@ -294,6 +294,13 @@ g.s.out, g.mv.out, g.lay.out { opacity: 0 !important; pointer-events: none; }
 
 /* shop card */
 .drawer { right: 14px; top: 62px; width: min(340px, calc(100% - 28px)); max-height: calc(100% - 80px); z-index: 12; overflow-y: auto; padding: 14px 16px 16px; border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); display: grid; align-content: start; gap: 10px; }
+/* tether: a solid ink line from the open shop card to its mark or signboard (solid black on a paper casing,
+   so it never reads as a dashed move line, a coloured sign leader, or the yellow 'new this year' ring) */
+.tether { inset: 0; width: 100%; height: 100%; z-index: 13; pointer-events: none; overflow: visible; display: none; }
+.tether.show { display: block; }
+.tether .tc { stroke: var(--paper); stroke-width: 6.5px; stroke-linecap: round; }
+.tether .tl { stroke: var(--ink); stroke-width: 2.4px; stroke-linecap: round; }
+.tether .te { fill: var(--ink); stroke: var(--paper); stroke-width: 2px; }
 .drawer .head { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 4px 12px; align-items: start; padding-right: 30px; }
 .drawer .ph { grid-row: span 3; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; background: var(--paper-2); padding: 0; display: block; }
 .drawer .ph svg { width: 100%; height: auto; display: block; }
@@ -621,6 +628,7 @@ td a { color: var(--ink-2); }
       <div class="float osm">底圖 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 貢獻者</div>
       <div class="tip" id="tip" hidden></div>
       <div class="float zoomhint sticker" id="zoomHint" aria-hidden="true">按住 Ctrl 或 ⌘ 再捲動，即可縮放地圖</div>
+      <svg class="float tether" id="tether" aria-hidden="true"><line class="tc"/><line class="tl"/><circle class="te"/></svg>
       <aside class="float drawer sticker" id="drawer" aria-label="店家資料" hidden></aside>
       <div class="float mapyear sticker" aria-hidden="true"><span class="ychip" data-yr>2000</span> 年的地圖</div>
       <div class="float ghostcap" id="ghostCap" aria-live="polite" hidden><b id="ghostCount"></b><span class="gl" id="ghostLead"></span><span class="gnow" id="ghostNow"></span></div>
@@ -1204,7 +1212,7 @@ function storefront(s) {
     <circle cx="252" cy="134" r="3.5" fill="var(--ink)"/>
   </svg>`;
 }
-function openDrawer(s) {
+function openDrawer(s, keepView) {
   selected = s;
   const h = historyOf(s);
   drawer.innerHTML =
@@ -1231,6 +1239,22 @@ function openDrawer(s) {
   writeHash();
   gShop.selectAll("path.shop, g.sg").classed("on", d => d === selected);
   markHot();
+  startTether();
+  if (!keepView) requestAnimationFrame(() => revealUnderCard(s));
+}
+// the card sits in a fixed place; if it lands on (or right next to) the shop, slide the map just enough to bring the shop out
+function revealUnderCard(s) {
+  if (drawer.hidden || selected !== s) return;
+  const t = d3.zoomTransform(svg.node()), M = svg.node().getBoundingClientRect(), dr = drawer.getBoundingClientRect();
+  const x = t.applyX(s.px), y = t.applyY(s.py), m = signsOn ? 84 : 60;
+  const L = dr.left - M.left - m, R = dr.right - M.left + m, T = dr.top - M.top - m, B = dr.bottom - M.top + m;
+  if (x < L || x > R || y < T || y > B) return;
+  const ok = (nx, ny) => nx > 24 && nx < M.width - 24 && ny > 64 && ny < M.height - 24;
+  const shifts = [[L - x, 0], [R - x, 0], [0, T - y], [0, B - y]].filter(([dx, dy]) => ok(x + dx, y + dy))
+    .sort((a, b) => Math.hypot(...a) - Math.hypot(...b));
+  if (!shifts.length) return;
+  const [dx, dy] = shifts[0];
+  (reduceMotion() ? svg : svg.transition().duration(450)).call(zoom.translateBy, dx / t.k, dy / t.k);
 }
 function logoCredit(l) {
   if (l.k === "site") return `標誌取自<a href="${l.u}" target="_blank" rel="noopener">官方網站</a>`;
@@ -1238,6 +1262,45 @@ function logoCredit(l) {
   if (l.k === "maker") return "標誌由製作者 Brien John 提供";
   return "標誌取自店家公開的網路圖片";
 }
+// keep the tether between the open card and its shop while the card is open (zoom, pan, declutter, year change)
+const tether = d3.select("#tether");
+let tetherRaf = 0;
+function tetherTick() {
+  tetherRaf = 0;
+  if (drawer.hidden || !selected) { tether.classed("show", false); return; }
+  tetherRaf = requestAnimationFrame(tetherTick);
+  const node = gShop.selectAll("g.s").filter(d => d === selected).node();
+  const el = node && (signsOn ? node.querySelector("g.sg rect.edge") : node.querySelector("path.shop"));
+  if (!el || node.classList.contains("out")) { tether.classed("show", false); return; }
+  // measure against the map's own box (inside the card's 3px border), the same box the tether is drawn in
+  const W0 = svg.node().getBoundingClientRect(), r = el.getBoundingClientRect(), dr = drawer.getBoundingClientRect();
+  const ctm = el.getScreenCTM();
+  // aim at the shop's own point (the mark's origin) or the middle of its signboard
+  const cxS = signsOn || !ctm ? r.left + r.width / 2 : ctm.e, cyS = signsOn || !ctm ? r.top + r.height / 2 : ctm.f;
+  const sx = cxS - W0.left, sy = cyS - W0.top;
+  const L = dr.left - W0.left, T = dr.top - W0.top, R = dr.right - W0.left, B = dr.bottom - W0.top;
+  const inMap = sx > 4 && sy > 4 && sx < W0.width - 4 && sy < W0.height - 4;
+  const underCard = sx > L - 6 && sx < R + 6 && sy > T - 6 && sy < B + 6;
+  if (!inMap || underCard) { tether.classed("show", false); return; }
+  // the nearest point on the card's edge, kept clear of its rounded corners
+  const c = 22, ax = Math.max(L + c, Math.min(R - c, sx)), ay = Math.max(T + c, Math.min(B - c, sy));
+  const ex = sx < L ? L : sx > R ? R : ax, ey = sx >= L && sx <= R ? (sy < T ? T : B) : ay;
+  // the line points straight at that centre and stops just outside the shape's real outline
+  const dx = ex - sx, dy = ey - sy, len = Math.hypot(dx, dy) || 1, ux = dx / len, uy = dy / len;
+  let lo = 0, hi = Math.max(r.width, r.height);
+  try {
+    const inv = ctm.inverse(), inside = d => el.isPointInFill(new DOMPoint(cxS + ux * d, cyS + uy * d).matrixTransform(inv));
+    for (let i = 0; i < 14; i++) { const mid = (lo + hi) / 2; if (inside(mid)) lo = mid; else hi = mid; }
+  } catch (_) { hi = Math.min(r.width / 2 / Math.max(Math.abs(ux), 1e-6), r.height / 2 / Math.max(Math.abs(uy), 1e-6)); }
+  // the ink line runs into the shape's own ink outline so the two read as one; its pale casing stops just outside it
+  const ti = hi + 0.6, tc = hi + 5;
+  if (tc >= len - 6) { tether.classed("show", false); return; }
+  tether.classed("show", true);
+  tether.select(".tl").attr("x1", sx + ux * ti).attr("y1", sy + uy * ti).attr("x2", ex).attr("y2", ey);
+  tether.select(".tc").attr("x1", sx + ux * tc).attr("y1", sy + uy * tc).attr("x2", ex).attr("y2", ey);
+  tether.select(".te").attr("cx", ex).attr("cy", ey).attr("r", 4.5);
+}
+function startTether() { if (!tetherRaf) tetherRaf = requestAnimationFrame(tetherTick); }
 function closeDrawer() {
   drawer.hidden = true; selected = null;
   gShop.selectAll("path.shop, g.sg").classed("on", false);
@@ -1549,7 +1612,7 @@ const lastYear = s => { let e = s.y1 == null ? Y1 : s.y1; if (s.nextS) e = Math.
 function focusStore(s) {
   if (!visible.has(s.t)) { visible.add(s.t); syncLegend(); renderChart(); }
   if (!active(s, year)) { stop(); setYear(year < s.y0 ? Math.max(Y0, s.y0) : lastYear(s)); }
-  openDrawer(s);
+  openDrawer(s, true);  // focusStore places the shop in the free part of the map itself
   const t = d3.zoomTransform(svg.node());
   const k = Math.max(t.k, 6);
   const fx = isPhone() ? W / 2 : (W - 360) / 2, fy = isPhone() ? H * 0.28 : H / 2;
