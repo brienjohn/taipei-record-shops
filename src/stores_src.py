@@ -145,6 +145,7 @@ SOURCES = [
     ("中央廣播電台（江昭倫）：三創自設品牌 設全台最大庫藏黑膠店, 2015-05-15", "https://tw.news.yahoo.com/%E4%B8%89%E5%89%B5%E8%87%AA%E8%A8%AD%E5%93%81%E7%89%8C-%E8%A8%AD%E5%85%A8%E5%8F%B0%E6%9C%80%E5%A4%A7%E5%BA%AB%E8%97%8F%E9%BB%91%E8%86%A0%E5%BA%97-042100554.html"),  # 138
     ("PTT Z-Chen 板：智成「店員萬萬歲」答謝唱片行行程（轉貼官網）, 2003-03-13", "https://www.ptt.cc/bbs/Z-Chen/M.1047557456.A.044.html"),  # 139
     ("Impo 唱片 Facebook 粉絲專頁（2026 年 11 月仍有貼文，標示週六、日 13:00–19:00 營業）", "https://www.facebook.com/61567178580798"),  # 140
+    ("燭光唱片提供：店址與搬遷經過（2026 年 11 月）", ""),  # 141
 ]
 
 ZONES = [
@@ -412,8 +413,12 @@ STORES = [
     S("chaobar", "潮電 ChaoBar & RecordStore", "combo", "台北市大安區潮州街76號2樓", 2024, "e", None, None, [48, 42],
       "2024 年 11 月試營運，舊台電建築裡的電子音樂聆聽酒吧兼唱片行。"),
     S("rotten", "爛調唱片 Rotten Blues", "indie", "台北市中正區汀州路二段197號", 2024, "b", None, None, [42, 41], "日版黑膠與 CD、二手黑膠。"),
-    S("candle", "燭光唱片", "indie", "台北市中正區信義路二段45巷19號1樓", 2026, "b", None, None, [42, 41],
-      "東門市場旁，黑膠兼音響，主辦放碟祭。文化部名單另列汀州路二段219號，兩址先後不詳。"),
+    S("candle0", "燭光唱片（新生南路）", "indie", "台北市中正區新生南路一段108號3樓", 2023, "e", 2024, "e", [141],
+      "2023 年 3 月開幕；2024 年 4 月因都市更新搬遷。"),
+    S("candle1", "燭光唱片（信義路）", "indie", "台北市中正區信義路二段45巷19號1樓", 2024, "e", 2026, "e", [141, 42],
+      "東門市場旁，2024 年 5 月起在此；2026 年 4 月又因都市更新搬遷。"),
+    S("candle", "燭光唱片", "indie", "台北市中正區汀州路二段219號1樓", 2026, "e", None, None, [141, 41],
+      "黑膠兼音響，主辦放碟祭；2026 年 5 月搬到汀州路。"),
     S("parstore", "PAR Store", "indie", "台北市大同區赤峰街3巷1號B1", 2020, "b", None, None, [41, 90], "選品店，有黑膠、卡帶與 zine。"),
     # ---- 韓國流行專輯店 ----
     S("kmonstar-zs", "K-MONSTAR 中山門市", "kpop", "台北市大同區赤峰街49巷7號1樓", 2023, "e", None, None, [65, 132, 64, 41],
@@ -554,6 +559,8 @@ MOVES = [
     ("senko1", "senko2"),
     ("fairytree1", "fairytree2"),
     ("stoplisten", "stoplisten2"),
+    ("candle0", "candle1"),
+    ("candle1", "candle"),
 ]
 # Founding year when the earlier address is not on the map (before 2000 or outside Taipei City).
 EST = {"chiachia-zhonghua": (1976, "e", "中華商場"), "acdc": (1978, "e", "和平東路")}
@@ -633,7 +640,7 @@ LOGOS = {
     "beansbeats": ("logos/beansbeats.png", MAKER, "", ["beansbeats"], "#6b3a2e"),
     "2manyminds": ("logos/2manyminds.png", MAKER, "", ["2manyminds0", "2manyminds"], "#fff"),
     "xiaomin": ("logos/xiaomin.png", MAKER, "", ["xiaomin"], "#2a2118"),
-    "candle": ("logos/candle.png", MAKER, "", ["candle"], "#fff"),
+    "candle": ("logos/candle.png", MAKER, "", ["candle", "candle0", "candle1"], "#fff"),
     "parstore": ("logos/parstore.png", MAKER, "", ["parstore"], "#fff"),
     "analogy": ("logos/analogy.png", MAKER, "", ["analogy"], "#e3cfb4"),
     "blackglue": ("logos/blackglue.png", MAKER, "", ["blackglue"], "#fff"),
