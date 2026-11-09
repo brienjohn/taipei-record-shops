@@ -598,7 +598,7 @@ LOGOS = {
     "wind": ("logos/wind.png", OFFICIAL, "https://www.windmusic.com.tw/", ["wind"], "#fff"),
     "rk": ("logos/rk.png", OFFICIAL, "https://www.rkrecord.com.tw/", ["rk", "rk0", "rk2"], "#cacbcc"),
     "soundsgood": ("logos/soundsgood.png", OFFICIAL, "https://soundsgoodtaipei.com.tw/", ["soundsgood"], "#231f20"),
-    "chaobar": ("logos/chaobar.png", OFFICIAL, "https://chaobar.com/", ["chaobar"], "#fff"),
+    "chaobar": ("logos/chaobar.png", MAKER, "", ["chaobar"], "#fff"),
     "rotten": ("logos/rotten.png", OFFICIAL, "https://www.rottenblues.com/", ["rotten"], "#000"),
     "willmusic": ("logos/willmusic.png", OFFICIAL, "https://www.willmusic.com.tw/", ["willmusic1", "willmusic2", "willmusic-att", "willmusic-ximen"], "#1d1d1f"),
     "tower": ("logos/tower.svg", COMMONS, "https://commons.wikimedia.org/wiki/File:Tower_Records_logo_vertical.svg", ["tower"], "#ffe000"),

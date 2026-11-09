@@ -3523,10 +3523,10 @@
    "note": "2024 年 11 月試營運，舊台電建築裡的電子音樂聆聽酒吧兼唱片行。",
    "logo": {
     "f": "logos/chaobar.png",
-    "k": "site",
-    "u": "https://chaobar.com/",
+    "k": "maker",
+    "u": "",
     "bg": "#fff",
-    "a": 2.581
+    "a": 1.103
    }
   },
   {
