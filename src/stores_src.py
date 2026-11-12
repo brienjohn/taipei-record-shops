@@ -158,6 +158,9 @@ SOURCES = [
     ("光南大批發公館店前店員提供：唱片販售期間（2026 年 11 月）", ""),  # 151
     ("製作者 Brien John 提供：誠品 R79 仍販售唱片（2026 年 11 月）", ""),  # 152
     ("PTT Anti-ramp 板：Re: [抱怨] 台北 漢口街一段 佳佳唱片（列出佳佳四家分店）, 2009-05-20", "https://www.ptt.cc/bbs/Anti-ramp/M.1242751712.A.B5D.html"),  # 153
+    ("網友寶珠提供：星星唱片店址與開幕時間（2026 年 11 月）", ""),  # 154
+    ("星星唱片 PLANETES REC Facebook 粉絲專頁（2026 年 11 月）", "https://www.facebook.com/profile.php?id=61551931112197"),  # 155
+    ("蒙得你安店主提供：2024 年由東區搬到八德路（2026 年 11 月）", ""),  # 156
 ]
 
 ZONES = [
@@ -344,9 +347,10 @@ STORES = [
     S("xiaocai-sl", "小蔡的店 士林店", "indie", "台北市士林區大南路12號2樓", 2013, "b", 2013, "u", [17], "二手 CD。"),
     S("mollie", "茉莉二手書店 影音館（台大）", "indie", "台北市大安區羅斯福路四段24巷13號B1", 2013, "b", 2019, "u", [17, 14, 7, 66, 90], "二手 CD、卡帶與黑膠。"),
     S("regen-gg", "再生工場 公館店", "indie", "台北市中正區羅斯福路三段312號B1", 2000, "b", 2020, "u", [17, 14, 90, 57], "二手 CD、特價 CD 與影碟；2000 年《秘密基地》已列為公館唱片行之一。"),
-    S("mondian", "蒙得你安二手唱片", "indie", "台北市大安區忠孝東路四段248巷13號", 2000, "b", 2013, "u", [17, 57]),
-    S("mondian2", "蒙得你安唱片 Mondrian Vinyls", "indie", "台北市松山區八德路三段74巷（門牌不詳）", 2026, "b", None, None, [125],
-      "Google 地圖上營業中的黑膠店，標示「個人深度黑膠聆聽體驗」，位在 Soil 咖啡樓下。店名與 2000 年代東區的蒙得你安二手唱片相同，是否為同一家、何時開業都不詳，因此分開列出；位置依 Google 地圖標示。",
+    S("mondian", "蒙得你安二手唱片", "indie", "台北市大安區忠孝東路四段248巷13號", 2000, "b", 2024, "e", [156, 17, 57],
+      "東區的二手唱片行，據店主說在此營業到 2024 年，之後搬到八德路三段。"),
+    S("mondian2", "蒙得你安唱片 Mondrian Vinyls", "indie", "台北市松山區八德路三段74巷94號B1", 2024, "e", None, None, [156, 125],
+      "東區蒙得你安 2024 年搬來的新址（店主提供），在 Soil 咖啡樓下的地下室，標榜「個人深度黑膠聆聽體驗」。",
       geo="台北市松山區八德路三段74巷94號"),
     S("btb", "沒有新歌的唱片行", "indie", "台北市大安區和平東路一段12巷4號", 2014, "e", 2024, "e", [32, 20, 19, 66, 90],
       "以 2000 年前的音樂為主，CD、黑膠與卡帶；2024 年 4 月 30 日結束實體店。", "BTB Music Workshop"),
@@ -493,6 +497,8 @@ STORES = [
       "與漫畫店 Mangasick 同一個地下室的獨立唱片行，2015 年 6 月宣布結束實體營業。"),
     S("agnesb", "agnès b. music store", "indie", "台北市信義區松高路16號2樓（微風松高）", 2014, "e", 2017, "e", [79, 80, 66, 90, 123],
       "agnès b. 全球第二家唱片行，2014 年冬天開幕，營業到 2017 年。", geo="台北市信義區松高路16號"),
+    S("xingxing", "星星唱片", "indie", "台北市大安區羅斯福路三段269巷51弄9號B1", 2026, "e", None, None, [154, 155],
+      "二手唱片、小誌與合成器，也做 DJ 活動與發行；預計 2026 年 11 月底開幕，店在巷弄裡的地下室。", "Planetes Records"),
     S("kaeru", "KAERU", "indie", "台北市大安區忠孝東路三段248巷15號1樓", 2026, "e", None, None, [124, 123],
       "中古與全新黑膠、唱盤與音響，以爵士、日本 City Pop、靈魂樂為主。先以網路商店營運，實體店預計 2026 年底開幕；店址為官網的聯絡地址。"),
     # ---- 2000 年普查、2020 清單與製作者提供的線索 ----
@@ -575,6 +581,7 @@ MOVES = [
     ("stoplisten", "stoplisten2"),
     ("candle0", "candle1"),
     ("candle1", "candle"),
+    ("mondian", "mondian2"),
     ("abcd", "rose-emei"),
 ]
 # Founding year when the earlier address is not on the map (before 2000 or outside Taipei City).
@@ -684,6 +691,74 @@ for key, (f, kind, u, fams, bg) in LOGOS.items():
     assert hit, key
     for s in hit:
         s["logo"] = dict(f=f, k=kind, u=u, bg=bg, a=round(w / h, 3))
+
+# Official social accounts / sites of shops still open (shown on the card, not counted as sources).
+# Only the shop's or brand's own accounts; checked 2026-11.
+FB, IG, TH = "https://www.facebook.com/", "https://www.instagram.com/", "https://www.threads.com/@"
+_CC = dict(fb=FB + "ChiaChiaRecord/", ig=IG + "ccr_tw/", web="https://www.ccr.com.tw/")
+_ESLITE = dict(fb=FB + "aroundtherhythm/")
+_WILL = dict(fb=FB + "willmusictaiwan/", ig=IG + "willmusic.official/")
+_HG = dict(ig=IG + "hgmusic_taiwan/", web="https://www.hgmusic.com.tw/")
+_AMD = dict(fb=FB + "allmyday.tw/", ig=IG + "allmyday.tw/", th=TH + "allmyday.tw", web="https://allmyday.com.tw/")
+_KM = dict(ig=IG + "kmonstar.kr/", th=TH + "kmonstar.kr", web="https://kmonstar.com/")
+SOCIAL = {
+    "5music-station": dict(fb=FB + "100069970516845/", ig=IG + "5musictown/", web="https://www.5music.com.tw/"),
+    "chiachia-zhonghua": _CC, "chiachia-hankou": _CC,
+    "eslite-songyan": _ESLITE, "eslite-r79": _ESLITE,
+    "knn-xuchang": dict(fb=FB + "KUANGNANAV/", web="https://www.knn.com.tw/"),
+    "shangyang": dict(fb=FB + "sunrise.records.tw/"),
+    "95": dict(fb=FB + "95music.tw/"),
+    "rk2": dict(fb=FB + "100063893534532/"),
+    "indimusic": dict(fb=FB + "indimusic.rocks/"),
+    "hoyou": dict(fb=FB + "HeYouChangPian/"),
+    "aile2": dict(fb=FB + "100070552809373/", ig=IG + "music_affair_records/"),
+    "qiyuan2": dict(fb=FB + "cdmusic.taipei/"),
+    "mondian2": dict(ig=IG + "mondrian_vinyls24/"),
+    "metalgate": dict(fb=FB + "rockempiregoods/"),
+    "pubmetal": dict(fb=FB + "pubmetalshop/", ig=IG + "pubmetalshop/", th=TH + "pubmetalshop"),
+    "wabbit": dict(fb=FB + "wwrecords/", ig=IG + "whitewabbitrecords/", th=TH + "whitewabbitrecords"),
+    "mam2": dict(fb=FB + "mmrecordstaipei/", ig=IG + "mmrecords_taipei/", web="https://www.mmrecords.com.tw/"),
+    "tht2": dict(fb=FB + "THTRECORDs", ig=IG + "thtrecords_taiwan/"),
+    "waiting": dict(fb=FB + "waitingroomtaipei/", ig=IG + "waitingroom_taipei/"),
+    "vinyldecision2": dict(fb=FB + "VinylDecision/", ig=IG + "vinyldecision_taipei/"),
+    "analogy": dict(fb=FB + "CLASSICAL.PALACE.SOCIETY/"),
+    "blackglue": dict(ig=IG + "blackgluerecords/"),
+    "soulamazin": dict(fb=FB + "soulamazin2008/", ig=IG + "soulamazinmusic/"),
+    "datao": dict(fb=FB + "DaTaoVinyl/", ig=IG + "dataovinyl_tmc/", th=TH + "dataovinyl_tmc"),
+    "slipped": dict(fb=FB + "slippeddisk.tpe/", ig=IG + "slippeddisk.tpe/"),
+    "avc": dict(fb=FB + "ArkvinylnRecord/", ig=IG + "avc_coffee.roasters/"),
+    "diyi": dict(fb=FB + "1544908325730188/"),
+    "xintianxindi3": dict(web="https://www.stsd99.com/"),
+    "impo": dict(fb=FB + "61567178580798"),
+    "38c": dict(fb=FB + "38record/", ig=IG + "38crecordstore/"),
+    "longfeng": dict(fb=FB + "100064304311679/"),
+    "senko2": dict(ig=IG + "senko.issha/"),
+    "sidoli": dict(fb=FB + "sidoliradio/", ig=IG + "sidoli_radio/", th=TH + "sidoli_radio"),
+    "soundsgood": dict(fb=FB + "soundsgood.cafe/", ig=IG + "soundsgood.cafe/", th=TH + "soundsgood.cafe"),
+    "chaobar": dict(ig=IG + "chaobarrecordstore/"),
+    "rotten": dict(fb=FB + "RottenBluesRecords/", ig=IG + "rotten_blues/", th=TH + "rotten_blues"),
+    "candle": dict(ig=IG + "candlelight_musicshop/", th=TH + "candlelight_musicshop", web="https://www.candlelightrecords.tw/"),
+    "heartbreak": dict(fb=FB + "HeartbreakFidelityRecords/", ig=IG + "heartbreakfidelityrecords/"),
+    "parstore": dict(fb=FB + "par.store.taipei", ig=IG + "par_store/"),
+    "kmonstar-zs": _KM, "kmonstar-ns": _KM, "kmonstar-bf": _KM,
+    "willmusic1": _WILL, "willmusic2": _WILL, "willmusic-att": _WILL, "willmusic-one": _WILL, "willmusic-ximen": _WILL,
+    "platbum": dict(ig=IG + "platbum_tw/", th=TH + "platbum_tw"),
+    "fairytree2": dict(fb=FB + "fairytreee/", ig=IG + "fairytreee/", web="https://www.fairytree.com.tw/"),
+    "hanju": _HG, "hanju2": _HG,
+    "koreepop": dict(ig=IG + "koreepop_official/", th=TH + "koreepop_official", web="https://www.koreepop.com/"),
+    "allmyday1": _AMD, "allmyday2": _AMD,
+    "cheery": dict(fb=FB + "CheeryMusicAudio/", web="https://www.cheerymusic.com/"),
+    "joyaudio": dict(web="https://www.joyaudio.com.tw/"),
+    "windsong": dict(fb=FB + "windsongwang/"),
+    "kaeru": dict(ig=IG + "kaerubyhiro/", th=TH + "kaerubyhiro", web="https://www.kaerutw.com/"),
+    "xingxing": dict(fb="https://www.facebook.com/profile.php?id=61551931112197", ig=IG + "planetesrecords/"),
+    "acdc": dict(fb=FB + "Audio.Climax.Co/", ig=IG + "audioclimax1978/", web="https://acdc.com.tw/"),
+    "mollie2": dict(fb=FB + "molliestore/"),
+}
+_ids = {s["id"]: s for s in STORES}
+for k, v in SOCIAL.items():
+    assert k in _ids and _ids[k]["y1"] is None, k
+    _ids[k]["soc"] = v
 
 out = dict(sources=[dict(t=t, u=u) for t, u in SOURCES], zones=ZONES, stores=STORES, events=EVENTS)
 ids = [s["id"] for s in STORES]

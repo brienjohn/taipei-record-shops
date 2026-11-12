@@ -615,6 +615,18 @@
   {
    "t": "PTT Anti-ramp 板：Re: [抱怨] 台北 漢口街一段 佳佳唱片（列出佳佳四家分店）, 2009-05-20",
    "u": "https://www.ptt.cc/bbs/Anti-ramp/M.1242751712.A.B5D.html"
+  },
+  {
+   "t": "網友寶珠提供：星星唱片店址與開幕時間（2026 年 11 月）",
+   "u": ""
+  },
+  {
+   "t": "星星唱片 PLANETES REC Facebook 粉絲專頁（2026 年 11 月）",
+   "u": "https://www.facebook.com/profile.php?id=61551931112197"
+  },
+  {
+   "t": "蒙得你安店主提供：2024 年由東區搬到八德路（2026 年 11 月）",
+   "u": ""
   }
  ],
  "zones": [
@@ -1756,6 +1768,11 @@
     "u": "https://www.5music.com.tw/",
     "bg": "#fff",
     "a": 3.814
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/100069970516845/",
+    "ig": "https://www.instagram.com/5musictown/",
+    "web": "https://www.5music.com.tw/"
    }
   },
   {
@@ -1798,6 +1815,11 @@
     "u": "",
     "bg": "#f7f7f7",
     "a": 0.854
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/ChiaChiaRecord/",
+    "ig": "https://www.instagram.com/ccr_tw/",
+    "web": "https://www.ccr.com.tw/"
    }
   },
   {
@@ -1854,6 +1876,11 @@
     "u": "",
     "bg": "#f7f7f7",
     "a": 0.854
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/ChiaChiaRecord/",
+    "ig": "https://www.instagram.com/ccr_tw/",
+    "web": "https://www.ccr.com.tw/"
    }
   },
   {
@@ -2022,6 +2049,9 @@
     "u": "https://www.eslite.com/",
     "bg": "#fff",
     "a": 1.357
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/aroundtherhythm/"
    }
   },
   {
@@ -2109,6 +2139,10 @@
     "u": "https://www.knn.com.tw/",
     "bg": "#fff",
     "a": 1.127
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/KUANGNANAV/",
+    "web": "https://www.knn.com.tw/"
    }
   },
   {
@@ -2167,6 +2201,9 @@
     "u": "",
     "bg": "#fff",
     "a": 0.808
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/sunrise.records.tw/"
    }
   },
   {
@@ -2201,6 +2238,9 @@
     "u": "",
     "bg": "#fff",
     "a": 2.462
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/95music.tw/"
    }
   },
   {
@@ -2304,6 +2344,9 @@
     "u": "https://www.rkrecord.com.tw/",
     "bg": "#cacbcc",
     "a": 3.8
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/100063893534532/"
    }
   },
   {
@@ -2332,6 +2375,9 @@
     "u": "",
     "bg": "#000",
     "a": 1.594
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/indimusic.rocks/"
    }
   },
   {
@@ -2360,6 +2406,9 @@
     "u": "",
     "bg": "#fff",
     "a": 1.412
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/HeYouChangPian/"
    }
   },
   {
@@ -2426,6 +2475,10 @@
     "u": "",
     "bg": "#f5f5f7",
     "a": 1.017
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/100070552809373/",
+    "ig": "https://www.instagram.com/music_affair_records/"
    }
   },
   {
@@ -2474,6 +2527,9 @@
     "u": "",
     "bg": "#7cc242",
     "a": 1.644
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/cdmusic.taipei/"
    }
   },
   {
@@ -2661,27 +2717,35 @@
    "a": "台北市大安區忠孝東路四段248巷13號",
    "y0": 2000,
    "y0q": "b",
-   "y1": 2013,
-   "y1q": "u",
+   "y1": 2024,
+   "y1q": "e",
    "src": [
+    156,
     17,
     57
-   ]
+   ],
+   "note": "東區的二手唱片行，據店主說在此營業到 2024 年，之後搬到八德路三段。",
+   "next": "mondian2"
   },
   {
    "id": "mondian2",
    "n": "蒙得你安唱片 Mondrian Vinyls",
    "t": "indie",
-   "a": "台北市松山區八德路三段74巷（門牌不詳）",
-   "y0": 2026,
-   "y0q": "b",
+   "a": "台北市松山區八德路三段74巷94號B1",
+   "y0": 2024,
+   "y0q": "e",
    "y1": null,
    "y1q": null,
    "src": [
+    156,
     125
    ],
-   "note": "Google 地圖上營業中的黑膠店，標示「個人深度黑膠聆聽體驗」，位在 Soil 咖啡樓下。店名與 2000 年代東區的蒙得你安二手唱片相同，是否為同一家、何時開業都不詳，因此分開列出；位置依 Google 地圖標示。",
-   "geo": "台北市松山區八德路三段74巷94號"
+   "note": "東區蒙得你安 2024 年搬來的新址（店主提供），在 Soil 咖啡樓下的地下室，標榜「個人深度黑膠聆聽體驗」。",
+   "geo": "台北市松山區八德路三段74巷94號",
+   "prev": "mondian",
+   "soc": {
+    "ig": "https://www.instagram.com/mondrian_vinyls24/"
+   }
   },
   {
    "id": "btb",
@@ -2740,7 +2804,10 @@
     7,
     90
    ],
-   "note": "金屬樂。"
+   "note": "金屬樂。",
+   "soc": {
+    "fb": "https://www.facebook.com/rockempiregoods/"
+   }
   },
   {
    "id": "pubmetal",
@@ -2762,6 +2829,11 @@
     "u": "",
     "bg": "#fff",
     "a": 2.202
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/pubmetalshop/",
+    "ig": "https://www.instagram.com/pubmetalshop/",
+    "th": "https://www.threads.com/@pubmetalshop"
    }
   },
   {
@@ -2814,6 +2886,11 @@
     "u": "https://wwr.com.tw/",
     "bg": "#fff",
     "a": 0.681
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/wwrecords/",
+    "ig": "https://www.instagram.com/whitewabbitrecords/",
+    "th": "https://www.threads.com/@whitewabbitrecords"
    }
   },
   {
@@ -2861,6 +2938,11 @@
     "u": "https://www.mmrecords.com.tw/",
     "bg": "#141414",
     "a": 1.308
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/mmrecordstaipei/",
+    "ig": "https://www.instagram.com/mmrecords_taipei/",
+    "web": "https://www.mmrecords.com.tw/"
    }
   },
   {
@@ -2932,6 +3014,10 @@
     "u": "",
     "bg": "#f7f7f7",
     "a": 1.0
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/THTRECORDs",
+    "ig": "https://www.instagram.com/thtrecords_taiwan/"
    }
   },
   {
@@ -2979,6 +3065,10 @@
     "u": "",
     "bg": "#fff",
     "a": 3.41
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/waitingroomtaipei/",
+    "ig": "https://www.instagram.com/waitingroom_taipei/"
    }
   },
   {
@@ -3054,6 +3144,10 @@
     "u": "",
     "bg": "#f3eee2",
     "a": 1.004
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/VinylDecision/",
+    "ig": "https://www.instagram.com/vinyldecision_taipei/"
    }
   },
   {
@@ -3200,6 +3294,9 @@
     "u": "",
     "bg": "#e3cfb4",
     "a": 0.846
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/CLASSICAL.PALACE.SOCIETY/"
    }
   },
   {
@@ -3220,6 +3317,9 @@
     "u": "",
     "bg": "#fff",
     "a": 0.771
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/blackgluerecords/"
    }
   },
   {
@@ -3241,6 +3341,10 @@
     "u": "",
     "bg": "#ffe000",
     "a": 1.571
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/soulamazin2008/",
+    "ig": "https://www.instagram.com/soulamazinmusic/"
    }
   },
   {
@@ -3264,6 +3368,11 @@
     "u": "",
     "bg": "#f7f7f7",
     "a": 1.013
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/DaTaoVinyl/",
+    "ig": "https://www.instagram.com/dataovinyl_tmc/",
+    "th": "https://www.threads.com/@dataovinyl_tmc"
    }
   },
   {
@@ -3286,6 +3395,10 @@
     "u": "",
     "bg": "#1c4e91",
     "a": 1.004
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/slippeddisk.tpe/",
+    "ig": "https://www.instagram.com/slippeddisk.tpe/"
    }
   },
   {
@@ -3307,6 +3420,10 @@
     "u": "",
     "bg": "#fff",
     "a": 2.077
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/ArkvinylnRecord/",
+    "ig": "https://www.instagram.com/avc_coffee.roasters/"
    }
   },
   {
@@ -3323,7 +3440,10 @@
     90,
     123
    ],
-   "note": "大稻埕的台語歌謠唱片老店，早年也是唱片公司，現由第三代經營，2026 年仍在營業。"
+   "note": "大稻埕的台語歌謠唱片老店，早年也是唱片公司，現由第三代經營，2026 年仍在營業。",
+   "soc": {
+    "fb": "https://www.facebook.com/1544908325730188/"
+   }
   },
   {
    "id": "xintianxindi",
@@ -3374,7 +3494,10 @@
     90
    ],
    "note": "2019 年 12 月 6 日開幕，週四到週六營業。",
-   "prev": "xintianxindi2"
+   "prev": "xintianxindi2",
+   "soc": {
+    "web": "https://www.stsd99.com/"
+   }
   },
   {
    "id": "juexiang",
@@ -3423,7 +3546,10 @@
     97
    ],
    "note": "公館捷運站 4 號出口附近的三樓小店，2009 年起在此，兼賣二手 CD、黑膠與進口代訂；2026 年仍營業，週六、日下午開門。",
-   "prev": "impo0"
+   "prev": "impo0",
+   "soc": {
+    "fb": "https://www.facebook.com/61567178580798"
+   }
   },
   {
    "id": "laobanniang",
@@ -3464,6 +3590,10 @@
     "u": "",
     "bg": "#6d1d2e",
     "a": 1.935
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/38record/",
+    "ig": "https://www.instagram.com/38crecordstore/"
    }
   },
   {
@@ -3480,7 +3610,10 @@
     90
    ],
    "note": "夜市裡的唱片攤，位置標在華西街上。",
-   "geo": "台北市萬華區華西街46號"
+   "geo": "台北市萬華區華西街46號",
+   "soc": {
+    "fb": "https://www.facebook.com/100064304311679/"
+   }
   },
   {
    "id": "senko1",
@@ -3530,6 +3663,9 @@
     "u": "",
     "bg": "#000",
     "a": 1.905
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/senko.issha/"
    }
   },
   {
@@ -3552,6 +3688,11 @@
     "u": "",
     "bg": "#fff",
     "a": 1.235
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/sidoliradio/",
+    "ig": "https://www.instagram.com/sidoli_radio/",
+    "th": "https://www.threads.com/@sidoli_radio"
    }
   },
   {
@@ -3574,6 +3715,11 @@
     "u": "https://soundsgoodtaipei.com.tw/",
     "bg": "#231f20",
     "a": 2.272
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/soundsgood.cafe/",
+    "ig": "https://www.instagram.com/soundsgood.cafe/",
+    "th": "https://www.threads.com/@soundsgood.cafe"
    }
   },
   {
@@ -3619,6 +3765,9 @@
     "u": "",
     "bg": "#fff",
     "a": 1.103
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/chaobarrecordstore/"
    }
   },
   {
@@ -3641,6 +3790,11 @@
     "u": "https://www.rottenblues.com/",
     "bg": "#000",
     "a": 1.171
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/RottenBluesRecords/",
+    "ig": "https://www.instagram.com/rotten_blues/",
+    "th": "https://www.threads.com/@rotten_blues"
    }
   },
   {
@@ -3710,6 +3864,11 @@
     "u": "",
     "bg": "#fff",
     "a": 0.821
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/candlelight_musicshop/",
+    "th": "https://www.threads.com/@candlelight_musicshop",
+    "web": "https://www.candlelightrecords.tw/"
    }
   },
   {
@@ -3726,7 +3885,11 @@
     148,
     149
    ],
-   "note": "2021 年 6 月起與石芳瑜的獨立書店永樂座在師大附近合開「永樂座×失戀排行榜」，約一年後拆夥，之後搬遷，舊址門牌不詳。參觀需事先預約。"
+   "note": "2021 年 6 月起與石芳瑜的獨立書店永樂座在師大附近合開「永樂座×失戀排行榜」，約一年後拆夥，之後搬遷，舊址門牌不詳。參觀需事先預約。",
+   "soc": {
+    "fb": "https://www.facebook.com/HeartbreakFidelityRecords/",
+    "ig": "https://www.instagram.com/heartbreakfidelityrecords/"
+   }
   },
   {
    "id": "parstore",
@@ -3748,6 +3911,10 @@
     "u": "",
     "bg": "#fff",
     "a": 0.933
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/par.store.taipei",
+    "ig": "https://www.instagram.com/par_store/"
    }
   },
   {
@@ -3772,6 +3939,11 @@
     "u": "https://kmonstar.com/",
     "bg": "#fff",
     "a": 1.0
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/kmonstar.kr/",
+    "th": "https://www.threads.com/@kmonstar.kr",
+    "web": "https://kmonstar.com/"
    }
   },
   {
@@ -3797,6 +3969,11 @@
     "u": "https://kmonstar.com/",
     "bg": "#fff",
     "a": 1.0
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/kmonstar.kr/",
+    "th": "https://www.threads.com/@kmonstar.kr",
+    "web": "https://kmonstar.com/"
    }
   },
   {
@@ -3821,6 +3998,11 @@
     "u": "https://kmonstar.com/",
     "bg": "#fff",
     "a": 1.0
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/kmonstar.kr/",
+    "th": "https://www.threads.com/@kmonstar.kr",
+    "web": "https://kmonstar.com/"
    }
   },
   {
@@ -3844,6 +4026,10 @@
     "u": "https://www.willmusic.com.tw/",
     "bg": "#1d1d1f",
     "a": 3.429
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/willmusictaiwan/",
+    "ig": "https://www.instagram.com/willmusic.official/"
    }
   },
   {
@@ -3867,6 +4053,10 @@
     "u": "https://www.willmusic.com.tw/",
     "bg": "#1d1d1f",
     "a": 3.429
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/willmusictaiwan/",
+    "ig": "https://www.instagram.com/willmusic.official/"
    }
   },
   {
@@ -3889,6 +4079,10 @@
     "u": "https://www.willmusic.com.tw/",
     "bg": "#1d1d1f",
     "a": 3.429
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/willmusictaiwan/",
+    "ig": "https://www.instagram.com/willmusic.official/"
    }
   },
   {
@@ -3904,7 +4098,11 @@
     131,
     130
    ],
-   "note": "2025 年 4 月辦理門市登記，同年 10 月的店家整理已列入。"
+   "note": "2025 年 4 月辦理門市登記，同年 10 月的店家整理已列入。",
+   "soc": {
+    "fb": "https://www.facebook.com/willmusictaiwan/",
+    "ig": "https://www.instagram.com/willmusic.official/"
+   }
   },
   {
    "id": "willmusic-ximen",
@@ -3926,6 +4124,10 @@
     "u": "https://www.willmusic.com.tw/",
     "bg": "#1d1d1f",
     "a": 3.429
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/willmusictaiwan/",
+    "ig": "https://www.instagram.com/willmusic.official/"
    }
   },
   {
@@ -3940,7 +4142,11 @@
    "src": [
     129
    ],
-   "note": "以男團專輯與周邊為主，店名取 platform 與 album 合成。"
+   "note": "以男團專輯與周邊為主，店名取 platform 與 album 合成。",
+   "soc": {
+    "ig": "https://www.instagram.com/platbum_tw/",
+    "th": "https://www.threads.com/@platbum_tw"
+   }
   },
   {
    "id": "fairytree1",
@@ -3988,6 +4194,11 @@
     "u": "",
     "bg": "#fff",
     "a": 0.824
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/fairytreee/",
+    "ig": "https://www.instagram.com/fairytreee/",
+    "web": "https://www.fairytree.com.tw/"
    }
   },
   {
@@ -4031,6 +4242,10 @@
     "u": "",
     "bg": "#fff",
     "a": 1.004
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/hgmusic_taiwan/",
+    "web": "https://www.hgmusic.com.tw/"
    }
   },
   {
@@ -4053,6 +4268,10 @@
     "u": "",
     "bg": "#fff",
     "a": 1.004
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/hgmusic_taiwan/",
+    "web": "https://www.hgmusic.com.tw/"
    }
   },
   {
@@ -4075,6 +4294,11 @@
     "u": "",
     "bg": "#fff",
     "a": 1.0
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/koreepop_official/",
+    "th": "https://www.threads.com/@koreepop_official",
+    "web": "https://www.koreepop.com/"
    }
   },
   {
@@ -4098,6 +4322,12 @@
     "u": "",
     "bg": "#fff",
     "a": 1.182
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/allmyday.tw/",
+    "ig": "https://www.instagram.com/allmyday.tw/",
+    "th": "https://www.threads.com/@allmyday.tw",
+    "web": "https://allmyday.com.tw/"
    }
   },
   {
@@ -4120,6 +4350,12 @@
     "u": "",
     "bg": "#fff",
     "a": 1.182
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/allmyday.tw/",
+    "ig": "https://www.instagram.com/allmyday.tw/",
+    "th": "https://www.threads.com/@allmyday.tw",
+    "web": "https://allmyday.com.tw/"
    }
   },
   {
@@ -4167,6 +4403,10 @@
     "u": "https://www.cheerymusic.com/",
     "bg": "#fff",
     "a": 2.18
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/CheeryMusicAudio/",
+    "web": "https://www.cheerymusic.com/"
    }
   },
   {
@@ -4191,6 +4431,9 @@
     "u": "",
     "bg": "#000",
     "a": 2.892
+   },
+   "soc": {
+    "web": "https://www.joyaudio.com.tw/"
    }
   },
   {
@@ -4216,6 +4459,9 @@
     "u": "http://www.windsong.com.tw/",
     "bg": "#fff",
     "a": 1.404
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/windsongwang/"
    }
   },
   {
@@ -4401,6 +4647,26 @@
    }
   },
   {
+   "id": "xingxing",
+   "n": "星星唱片",
+   "t": "indie",
+   "a": "台北市大安區羅斯福路三段269巷51弄9號B1",
+   "y0": 2026,
+   "y0q": "e",
+   "y1": null,
+   "y1q": null,
+   "src": [
+    154,
+    155
+   ],
+   "note": "二手唱片、小誌與合成器，也做 DJ 活動與發行；預計 2026 年 11 月底開幕，店在巷弄裡的地下室。",
+   "en": "Planetes Records",
+   "soc": {
+    "fb": "https://www.facebook.com/profile.php?id=61551931112197",
+    "ig": "https://www.instagram.com/planetesrecords/"
+   }
+  },
+  {
    "id": "kaeru",
    "n": "KAERU",
    "t": "indie",
@@ -4420,6 +4686,11 @@
     "u": "https://www.kaerutw.com/",
     "bg": "#fff",
     "a": 3.429
+   },
+   "soc": {
+    "ig": "https://www.instagram.com/kaerubyhiro/",
+    "th": "https://www.threads.com/@kaerubyhiro",
+    "web": "https://www.kaerutw.com/"
    }
   },
   {
@@ -4491,6 +4762,9 @@
     "u": "https://www.eslite.com/",
     "bg": "#fff",
     "a": 1.357
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/aroundtherhythm/"
    }
   },
   {
@@ -4592,6 +4866,11 @@
     "u": "https://www.acdc.com.tw/",
     "bg": "#fff",
     "a": 1.041
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/Audio.Climax.Co/",
+    "ig": "https://www.instagram.com/audioclimax1978/",
+    "web": "https://acdc.com.tw/"
    }
   },
   {
@@ -4628,6 +4907,9 @@
     "u": "",
     "bg": "#000",
     "a": 1.005
+   },
+   "soc": {
+    "fb": "https://www.facebook.com/molliestore/"
    }
   }
  ],
